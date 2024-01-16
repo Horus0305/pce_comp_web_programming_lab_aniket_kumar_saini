@@ -1,0 +1,35 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.divtrigger{
+    width: 80%;
+    height: 800px;
+    margin: 50px 0px;
+}
+#div1{
+    background-color:bisque;
+    text-align: center;
+}
+#div2{
+    background-color:aliceblue;
+    text-align: center;
+}
+#div3{
+    background-color:antiquewhite;
+    text-align: center;
+}
+#div4{
+    background-color:aqua;
+    text-align: center;
+}
+#div5{
+    background-color:beige;
+    text-align: center;
+}
+#div6{
+    background-color: aquamarine;
+    text-align: center;
+}
