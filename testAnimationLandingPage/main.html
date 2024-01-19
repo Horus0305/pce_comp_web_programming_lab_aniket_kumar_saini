@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <img src="zodiac1.png" alt="image">
-    <p>CD</p>
-    <div class="divtrigger"  id="div1">Div 1</div>
-    <div class="divtrigger"  id="div2">Div 2</div>
-    <div class="divtrigger"  id="div3">Div 3</div>
-    <div class="divtrigger"  id="div4">Div 4</div>
-    <div class="divtrigger"  id="div5">Div 5</div>
-    <div class="divtrigger"  id="div6">Div 6</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Destiny</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="bg.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <img src="logo.png" alt="logo" class="logo" />
+    <img src="zodiac.png" alt="image" class="chakra" />
+    <!-- <p>CD</p> -->
+    <!-- <div class="container"> -->
+    <div class="divtrigger" id="div1"></div>
+    <div class="divtrigger" id="div2"></div>
+    <div class="divtrigger" id="div3"></div>
+    <div class="divtrigger" id="div4"></div>
+    <div class="divtrigger" id="div5"></div>
+    <div class="divtrigger" id="div6"></div>
+    <!-- </div> -->
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"
@@ -28,14 +33,21 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="app.js"></script>
+    <script src="bg.js"></script>
     <script src="main.js"></script>
+    <script src="particles.js"></script>
+    <script src="particles.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        window.addEventListener("scroll", () => {
-            document.body.style.setProperty(
-                "--scroll",
-                window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
-            );
-        });
+      window.addEventListener("scroll", () => {
+        document.body.style.setProperty(
+          "--scroll",
+          window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+        );
+      });
     </script>
-</body>
+  </body>
 </html>
