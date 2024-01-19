@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <title>Scroll Trigger</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <img src="zodiac1.png" alt="image">
+    <p>CD</p>
     <div class="divtrigger"  id="div1">Div 1</div>
     <div class="divtrigger"  id="div2">Div 2</div>
     <div class="divtrigger"  id="div3">Div 3</div>
@@ -27,5 +29,13 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="main.js"></script>
+    <script>
+        window.addEventListener("scroll", () => {
+            document.body.style.setProperty(
+                "--scroll",
+                window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+            );
+        });
+    </script>
 </body>
 </html>
