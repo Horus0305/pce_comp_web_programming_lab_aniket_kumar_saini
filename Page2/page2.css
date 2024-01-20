@@ -76,3 +76,20 @@ body {
     color: #22092C;
     font-family: "Poppins", sans-serif;
 }
+
+.horo2{
+    margin-left: 59.5%;
+}
+
+.img-con{
+    height: 0px;
+}
+
+.horo-img{
+    width: 20%;
+    height: 250px;
+    position: relative;
+    top: -150px;
+    background-color: black;
+    border-radius: 150px;
+}
