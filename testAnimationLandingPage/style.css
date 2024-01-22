@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:ital,wght@0,400;0,600;1,700&family=Roboto+Condensed:ital,wght@1,900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -32,9 +33,9 @@ p {
 }
 
 .chakra {
-  width: 845px;
+  width: 765px;
   position: fixed;
-  top: -2.2%;
+  top: -2.5%;
   left: 75.3%;
   animation: rotate 1s linear infinite;
   animation-play-state: paused;
@@ -43,8 +44,26 @@ p {
   animation-fill-mode: both;
   overflow: hidden;
   z-index: 200;
+  filter: drop-shadow(0 0 5rem rgb(60, 20, 220));
 }
-
+.flower {
+  width: 765px;
+  position: fixed;
+  top: -2.5%;
+  left: 75.3%;
+  animation: rotateflower 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  overflow: hidden;
+  z-index: 201;
+}
+@keyframes rotateflower {
+  to {
+    transform: rotate(-180deg);
+  }
+}
 .logo {
   width: 7rem;
   height: 7rem;
@@ -62,20 +81,93 @@ p {
 }
 
 .divtrigger {
-  width: 50%;
+  display: flex;
+  width: 71%;
   height: 10%;
-  margin-right: 500px;
+  margin-right: 360px;
+  /* margin-top: 50px; */
   z-index: 200;
 }
+button {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 3em;
+  padding: 1em 2em;
+  margin-top: 10vh;
+  margin-right: 1px;
+}
+button {
+  color: rgb(138, 138, 191);
+  transition: 0.25s;
+
+  &:hover,
+  &:focus {
+    border-color: var(--hover);
+    color: #00d9ff;
+  }
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
+
 #div1,
 #div2,
 #div3,
 #div4,
 #div5,
 #div6 {
-  background: white;
-  background: rgb(255, 255, 255, 0.3);
+  /* background: white; */
+  /* background: rgb(255, 255, 255, 0.3); */
+  border: wheat 1px solid;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   text-align: center;
+}
+
+.text {
+  margin-top: 50px;
+}
+
+.bigtext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  font-weight: 1000;
+  color: white;
+  margin-left: 50px;
+  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+}
+span {
+  color: rgb(83, 81, 81);
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: white;
+  margin-left: 50px;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-size: 35px;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 20px;
 }
