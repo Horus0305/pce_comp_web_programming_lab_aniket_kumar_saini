@@ -5,7 +5,7 @@
 }
 html {
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth scroll;
+  scroll-behavior: smooth;
 }
 body {
   background-color: rgb(0, 0, 0);
@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  /* background-image: url("../img/bg.jpg"); */
   /* overflow: hidden; */
 }
 body::-webkit-scrollbar {
@@ -31,7 +32,14 @@ p {
   font-size: 25px;
   /* margin-left: 15px; */
 }
-
+.star {
+  background-image: url(../img/giphy.gif);
+  background-size: cover;
+  background-position: center;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
 .chakra {
   width: 765px;
   position: fixed;
@@ -108,7 +116,7 @@ button {
   &:hover,
   &:focus {
     border-color: var(--hover);
-    color: #00d9ff;
+    color: #9239e6;
   }
 }
 
@@ -170,4 +178,24 @@ span {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 20px;
+}
+
+#top {
+  display: none;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1000;
+  border: none;
+  outline: none;
+  background-color: #8554b0;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+#top:hover {
+  background-color: #555;
 }
