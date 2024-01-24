@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CD - Log in</title>
+    <title>CD - Forgot Password</title>
 
     <link
       rel="stylesheet"
@@ -17,23 +17,23 @@
 
   <body>
     <div class="main" style="margin-top: 250px;">
-      <form action="/forgot" method="post" class="form" id="form" style="height: 220px;">
+      <form action="/forgot" method="post" class="form" id="form" style="height: 230px;">
         <p class="title">Password Forgotted :(</p>
         <p class="info">
-            Don't worry just fill your contact number
+            Don't worry ,we will help you
           </p>
      
         <label>
           <input
             class="input"
-            type="number"
-            id="phone"
-            name="phone"
+            type="email"
+            id="email"
+            name="email"
             placeholder=""
             required=""
             autocomplete="off"
           />
-          <span>Contact No.</span>
+          <span>Email</span>
         </label>
         <input type="submit" value="Submit" id="submit" class="submit"></input>
       </form>
