@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Destiny</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bg.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <img src="img/logo.png" alt="logo" class="logo" onclick="topFunction()" />
+    <img src="img/zodiachdw.png" alt="image" class="chakra" />
+    <img src="img/flower.png" alt="image" class="flower" />
+    <!-- <p>CD</p> -->
+    <!-- <div class="container"> -->
+    <!-- <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> -->
+    <div class="divtrigger" id="div1">
+      <div class="text">
+        <div class="bigtext">Cosmic<span class="star">Destiny</span></div>
+        <div class="tag">
+          <h4>Where Cosmic Compatibility Meets True Love</h4>
+        </div>
+        <div class="about">
+          <h6>
+            "Discover love written in the stars with Cosmic Destiny - an
+            astrology-based matchmaking platform" <br />
+            Unleash the power of personalized birth chart analysis,
+            compatibility scoring, and daily horoscopes to find your cosmic
+            connection securely and authentically
+          </h6>
+        </div>
+        <div class="buttons">
+          <a href="signup.html">
+            <button class="raise">Sign Up</button>
+          </a>
+          <a href="login.html" target="_blank">
+            <button class="raise">Log In</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="divtrigger" id="div2"></div>
+    <div class="divtrigger" id="div3"></div>
+    <div class="divtrigger" id="div4"></div>
+    <div class="divtrigger" id="div5"></div>
+    <div class="divtrigger" id="div6"></div>
+    <!-- <button onclick="topFunction()" id="top" title="Go to top">Top</button> -->
+    <!-- </div> -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"
+      integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js"
+      integrity="sha512-IHDCHrefnBT3vOCsvdkMvJF/MCPz/nBauQLzJkupa4Gn4tYg5a6VGyzIrjo6QAUy3We5HFOZUlkUpP0dkgE60A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="js/bg.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/particles.min.js"></script>
+    <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      window.addEventListener("scroll", () => {
+        document.body.style.setProperty(
+          "--scroll",
+          window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+        );
+      });
+    </script>
+  </body>
+</html>
