@@ -16,7 +16,8 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /* background-image: url("../img/bg.jpg"); */
+  background-image: url("../img/bg.jpg");
+  background-attachment: fixed;
   /* overflow: hidden; */
 }
 body::-webkit-scrollbar {

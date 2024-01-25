@@ -3,14 +3,4 @@ canvas {
   vertical-align: bottom;
 }
 
-#particles-js {
-  position: fixed;
-  width: 100vw;
-  height: 600vh;
-  background-image: url("../img/bg.jpg");
-  /* background-color: #000000; */
-  /* background-repeat: no-repeat; */
-  background-size: 100%;
-  /* background-position: 100% 50%; */
-  z-index: 100;
-}
+
