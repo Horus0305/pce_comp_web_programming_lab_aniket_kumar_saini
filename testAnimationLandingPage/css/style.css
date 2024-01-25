@@ -7,6 +7,7 @@
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   background-color: rgb(0, 0, 0);
@@ -147,7 +148,9 @@ button {
 .text {
   margin-top: 50px;
 }
-
+.text3 {
+  margin-top: 50px;
+}
 .bigtext {
   display: flex;
   align-items: center;
@@ -169,6 +172,18 @@ button {
   font-weight: 600;
   color: white;
   margin-left: 475px;
+  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.bigtext3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  font-weight: 600;
+  color: white;
+  margin-left: 25px;
   font-family: "Oswald", sans-serif;
   font-family: "Poppins", sans-serif;
   font-family: "Roboto Condensed", sans-serif;
@@ -207,7 +222,30 @@ span {
   margin-top: -210px;
   width: 600px;
 }
-
+.about3 {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  font-size: 29px;
+  color: white;
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-top: 50px;
+  width: 600px;
+}
+.about7 {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  font-size: 20px;
+  color: white;
+  margin-left: -850px;
+  margin-right: 0px;
+  margin-top: 390px;
+  width: 100%;
+  /* background-color: red; */
+}
+/* Go to top */
 #top {
   display: none;
   position: fixed;
@@ -226,6 +264,16 @@ span {
 
 #top:hover {
   background-color: #555;
+}
+
+.birth {
+  font-size: 17px;
+  width: 50%;
+  position: fixed;
+  left: 0;
+  margin-top: 30px;
+  margin-left: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 /* Cards */
@@ -316,6 +364,7 @@ span {
 }
 .snip1401 p {
   font-size: 1em;
+  margin-top: 40px;
 }
 .snip1401 i {
   position: absolute;
@@ -350,4 +399,139 @@ span {
   -webkit-transform: translateX(0);
   transform: translateX(0);
   opacity: 1;
+}
+
+/* image hover */
+.wrapper {
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  height: 300px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
+  margin-top: -300px;
+  margin-left: 220px;
+}
+
+.card {
+  width: 55px;
+  border-radius: 0.75rem;
+  background-size: cover;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2rem;
+  margin: 0 7px;
+  display: flex;
+  align-items: flex-end;
+  transition: 1s cubic-bezier(0.58, -0.33, 0, 0.09);
+  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
+  border: wheat 1px solid;
+}
+
+.card > .row {
+  color: white;
+  display: flex;
+  position: fixed;
+  flex-wrap: nowrap;
+  margin-bottom: -11px;
+  margin-left: -12px;
+}
+
+.card > .row > .icon {
+  background: rgba(59, 59, 99, 0.594);
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  margin-left: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+.card > .row > .description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  height: 80px;
+  width: 520px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition-delay: 0.3s;
+  transition: all 0.3s ease;
+}
+
+.description p {
+  color: #b0b0ba;
+  padding-top: 5px;
+}
+
+.description h4 {
+  text-transform: uppercase;
+}
+.sign {
+  font-size: 25px;
+  color: white;
+  margin-bottom: 145px;
+  margin-left: -5px;
+  text-transform: uppercase;
+  transform: rotate(-90deg);
+}
+input {
+  display: none;
+}
+input:hover + label {
+  width: 270px;
+}
+/* input:checked + label {
+  width: 250px;
+} */
+
+input:checked + label .description {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.card[for="c1"] {
+  background-image: url("../img/signs/leo.jpg");
+}
+.card[for="c2"] {
+  background-image: url("../img/signs/capricorn.jpeg");
+}
+.card[for="c3"] {
+  background-image: url("../img/signs/taurus.jpg");
+}
+.card[for="c4"] {
+  background-image: url("../img/signs/aries.webp");
+}
+.card[for="c5"] {
+  background-image: url("../img/signs/aquarius.jpg");
+}
+.card[for="c6"] {
+  background-image: url("../img/signs/sagittarius.avif");
+}
+.card[for="c7"] {
+  background-image: url("../img/signs/gemini.jpg");
+}
+.card[for="c8"] {
+  background-image: url("../img/signs/libra.avif");
+}
+.card[for="c9"] {
+  background-image: url("../img/signs/pisces.jpg");
+}
+.card[for="c10"] {
+  background-image: url("../img/signs/virgo.jpg");
+}
+.card[for="c11"] {
+  background-image: url("../img/signs/scorpio.jpg");
+}
+.card[for="c12"] {
+  background-image: url("../img/signs/cancer.jpg");
 }
