@@ -489,12 +489,12 @@ span {
 input {
   display: none;
 }
-input:hover + label {
+/* input:hover + label {
   width: 270px;
-}
-/* input:checked + label {
-  width: 250px;
 } */
+input:checked + label {
+  width: 250px;
+}
 
 input:checked + label .description {
   opacity: 1 !important;
