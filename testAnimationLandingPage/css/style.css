@@ -46,7 +46,7 @@ p {
   font-family: "Open Sans",  sans-serif;
 }
 .chakra {
-  height: 105vh;
+  height: 105%;
   width: auto;
   position: fixed;
   top: -2.5%;
@@ -61,7 +61,7 @@ p {
   filter: drop-shadow(0 0 5rem rgb(60, 20, 220));
 }
 .flower {
-  height: 105vh;
+  height: 105%;
   width: auto;
   position: fixed;
   top: -2.5%;
