@@ -7,7 +7,9 @@
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+}
+html::-webkit-scrollbar{
+  display: none;
 }
 body {
   background-color: rgb(0, 0, 0);
@@ -51,7 +53,7 @@ p {
   width: auto;
   position: fixed;
   top: -2.5%;
-  left: 75.3%;
+  left: 75.5%;
   animation: rotate 1s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
@@ -66,7 +68,7 @@ p {
   width: auto;
   position: fixed;
   top: -2.5%;
-  left: 75.3%;
+  left: 75.5%;
   animation: rotateflower 1s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
