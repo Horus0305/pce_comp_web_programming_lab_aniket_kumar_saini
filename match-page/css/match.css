@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image:url("../../testAnimationLandingPage/img/bg.jpg");
+    background-attachment: fixed;
+    display: flex;
+}
+.left{
+    margin: 1% 0 1% 2%;
+    width: 6%;
+    height: 95vh;
+    border: 2px dotted #fff;
+    border-radius: 10px;
+}
+
+
+
+
+
+/* .matches{
+    margin:5% 0 0 20%;
+    border: dotted 1px white;
+    padding: 2%;
+}
+.match-card{
+    width: 80%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px white solid;
+    margin-bottom: 2%;
+} */
