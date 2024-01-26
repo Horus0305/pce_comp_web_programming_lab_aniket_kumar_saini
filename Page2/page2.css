@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-image: url("/testAnimationLandingPage/bg.jpg");
+    color: white;
+    margin: 0px;
+    width: 100%;
+}
+
+#file {
+    font-size: 4rem;
+    width: 50%;
+}
+
+.profile-progress-con {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px 10px;
+}
+
+.profile-progress-con h6 {
+    margin: 0px;
+    font-size: 1rem;
+    color: white;
+    margin-left: 25px;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+}
+
+.profile-progress-con h2 {
+    font-size: 4rem;
+    font-family: "Poppins", sans-serif;
+    width: 70%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+
+.completion-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.completion-con2{
+    user-select: none;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.com {
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-left: 30px;
+    border: 2px solid white;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+.stage{
+    font-size: 0.7rem;
+    margin-left: 15px;
+    font-family: sans-serif;
+}
+
+.header {
+    border-radius: 10px;
+    width: 50%;
+    font-size: 2.5rem;
+    background-color: white;
+    color: #22092C;
+    font-family: "Poppins", sans-serif;
+}
+
+.horo2{
+    margin-left: 59.5%;
+}
+
+.img-con{
+    height: 0px;
+}
+
+.horo-img{
+    width: 20%;
+    height: 250px;
+    position: relative;
+    top: -150px;
+    background-color: black;
+    border-radius: 150px;
+}
