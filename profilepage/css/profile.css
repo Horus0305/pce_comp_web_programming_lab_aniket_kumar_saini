@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: white;
 }
 body{
     background: url(../../testAnimationLandingPage/img/bg.jpg);
@@ -11,9 +12,25 @@ body{
     flex-direction: column;
     min-height: 100vh;  
 }
+.header{
+    display: flex;
+    width: 100%;
+}
+.header > img{
+    align-self: flex-start;
+    padding-top: 1%;
+    padding-left: 1%;
+}
+#heading{
+    padding: 1%;
+    margin: 1%;
+    margin-left: 40%;
+    font-size:3rem;
+    font-weight: bold;
+}
 .top{
     display: flex;
-    height: 45vh;
+    height: 40vh;
     width: 80%;
     border: 2px solid white;
     align-items: center;
