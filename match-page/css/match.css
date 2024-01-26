@@ -1,11 +1,12 @@
 * {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     color: white;
 }
 
 body {
-    padding: 0;
-    margin: 0;
+
     background-image: url("../../testAnimationLandingPage/img/bg.jpg");
     background-attachment: fixed;
     display: flex;
@@ -21,7 +22,7 @@ body {
 }
 
 .content {
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     margin: 1% 2% 1% 2%;
     width: 100%;
     display: flex;
@@ -50,6 +51,7 @@ body {
     font-size: 2rem;
     text-align: center;
     padding: 1%;
+    font-weight: bold;
 }
 
 .match-card {
@@ -58,8 +60,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border: 2px white solid;
-
+    border: 1px white solid;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     margin-bottom: 2%;
     border-radius: 10px;
     flex-direction: row;
@@ -68,7 +71,7 @@ body {
 
 .image {
     display: flex;
-    border: 2px white solid;
+    /* border: 2px white solid; */
     height: 100%;
     width: auto;
     position: relative; 
@@ -98,10 +101,105 @@ body {
     transform: translateX(-50%);
     z-index: 1000;
 }
-.info{
-    border: 2px white solid;
+.overview{
+    /* border: 1px dashed white; */
+    width: 80%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.basic-info{
+    width: 100%;
+    display: flex;
     padding: 2%;
-    width: 70%;
+}
+.basic1{
+    width: 40%;
+}
+.basic2{
+    width: 60%;
+    font-size: 1.3rem;
+    margin-top: 0.5%;
+}
+.basic1 > p{
+    font-size: 1.4rem;
+    padding: 0.5%;
+}
+#chances{
+    font-style: italic;
+    color: green;
+}
+.decision {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+    height: 100%;
+}
+.decision > p{
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.openline{
+    font-size: 1.5rem;
+    text-align: center;
+    font-style: oblique;
+    background: rgba(0, 0, 0, 0.1);
+    bottom: 0;
+    position: absolute;
+    align-self: center;
+    margin:  0 0 2% 0;
 }
 
+/* Like Button */
+.like-button .heart-icon {
+    height: 100px;
+    width: 100px;
+    background: url("../img/heart.png");
+    background-position: left;
+    cursor: pointer;
+    position: absolute;
+  }
+  
+  .like-button .heart-icon.liked {
+    animation: like-anim 0.7s steps(28) forwards;
+  }
+  
+  @keyframes like-anim {
+    to {
+      background-position: right;
+    }
+    from{
+        background-position: left;
+    }
+  }
+  .like-button .heart-bg:hover {
+    background: rgba(255, 192, 200, 0.7);
+  }
+  
+  .like-button {
+    display: flex;
+    align-items: center;
+  }
+  
+  .like-button .likes-amount {
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    color: #888;
+    font-weight: 900;
+    margin-left: 6px;
+  }
+  .like-button .heart-bg {
+    background: rgba(255, 192, 200, 0);
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 100ms ease;
+  }
+  
