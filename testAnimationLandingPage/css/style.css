@@ -8,7 +8,7 @@ html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
-html::-webkit-scrollbar{
+html::-webkit-scrollbar {
   display: none;
 }
 body {
@@ -497,6 +497,7 @@ input {
 } */
 input:checked + label {
   width: 250px;
+  transform: scaleY(1.1);
 }
 
 input:checked + label .description {

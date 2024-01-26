@@ -16,6 +16,7 @@
   </head>
 
   <body>
+    <div id="particles-js"></div>
     <div class="main" style="margin-top: 250px;">
       <form action="/forgot" method="post" class="form" id="form" style="height: 230px;">
         <p class="title">Password Forgotted :(</p>
@@ -39,5 +40,12 @@
       </form>
     </div>
     <script src="js/form.js"></script>
+    <script type="text/javascript" src="js/vanilla-tilt.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelector(".form"), {
+        max: 15,
+        speed: 100
+      });
+    </script>
   </body>
 </html>
