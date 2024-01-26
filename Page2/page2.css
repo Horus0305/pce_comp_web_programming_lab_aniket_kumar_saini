@@ -4,7 +4,7 @@
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 
 body {
-    background-image: url("/testAnimationLandingPage/bg.jpg");
+    background-image: url("/testAnimationLandingPage/img/bg.jpg");
     color: white;
     margin: 0px;
     width: 100%;
@@ -169,7 +169,7 @@ body {
 }
 
 .notify-info {
-    margin-top: 50px;
+    margin-top: 70px;
     font-size: 1.3rem;
     font-family: "Poppins", sans-serif;
 }
@@ -202,17 +202,11 @@ body {
 .header {
     border-radius: 10px;
     width: 100%;
-    margin-left: 20px;
-    font-size: 2.2rem;
-}
-
-.header {
-    border-radius: 10px;
-    width: 50%;
-    font-size: 2.5rem;
+    font-size: 2rem;
     background-color: white;
     color: #22092C;
     font-family: "Poppins", sans-serif;
+    margin-left: 20px;
 }
 
 .info p {
@@ -258,7 +252,7 @@ body {
 }
 
 .horo-img {
-
+    width: 50%;
 }
 
 .horo2{
