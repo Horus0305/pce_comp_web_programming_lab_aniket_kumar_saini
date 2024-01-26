@@ -10,6 +10,7 @@ body {
     width: 100%;
 }
 
+
 .main-con {
     display: flex;
 }
@@ -70,7 +71,6 @@ body {
     width: 93%;
     margin-left: 17px;
 }
-
 
 #file {
     font-size: 4rem;
@@ -142,7 +142,6 @@ body {
 }
 
 
-
 .completion-con {
     display: flex;
     justify-content: center;
@@ -179,7 +178,7 @@ body {
     margin-bottom: 20px;
 }
 
-.stage {
+.stage{
     font-size: 0.7rem;
     margin-left: 15px;
     font-family: sans-serif;
@@ -205,6 +204,12 @@ body {
     width: 100%;
     margin-left: 20px;
     font-size: 2.2rem;
+}
+
+.header {
+    border-radius: 10px;
+    width: 50%;
+    font-size: 2.5rem;
     background-color: white;
     color: #22092C;
     font-family: "Poppins", sans-serif;
@@ -253,6 +258,18 @@ body {
 }
 
 .horo-img {
+
+}
+
+.horo2{
+    margin-left: 59.5%;
+}
+
+.img-con{
+    height: 0px;
+}
+
+.horo-img{
     width: 20%;
     height: 250px;
     position: relative;

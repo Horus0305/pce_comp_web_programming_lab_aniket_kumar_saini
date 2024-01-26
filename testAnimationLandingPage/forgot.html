@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CD - Forgot Password</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/form.css" />
+  </head>
+
+  <body>
+    <div id="particles-js"></div>
+    <div class="main" style="margin-top: 250px;">
+      <form action="/forgot" method="post" class="form" id="form" style="height: 230px;">
+        <p class="title">Password Forgotted :(</p>
+        <p class="info">
+            Don't worry ,we will help you
+          </p>
+     
+        <label>
+          <input
+            class="input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder=""
+            required=""
+            autocomplete="off"
+          />
+          <span>Email</span>
+        </label>
+        <input type="submit" value="Submit" id="submit" class="submit"></input>
+      </form>
+    </div>
+    <script src="js/form.js"></script>
+    <script type="text/javascript" src="js/vanilla-tilt.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelector(".form"), {
+        max: 10,
+        speed: 2000
+      });
+    </script>
+  </body>
+</html>

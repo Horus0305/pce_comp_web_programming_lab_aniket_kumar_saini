@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CD - Sign up</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/form.css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <form action="/sign_up" method="post" class="form" id="form">
+        <p class="title">&emsp;&emsp;Let's set up your account<br>while we find your Cosmic Destiny</p>
+        <p class="info">
+          Welcome !!!
+        </p>
+        <div class="flex">
+          <label>
+            <input
+              class="input"
+              type="text"
+              id="fname"
+              name="fname"
+              placeholder=""
+              required=""
+              autocomplete="off"
+            />
+            <span>First name</span>
+          </label>
+
+          <label>
+            <input
+              class="input"
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder=""
+              required=""
+              autocomplete="off"
+            />
+            <span>Last name</span>
+          </label>
+        </div>
+        <!-- <div class="gender">
+          <p>Gender</p>
+            <input class="gender" id="gender" name="gender"  required=""  value="male" type="radio"> &emsp; <b>Male</b> &emsp;&emsp;
+            <input class="gender" id="gender" name="gender" required="" value="female" type="radio"> &emsp; <b>Female</b>
+        </div> -->
+        
+        <!-- <label>
+          <input
+            class="input"
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder=""
+            required=""
+            autocomplete="off"
+          />
+          <span>Contact No.</span>
+        </label> -->
+
+        <label>
+          <input
+          class="input"
+          type="email"
+          id="email"
+          name="email"
+          placeholder=""
+          required="" 
+          autocomplete="off"
+          />
+          <span>Email</span>
+        </label>
+
+        <label>
+          <input
+            class="input"
+            type="password"
+            id="password"
+            name="password"
+            placeholder=""
+            required=""
+          />
+          <span>Password</span>
+        </label>
+        <label>
+          <input
+            class="input"
+            type="password"
+            id="confirm_password"
+            name="password"
+            placeholder=""
+            required=""
+          />
+          <span>Confirm Password</span>
+        </label>
+        <input type="submit" value="Submit" id="submit" class="submit"></input>
+        <p class="login">Already have an acount ? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+    <script src="js/form.js"></script>
+    <script type="text/javascript" src="js/vanilla-tilt.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelector(".form"), {
+        max: 10,
+        speed: 2000
+      });
+    </script>
+  </body>
+</html>

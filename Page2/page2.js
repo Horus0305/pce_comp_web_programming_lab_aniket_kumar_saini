@@ -43,6 +43,7 @@ function completion_status(status) {
     setTimeout(function () {
         if (completion.innerHTML == "100%") {
             all.style.display = "none";
+            profileCon.style.display = "none";
         }
     }, 1000);
 }
