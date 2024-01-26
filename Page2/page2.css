@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css');
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+
+body {
+    background-image: url("/testAnimationLandingPage/bg.jpg");
+    color: white;
+    margin: 0px;
+    width: 100%;
+}
+
+.main-con {
+    display: flex;
+}
+
+.side-bar {
+    width: 5%;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 95vh;
+    margin-top: 13px;
+    border-radius: 10px;
+    margin-left: 12px;
+    position: sticky;
+    top: 0;
+}
+
+.logo-con{
+    height: 30vh;
+}
+
+.logo {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.elements{
+    display: flex;
+    flex-direction: column;
+}
+
+.ele{
+    font-size: 1.5rem;
+    margin-top: 20px;
+    height: 55px;
+}
+
+.noti{
+    margin-left: 17px;
+}
+
+.anchor{
+    text-decoration: none;
+    color: white;
+    margin: auto;
+}
+
+.profile-con{
+    margin-top: 95px;
+}
+
+.profile_img{
+    margin-top: 20px;
+    width: 70%;
+    margin-left: 8.5px;
+    border-radius: 50px;
+}
+
+.all-container {
+    width: 93%;
+    margin-left: 17px;
+}
+
+
+#file {
+    font-size: 4rem;
+    width: 50%;
+}
+
+.profile-progress-con {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px 10px;
+}
+
+.profile-progress-con h6 {
+    margin: 0px;
+    font-size: 1rem;
+    color: white;
+    margin-left: 25px;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+}
+
+.profile-progress-con h2 {
+    font-size: 4rem;
+    font-family: "Poppins", sans-serif;
+    width: 70%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+.down_arrow {
+    display: flex;
+    flex-direction: column;
+}
+
+.down_arrow_img {
+    font-size: 3rem;
+    height: 4vh;
+}
+
+#arr2 {
+    animation: arrow1 1s infinite;
+}
+
+#arr1 {
+    animation: arrow2 1s infinite;
+}
+
+
+@keyframes arrow1 {
+    0%,100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(20px);
+    }
+}
+
+@keyframes arrow2 {
+
+    0%,100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(30px);
+    }
+}
+
+
+
+.completion-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.completion-con2 {
+    user-select: none;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.com {
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-left: 30px;
+    border: 2px solid white;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.notify-info {
+    margin-top: 50px;
+    font-size: 1.3rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.notify-info h2{
+    margin-bottom: 20px;
+}
+
+.stage {
+    font-size: 0.7rem;
+    margin-left: 15px;
+    font-family: sans-serif;
+}
+
+.daily_img_con {
+    display: flex;
+    width: 100%;
+    margin-top: 100px;
+    background-color: #22092C;
+    color: white;
+    padding-bottom: 100px;
+    margin-bottom: 50px;
+}
+
+.daily-horoscope-con {
+    width: 70%;
+    padding: 20px 10px;
+}
+
+.header {
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 20px;
+    font-size: 2.2rem;
+    background-color: white;
+    color: #22092C;
+    font-family: "Poppins", sans-serif;
+}
+
+.info p {
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    background-color: #22092C;
+    color: white;
+    width: 100%;
+    margin: auto;
+    text-align: justify;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.birth_chart_con {
+    display: flex;
+    width: 100%;
+    background-color: #22092C;
+    color: white;
+}
+
+.birth_chart {
+    width: 55%;
+    padding-top: 50px;
+}
+
+.birth_chart_img {
+    margin-left: 70px;
+}
+
+.birth_chart_img img {
+    border-radius: 100px;
+    width: 550px;
+    height: 450px;
+}
+
+.horo2 {
+    margin-left: 59.5%;
+}
+
+.img-con {
+    height: 0px;
+}
+
+.horo-img {
+    width: 20%;
+    height: 250px;
+    position: relative;
+    top: -150px;
+    background-color: black;
+    border-radius: 150px;
+    animation: bounce 3s infinite;
+}
+
+.notification {
+    margin-top: 150px;
+    transition: 1s ease-in;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+.btn {
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #22092C;
+    border: 0px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: white;
+    color: gold;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page 2</title>
+    <link rel="stylesheet" href="/testAnimationLandingPage/bg.css">
+    <link rel="stylesheet" href="page2.css">
+</head>
+
+<body>
+    <div class="main-con">
+        <div class="side-bar">
+
+            <div class="logo-con">
+                <img class="logo" src="/testAnimationLandingPage/logo.png" alt="logo">
+            </div>
+
+            <div class="elements">
+                <a class="anchor ele" href="#"><i class="fi fi-rr-home"></i></a>
+                <a class="anchor ele" href="/chatPage/chat.html"><i class="fi fi-rr-comment-alt ele"></i></a>
+                <a class="anchor ele" href="#"><i class="fi fi-rr-heart ele"></i></a>
+            </div>
+
+            <div class="profile-con">
+                <a class="anchor ele" href="#"><i class="fi fi-rr-bell ele noti"></i></a>
+                <a class="anchor" href="#"><img class="profile_img" src="/Page2/images/profile.jpg" alt="profile-img"></a>
+            </div>
+        </div>
+
+        <div class="all-container">
+            <div class="profile-progress-con">
+                <center>
+                    <h2>Profile Progress <span>📄</span></h2>
+                </center>
+                <center>
+                    <progress id="file" value="0" max="100"></progress>
+                </center>
+
+
+                <div class="completion-con">
+                    <div onclick="completion_status(this.id)" id="c1" class="com"></div>
+                    <div onclick="completion_status(this.id)" id="c2" class="com"></div>
+                    <div onclick="completion_status(this.id)" id="c3" class="com"></div>
+                    <div onclick="completion_status(this.id)" id="c4" class="com"></div>
+                </div>
+
+                <div class="completion-con2">
+                    <div class="stage">Profile_Pic</div>
+                    <div class="stage">Birth_Chart</div>
+                    <div class="stage">Username</div>
+                    <div class="stage">Password</div>
+                </div>
+
+                <center>
+                    <h6>Completed <span id="completion_val">0%</span></h6>
+                </center>
+            </div>
+
+            <div class="img-con">
+                <img class="horo-img" src="/Page2/images/horo1.png" alt="img1">
+                <img class="horo-img horo2" src="/Page2/images/horo2.png" alt="img2">
+            </div>
+
+            <center>
+                <div class="notify-info">
+                    <h2>Things you can Unlock after Profile Completion</h2>
+                </div>
+                <div class="down_arrow">
+                <i id="arr1" class="fi fi-sr-angle-down down_arrow_img"></i>
+                <i id="arr2" class="fi fi-sr-angle-down down_arrow_img"></i>
+                </div>
+            </center>
+            
+
+            <div class="notification">
+
+                <div class="daily_img_con">
+                    <div class="daily-horoscope-con">
+                        <center>
+                            <div class="header">
+                                <h2>Daily Horoscope 🌌</h2>
+                            </div>
+                        </center>
+                        <div class="info">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum rem consequatur iusto!
+                                Magnam
+                                ducimus
+                                necessitatibus repellendus alias veritatis voluptatum ad harum, eaque nesciunt non
+                                obcaecati
+                                consequuntur nobis error. Totam, aliquam.</p>
+                        </div>
+
+                        <button class="btn">Complete Profile</button>
+                    </div>
+
+                    <div class="horo_img">
+                        <img src="/Page2/images/horo.png" alt="horo_img">
+                    </div>
+                </div>
+
+                <div class="birth_chart_con">
+                    <div class="birth_chart">
+                        <center>
+                            <div class="header">
+                                <h2>Birth Chart 📊</h2>
+                            </div>
+                        </center>
+                        <div class="info">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum rem consequatur iusto!
+                                Magnam
+                                ducimus
+                                necessitatibus repellendus alias veritatis voluptatum ad harum, eaque nesciunt non
+                                obcaecati
+                                consequuntur nobis error. Totam, aliquam.</p>
+                        </div>
+                        <button class="btn">Create Birth Chart</button>
+
+                    </div>
+
+                    <div class="birth_chart_img">
+                        <img src="/Page2/images/birth_chart.png" alt="birth_img">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="page2.js"></script>
+
+</html>
