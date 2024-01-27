@@ -1,11 +1,15 @@
 <?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "chat";
 
-$conn = new mysqli($host, $username, $password, $database);
+$pdo = new PDO("sqlite:celestial_connections.db");
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$query = $pdo->query("SELECT * FROM chat");
+
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// var_dump($result);
+
+foreach($result as $row => $result)
+{
+    echo   $result["username"]  ;
 }
+?>

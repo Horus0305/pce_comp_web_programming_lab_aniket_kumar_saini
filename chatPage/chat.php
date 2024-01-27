@@ -1,6 +1,22 @@
+<?php
+
+$pdo = new PDO("sqlite:celestial_connections.db");
+
+$query = $pdo->query("SELECT username FROM chat");
+
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// foreach($result as $row => $result)
+//     {
+//         $name = $result["username"];
+//     }
+
+$name = $result[0]["username"];
+$name = json_encode($name);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,19 +40,17 @@
 
             <div class="profile-con">
                 <a class="anchor ele" href="#"><i class="fi fi-rr-bell ele noti"></i></a>
-                <a class="anchor" href="#"><img class="profile_img" src="/Page2/images/profile.jpg"
+                <a class="anchor" href="#"><img class="profile_img" src="/chatPage/img/profile.jpg"
                         alt="profile-img"></a>
             </div>
         </div>
 
         <div class="all-con">
-            
 
             <div id="message-con">
                 <div class="nav">
-                    <a href="#"><img src="/Page2/images/profile.jpg" alt="profile_pic"></a>
-                    <li>Radhika</li>
-                    <li></li>
+                    <a href="#"><img src="/chatPage/img/profile.jpg" alt="profile_pic"></a>
+                    <li id="name"><?php print $name ?></li>
                 </div>
             </div>
             <div class="send-con">
@@ -61,5 +75,4 @@
     </div>
 </body>
 <script src="chat.js"></script>
-
 </html>

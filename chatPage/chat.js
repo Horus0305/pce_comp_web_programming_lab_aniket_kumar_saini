@@ -1,6 +1,7 @@
 var input = document.getElementById('in');
 var currentTime;
 
+
 function padZero(number) {
     return (number < 10 ? '0' : '') + number;
 }
@@ -55,6 +56,7 @@ function message_send(event){
 
 function send(){
     var outputContainer = document.getElementById('message-con');
+    var name = document.getElementById('name');
 
     var message_con = document.createElement("div");
     var newParagraph = document.createElement('p');
@@ -66,9 +68,8 @@ function send(){
     time_label.classList.add("time");
     newParagraph.classList.add("main_message");
 
-    newParagraph.textContent = "Name: " + input.value;
+    newParagraph.textContent = name.innerHTML + ": " + input.value;
     time_label.textContent = currentTime;
-    
 
     message_con.appendChild(newParagraph);
     message_con.appendChild(time_label);
