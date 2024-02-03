@@ -2,6 +2,8 @@
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css');
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 body {
     background-image: url("/testAnimationLandingPage/img/bg.jpg");
@@ -10,6 +12,9 @@ body {
     width: 100%;
 }
 
+.hamburger {
+    display: none;
+}
 
 .main-con {
     display: flex;
@@ -26,7 +31,7 @@ body {
     top: 0;
 }
 
-.logo-con{
+.logo-con {
     height: 30vh;
 }
 
@@ -35,32 +40,34 @@ body {
     margin-top: 10px;
 }
 
-.elements{
+.elements {
     display: flex;
     flex-direction: column;
 }
 
-.ele{
+.ele {
     font-size: 1.5rem;
-    margin-top: 20px;
     height: 55px;
+    width: 50%;
+    margin-top: 20px;
 }
 
-.noti{
+.noti {
     margin-left: 17px;
 }
 
-.anchor{
+.anchor {
     text-decoration: none;
     color: white;
     margin: auto;
 }
 
-.profile-con{
+.profile-con {
     margin-top: 95px;
+    width: 100%;
 }
 
-.profile_img{
+.profile_img {
     margin-top: 20px;
     width: 70%;
     margin-left: 8.5px;
@@ -92,9 +99,9 @@ body {
 }
 
 .profile-progress-con h2 {
-    font-size: 4rem;
+    font-size: 3rem;
     font-family: "Poppins", sans-serif;
-    width: 70%;
+    width: 50%;
     margin-bottom: 10px;
     border-radius: 10px;
     background-color: white;
@@ -121,7 +128,9 @@ body {
 
 
 @keyframes arrow1 {
-    0%,100% {
+
+    0%,
+    100% {
         transform: translateY(0px);
     }
 
@@ -132,7 +141,8 @@ body {
 
 @keyframes arrow2 {
 
-    0%,100% {
+    0%,
+    100% {
         transform: translateY(0px);
     }
 
@@ -174,11 +184,11 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-.notify-info h2{
+.notify-info h2 {
     margin-bottom: 20px;
 }
 
-.stage{
+.stage {
     font-size: 0.7rem;
     margin-left: 15px;
     font-family: sans-serif;
@@ -186,23 +196,25 @@ body {
 
 .daily_img_con {
     display: flex;
-    width: 100%;
-    margin-top: 100px;
+    width: 50%;
+    margin-top: 0px;
     background-color: #22092C;
     color: white;
-    padding-bottom: 100px;
-    margin-bottom: 50px;
+    padding-bottom: 0px;
+    padding-top: 30px;
+    margin-bottom: 0px;
 }
 
 .daily-horoscope-con {
     width: 70%;
+    margin: auto;
     padding: 20px 10px;
 }
 
 .header {
     border-radius: 10px;
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.2rem;
     background-color: white;
     color: #22092C;
     font-family: "Poppins", sans-serif;
@@ -223,13 +235,14 @@ body {
 
 .birth_chart_con {
     display: flex;
-    width: 100%;
+    width: 50%;
     background-color: #22092C;
     color: white;
 }
 
 .birth_chart {
-    width: 55%;
+    width: 70%;
+    margin: auto;
     padding-top: 50px;
 }
 
@@ -255,15 +268,15 @@ body {
     width: 50%;
 }
 
-.horo2{
+.horo2 {
     margin-left: 59.5%;
 }
 
-.img-con{
+.img-con {
     height: 0px;
 }
 
-.horo-img{
+.horo-img {
     width: 20%;
     height: 250px;
     position: relative;
@@ -302,7 +315,160 @@ body {
     cursor: pointer;
 }
 
+.notification{
+    display: flex;
+}
+
+footer{
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 98%;
+    border-radius: 20px;
+}
+
+footer img{
+    width: 5%;
+}
+
 .btn:hover {
     background-color: white;
     color: gold;
+}
+
+@media (max-width: 1020px) {
+
+    .profile-progress-con h2 {
+        width: 80%;
+    }
+
+    .all-container {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .side-bar {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        color: black;
+        font-size: 2.6rem;
+        background-color: white;
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        padding-bottom: 0px;
+    }
+
+    .notify-info h2 {
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
+
+    .horo_img {
+        display: none;
+    }
+
+    .birth_chart_img {
+        display: none;
+    }
+
+    .birth_chart {
+        width: 100%;
+    }
+
+    .daily-horoscope-con {
+        width: 100%;
+    }
+
+    .header {
+        width: 90%;
+        font-size: 1rem;
+    }
+
+    .info {
+        width: 90%;
+    }
+
+    .daily-horoscope-con{
+        padding-top: 50px;
+    }
+
+    
+    .btn{
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .horo-img {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-progress-con h2 {
+        width: 100%;
+        font-size: 1.8rem;
+    }
+
+    .notification{
+        display: block;
+    }
+
+    .daily_img_con{
+        width: 100%;
+    }
+
+    .birth_chart_con{
+        width: 100%;
+    }
+
+    .profile-progress-con {
+        padding-top: 50px;
+    }
+
+    .hamburger {
+        font-size: 1.5rem;
+    }
+
+    #file {
+        width: 100%;
+    }
+
+    .notify-info h2 {
+        font-size: 1.2rem;
+    }
+
+    .header {
+        font-size: 0.8rem;
+        width: 90%;
+        margin-left: 0px;
+    }
+
+    .info p {
+        padding: 0px;
+    }
+
+    .info {
+        margin: auto;
+    }
+
+    footer img{
+        width: 10%;
+    }
+
+    .btn{
+        font-size: 1rem;
+    }
+
+    .notification{
+        margin-top: 50px;
+    }
 }

@@ -47,3 +47,27 @@ function completion_status(status) {
         }
     }, 1000);
 }
+
+function show_burger(){
+    let sideBar = document.querySelector(".side-bar");
+    let burger = document.querySelector(".hamburger");
+    let burger_logo = document.querySelector(".menu");
+
+    if (sideBar.style.display === "" || sideBar.style.display === "none")
+    {
+        sideBar.style.display = "block";
+        sideBar.style.position = "absolute";
+        sideBar.style.width = "15%";
+        sideBar.style.top = "50px";
+        sideBar.style.backgroundColor = "black";
+
+        burger_logo.classList.remove("fi-rr-menu-burger");
+        burger_logo.classList.add("fi-rr-cross");
+    }
+
+    else{
+        sideBar.style.display = "none";
+        burger_logo.classList.remove("fi-rr-cross");
+        burger_logo.classList.add("fi-rr-menu-burger");
+    }
+}
