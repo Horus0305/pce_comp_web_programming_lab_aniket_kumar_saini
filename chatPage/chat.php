@@ -9,6 +9,7 @@
 </head>
 
 <body style="background:url('img/bg.jpg');">
+<iframe id="hiddenFrame" style="display: none;"></iframe>
 
     <div class="main-con">
         <div class="side-bar">
@@ -34,9 +35,41 @@
             <div id="message-con">
                 <div class="nav">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
-                    <li id="name">ADI</li>
+                    <?php 
+                    $name = "Riya";
+                    echo '<li id="name">' .$name. '</li>';
+                    ?>
                     <i class="fi fi-rr-menu-burger menu"></i>
                 </div>
+
+                <?php 
+                
+                try{
+
+                    $pdo = new PDO("sqlite:celestial_connections.db");
+
+                    $query2 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
+                    $query2->bindValue(':username', $name, PDO::PARAM_STR);
+                    $query2->execute();
+                    $messages = $query2->fetchAll(PDO::FETCH_ASSOC);
+                    
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    
+                    
+                    if ($messages) {
+                        foreach ($messages as $message) {
+                            echo '<div class="message">';
+                            echo '<p class="main_message">' . htmlspecialchars($message['message']) . '</p>';
+                            echo '<label class="time">' . htmlspecialchars($message['date']) . '</label>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<div>No messages found</div>';
+                    }
+                
+                ?>
             </div>
 
             <div class="send-con">
@@ -60,31 +93,5 @@
         </div>
     </div>
 </body>
-<script>
-    $(document).ready(function() {
-        function fetchMessages() {
-            $.ajax({
-                url: 'message.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    // Clear previous messages
-                    $('#messages').empty();
-                    // Display new messages
-                    $.each(data, function(index, message) {
-                        $('#messages').append('<div>' + message + '</div>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching messages:', error);
-                }
-            });
-        }
-        
-        // Fetch messages initially and then every 5 seconds
-        fetchMessages();
-        setInterval(fetchMessages, 5000);
-    });
-</script>
 <script src="chat.js"></script>
 </html>
