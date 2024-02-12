@@ -22,7 +22,7 @@ body {
 
 .side-bar {
     width: 5%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     height: 95vh;
     margin-top: 13px;
     border-radius: 10px;
@@ -85,8 +85,11 @@ body {
 }
 
 .profile-progress-con {
+    margin-top: 17px;
     background: rgba(255, 255, 255, 0.3);
     padding: 20px 10px;
+    border-radius: 20px;
+    margin-right: 20px;
 }
 
 .profile-progress-con h6 {
@@ -194,74 +197,10 @@ body {
     font-family: sans-serif;
 }
 
-.daily_img_con {
-    display: flex;
-    width: 50%;
-    margin-top: 0px;
-    background-color: #22092C;
-    color: white;
-    padding-bottom: 0px;
-    padding-top: 30px;
-    margin-bottom: 0px;
-}
-
 .daily-horoscope-con {
     width: 70%;
     margin: auto;
     padding: 20px 10px;
-}
-
-.header {
-    border-radius: 10px;
-    width: 100%;
-    font-size: 1.2rem;
-    background-color: white;
-    color: #22092C;
-    font-family: "Poppins", sans-serif;
-    margin-left: 20px;
-}
-
-.info p {
-    font-size: 1rem;
-    font-family: "Poppins", sans-serif;
-    background-color: #22092C;
-    color: white;
-    width: 100%;
-    margin: auto;
-    text-align: justify;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
-
-.birth_chart_con {
-    display: flex;
-    width: 50%;
-    background-color: #22092C;
-    color: white;
-}
-
-.birth_chart {
-    width: 70%;
-    margin: auto;
-    padding-top: 50px;
-}
-
-.birth_chart_img {
-    margin-left: 70px;
-}
-
-.birth_chart_img img {
-    border-radius: 100px;
-    width: 550px;
-    height: 450px;
-}
-
-.horo2 {
-    margin-left: 59.5%;
-}
-
-.img-con {
-    height: 0px;
 }
 
 .horo-img {
@@ -287,8 +226,7 @@ body {
 }
 
 .notification {
-    margin-top: 150px;
-    transition: 1s ease-in;
+    margin-top: 110px;
 }
 
 @keyframes bounce {
@@ -315,13 +253,65 @@ body {
     cursor: pointer;
 }
 
-.notification{
-    display: flex;
+.notify{
+    width: 60%;
+    margin: auto;
+    background-color: rgba(255,255,255,.65);
+    border-radius: 10px;
+}
+
+.progress-con{
+    margin-left: 110px;
+    padding-top: 30px;
+}
+
+#pro{
+    margin-left: 10px;
+    width: 23.32%;
+}
+
+#card1{
+    margin: 30px;
+    padding-bottom: 40px;
+}
+
+#card2{
+    margin: 30px;
+    padding-bottom: 40px;
+}
+
+#card3{
+    margin: 30px;
+    padding-bottom: 40px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.header{
+    font-size: 1.5rem;
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.para{
+    font-size: 1rem;
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+    width: 90%;
+    margin: auto;
 }
 
 footer{
-    background-color: rgba(255, 255, 255, 0.5);
-    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-top: 50px;
     margin-bottom: 20px;
     width: 98%;
     border-radius: 20px;
@@ -365,41 +355,6 @@ footer img{
         border-radius: 10px;
         padding-bottom: 0px;
     }
-
-    .notify-info h2 {
-        margin-top: 20px;
-        font-size: 1.5rem;
-    }
-
-    .horo_img {
-        display: none;
-    }
-
-    .birth_chart_img {
-        display: none;
-    }
-
-    .birth_chart {
-        width: 100%;
-    }
-
-    .daily-horoscope-con {
-        width: 100%;
-    }
-
-    .header {
-        width: 90%;
-        font-size: 1rem;
-    }
-
-    .info {
-        width: 90%;
-    }
-
-    .daily-horoscope-con{
-        padding-top: 50px;
-    }
-
     
     .btn{
         font-size: 1.3rem;

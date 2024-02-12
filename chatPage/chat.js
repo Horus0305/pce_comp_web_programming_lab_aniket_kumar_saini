@@ -58,6 +58,7 @@ function message_send(event) {
 
 function send() {
     let message;
+    let username = document.getElementById('name').textContent;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'message.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -77,7 +78,7 @@ function send() {
             time_label.classList.add("time");
             newParagraph.classList.add("main_message");
 
-            newParagraph.textContent = name.innerHTML + ": " + message;
+            newParagraph.textContent = username + ": " + message;
             time_label.textContent = currentTime;
 
             message_con.appendChild(newParagraph);
@@ -85,7 +86,7 @@ function send() {
             outputContainer.appendChild(message_con);
         }
     };
-    var data = 'message=' + encodeURIComponent(input.value) + '&time=' + encodeURIComponent(currentTime);
+    var data = 'message=' + encodeURIComponent(input.value) + '&time=' + encodeURIComponent(currentTime) + '&name=' + encodeURIComponent(username);
     xhr.send(data);
 
 

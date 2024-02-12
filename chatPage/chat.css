@@ -1,5 +1,5 @@
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
-
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 body{
     margin: 0;
@@ -100,7 +100,7 @@ body{
 }
 
 #message-con{
-    margin-top: 20px;
+    margin-top: 15px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
@@ -117,7 +117,7 @@ body{
 
 
 #in{
-    width: 80%;
+    width: 87%;
     padding-left: 10px;
     margin-left: 20px;
     font-size: 1.2rem;
@@ -201,4 +201,12 @@ body{
 .form{
     width: 100%;
     display: flex;
+}
+
+.menu{
+    margin-left: auto;
+    font-size: 1.7rem;
+    margin-right: 25px;
+    margin-top: 5px;
+    cursor: pointer;
 }

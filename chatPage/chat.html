@@ -35,6 +35,7 @@
                 <div class="nav">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
                     <li id="name">ADI</li>
+                    <i class="fi fi-rr-menu-burger menu"></i>
                 </div>
             </div>
 
@@ -59,5 +60,31 @@
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function() {
+        function fetchMessages() {
+            $.ajax({
+                url: 'message.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Clear previous messages
+                    $('#messages').empty();
+                    // Display new messages
+                    $.each(data, function(index, message) {
+                        $('#messages').append('<div>' + message + '</div>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching messages:', error);
+                }
+            });
+        }
+        
+        // Fetch messages initially and then every 5 seconds
+        fetchMessages();
+        setInterval(fetchMessages, 5000);
+    });
+</script>
 <script src="chat.js"></script>
 </html>
