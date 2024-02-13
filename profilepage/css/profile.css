@@ -15,22 +15,29 @@ body{
 .header{
     display: flex;
     width: 100%;
+    justify-content: space-between;
 }
-.header > #backbtn{
+.header > .imgbtn{
     align-self: flex-start;
-    padding-top: 1%;
-    padding-left: 1%;
+    margin: 1% 0 0 1%;
+    transition: transform 0.3s, background-color 0.3s;
+    border-radius: 50%;
 }
 .header > #logoutbtn{
-    align-self: flex-start;
-    margin-left: 37%;
-    padding-top: 1%;
-    padding-left: 1%;
+    margin: 1% 1% 0 0;
+    padding-right: 0.3%;
 }
+
+.imgbtn:hover{
+    cursor: pointer;
+    transform: scale(1.08);
+    background-color: blueviolet;
+}
+
 #heading{
     padding: 1%;
     /* margin: 1%; */
-    margin-left: 40%;
+    /* margin-left: 40%; */
     font-size:3rem;
     font-weight: bold;
 }
