@@ -1,0 +1,142 @@
+html,
+body {
+  background-color: #32363d;
+  font-family: "Questrial", sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 56px;
+  margin-bottom: 36px;
+  color: #fff;
+}
+h3 {
+  font-weight: 300;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 56px;
+}
+h3 a {
+  color: #708090;
+}
+h4 {
+  font-weight: 300;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.gallery {
+  width: 60%;
+  margin-left: 20%;
+  font-size: 0px;
+}
+.gallery .gallery-element {
+  position: relative;
+  width: calc(33.3333% - 8px);
+  height: 192px;
+  background-color: #536878;
+  display: inline-block;
+  margin: 4px;
+}
+.gallery .gallery-element .element-title {
+  position: absolute;
+  width: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  line-height: 192px;
+  margin: 0;
+  z-index: 3;
+}
+.gallery .gallery-element .background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  -webkit-clip-path: circle(0px at center);
+  clip-path: circle(0px at center);
+  z-index: 4;
+  -webkit-transition: 50ms all;
+  -o-transition: 50ms all;
+  transition: 50ms all;
+}
+.gallery .gallery-element:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.2;
+  background-size: cover;
+}
+#london:before {
+  background-image: url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=960&q=80");
+}
+#london .background {
+  background-image: url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=960&q=80");
+}
+#paris:before {
+  background-image: url("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=960&q=80");
+}
+#paris .background {
+  background-image: url("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=960&q=80");
+}
+#rome:before {
+  background-image: url("https://images.unsplash.com/photo-1508901038105-aca6c28a8cf6?auto=format&fit=crop&w=960&q=80");
+}
+#rome .background {
+  background-image: url("https://images.unsplash.com/photo-1508901038105-aca6c28a8cf6?auto=format&fit=crop&w=960&q=80");
+}
+#new-york:before {
+  background-image: url("https://images.unsplash.com/photo-1472545068001-62d94063edd2?auto=format&fit=crop&w=960&q=80");
+}
+#new-york .background {
+  background-image: url("https://images.unsplash.com/photo-1472545068001-62d94063edd2?auto=format&fit=crop&w=960&q=80");
+}
+#cape-town:before {
+  background-image: url("https://images.unsplash.com/photo-1467040658334-0f2bc01bfed6?auto=format&fit=crop&w=960&q=80");
+}
+#cape-town .background {
+  background-image: url("https://images.unsplash.com/photo-1467040658334-0f2bc01bfed6?auto=format&fit=crop&w=960&q=80");
+}
+#tokyo:before {
+  background-image: url("https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?auto=format&fit=crop&w=960&q=80");
+}
+#tokyo .background {
+  background-image: url("https://images.unsplash.com/photo-1494587416117-f102a2ac0a8d?auto=format&fit=crop&w=960&q=80");
+}
+#rio-de-janeiro:before {
+  background-image: url("https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=960&q=80");
+}
+#rio-de-janeiro .background {
+  background-image: url("https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=960&q=80");
+}
+#moscow:before {
+  background-image: url("https://images.unsplash.com/photo-1495542779398-9fec7dc7986c?auto=format&fit=crop&w=960&q=80");
+}
+#moscow .background {
+  background-image: url("https://images.unsplash.com/photo-1495542779398-9fec7dc7986c?auto=format&fit=crop&w=960&q=80");
+}
+#dubai:before {
+  background-image: url("https://images.unsplash.com/photo-1465414951857-102134ffaa57?auto=format&fit=crop&w=960&q=80");
+}
+#dubai .background {
+  background-image: url("https://images.unsplash.com/photo-1465414951857-102134ffaa57?auto=format&fit=crop&w=960&q=80");
+}
+@media screen and (max-width: 720px) {
+  .gallery {
+    width: 90%;
+    margin-left: 5%;
+  }
+  .gallery .gallery-element {
+    width: calc(100% - 8px);
+  }
+}
