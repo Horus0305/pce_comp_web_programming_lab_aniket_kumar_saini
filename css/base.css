@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+body {
+  background: url(../img/bg.png);
+}
+.nav {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 1%;
+  width: 3.5%;
+  height: 95.7vh;
+  border-radius: 15px;
+}
+.logo {
+  /* background: url(../img/favicon.png); */
+  width: 70%;
+  margin-top: 20%;
+  margin-left: 13%;
+}
+.widgets {
+  margin-top: 200px;
+  padding-left: 15%;
+}
+.home {
+  margin-bottom: 30px;
+  transition: all 1s ease-in-out;
+}
+.home:hover {
+  background-image: url(../img/homefill.svg);
+  background-repeat: no-repeat;
+}
+.chat {
+  margin-bottom: 30px;
+  transition: all 1s ease-in-out;
+}
+.chat:hover {
+  background-image: url(../img/chatfill.svg);
+  background-repeat: no-repeat;
+}
+.heart {
+  transition: all 1s ease-in-out;
+}
+.heart:hover {
+  background-image: url(../img/heartfill.svg);
+  background-repeat: no-repeat;
+}
+.notification {
+  transition: all 1s ease-in-out;
+}
+.notification:hover {
+  background-image: url(../img/notificationfill.svg);
+  background-repeat: no-repeat;
+}
+.profile {
+  margin-top: 0vh;
+}
+.notification {
+  margin-top: 24.5vh;
+  margin-left: 10px;
+  /* padding-left: 15%; */
+}
+.profileimg {
+  margin-top: 10px;
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 50px;
+  bottom: 0;
+}
