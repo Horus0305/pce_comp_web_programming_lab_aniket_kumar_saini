@@ -27,7 +27,7 @@ body {
 }
 .widgets {
   margin-top: 200px;
-  padding-left: 23%;
+  padding-left: 20%;
   width: 100%;
 }
 .home {
@@ -56,7 +56,7 @@ body {
 .notification {
   margin-top: 24.5vh;
   /* margin-left: 10px; */
-  margin-left: 23.5%;  
+  margin-left: 20%;
   transition: all 1s ease-in-out;
 }
 .notification:hover {
