@@ -1,4 +1,7 @@
 <?php
+//include "../includes/base.php"                                      //uncomment this for navbar and bg
+?>
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
