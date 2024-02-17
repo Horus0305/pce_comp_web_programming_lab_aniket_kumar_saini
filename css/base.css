@@ -27,7 +27,8 @@ body {
 }
 .widgets {
   margin-top: 200px;
-  padding-left: 17%;
+  padding-left: 23%;
+  width: 100%;
 }
 .home {
   margin-bottom: 30px;
@@ -53,20 +54,20 @@ body {
   background-repeat: no-repeat;
 }
 .notification {
+  margin-top: 24.5vh;
+  /* margin-left: 10px; */
+  margin-left: 23.5%;  
   transition: all 1s ease-in-out;
 }
 .notification:hover {
   background-image: url(../img/notificationfill.svg);
   background-repeat: no-repeat;
 }
+
 .profile {
   margin-top: 0vh;
 }
-.notification {
-  margin-top: 24.5vh;
-  margin-left: 10px;
-  /* padding-left: 15%; */
-}
+
 .profileimg {
   margin-top: 10px;
   width: 70%;
