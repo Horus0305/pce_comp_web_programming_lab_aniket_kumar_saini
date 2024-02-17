@@ -82,7 +82,7 @@ body {
   position: fixed;
   top: -45.5%;
   left: 50%;
-  width: 500px;
+  width: 32.8%;
   height: 95.3vh;
   transform: translate(50%, 50%);
   display: none;
@@ -110,6 +110,6 @@ body {
   border-radius: 15px;
 }
 #modalinactive {
-  margin-left: 450px;
+  margin-left: 90%;
   margin-top: 7px;
 }
