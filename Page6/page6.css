@@ -1,0 +1,104 @@
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+
+
+body{
+    background: url(img/bg.jpg);
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+}
+
+.profile-img{
+    width: 5%;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.img{
+    width: 6%;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+.pro-img{
+    width: 85%;
+    border-radius: 50px;
+}
+
+.back-con{
+    padding-top: 27px;
+}
+
+.back{
+    font-size: 2rem;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
+    font-weight: bolder;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    width: 5%;
+}
+
+.details-con{
+    font-family: sans-serif;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    background-color: rgba(255,255,255, 0.3);
+    height: 80vh;
+    border-radius: 20px;
+}
+
+#pro-circle{
+    position: relative;
+    bottom: 20px;
+}
+
+.head{
+    font-family: sans-serif;
+    margin-left: 0px;
+    font-size: 1.3rem;
+    color: red;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.score{
+    margin-top: 3px;
+    margin-left: 30px;
+}
+
+
+.elements-con{
+    width: 100%;
+    position: relative;
+    left: 100px;
+    height: 150px;
+    background-color: darkorchid;
+    padding: 10px 15px;
+    padding-top: 10px;
+    border-radius: 20px;
+    color: white;
+    margin-top: 20px;
+}
+
+.horo_img{
+    position: absolute;
+}
+
+.main-details-con{
+    display: flex;
+    margin-left: 150px;
+}
+
+.elements-main-con{
+    position: relative;
+    bottom: 40px;
+}

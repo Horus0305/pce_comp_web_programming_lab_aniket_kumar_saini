@@ -9,7 +9,6 @@
 </head>
 
 <body style="background:url('img/bg.jpg');">
-<iframe id="hiddenFrame" style="display: none;"></iframe>
 
     <div class="main-con">
         <div class="side-bar">
@@ -36,7 +35,7 @@
                 <div class="nav">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
                     <?php 
-                    $name = "Riya";
+                    $name = "Happy";
                     echo '<li id="name">' .$name. '</li>';
                     ?>
                     <i class="fi fi-rr-menu-burger menu"></i>
@@ -66,7 +65,7 @@
                             echo '</div>';
                         }
                     } else {
-                        echo '<div>No messages found</div>';
+                        //no
                     }
                 
                 ?>
