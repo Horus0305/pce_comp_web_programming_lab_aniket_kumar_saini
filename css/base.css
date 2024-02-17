@@ -79,7 +79,7 @@ body {
 /* Notification panel */
 
 #modal {
-  position: fixed;
+  position: absolute;
   top: -45.5%;
   left: 50%;
   width: 32.8%;
@@ -90,12 +90,13 @@ body {
   animation-name: openModal;
   animation-duration: 0.8s;
   border-radius: 15px;
+  z-index: 999999999;
 }
 @keyframes openModal {
   from {
     transform: translate(190%, 50%);
   }
-
+  
   to {
     transform: translate(50%, 50%);
   }
