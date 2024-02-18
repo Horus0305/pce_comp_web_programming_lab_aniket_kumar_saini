@@ -77,7 +77,7 @@ $totalScore = $data['output']['total_score'];
 
     <div class="details-con">
         <div class="back-con">
-            <i class="fi fi-rr-angle-left back"></i>
+            <a style="text-decoration:none;" href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/Page2/page2.php"><i class="fi fi-rr-angle-left back"></i></a>
         </div>
 
         <div class="main-details-con">

@@ -14,14 +14,14 @@
         <div class="logo-con">
           <img
             class="logo"
-            src="../testAnimationLandingPage/img/logo.png"
+            src="images/logo.png"
             alt="logo"
           />
         </div>
 
         <div class="elements">
           <a class="anchor ele" href="#"><i class="fi fi-rr-home"></i></a>
-          <a class="anchor ele" href="/chatPage/chat.html"
+          <a class="anchor ele" href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/chatPage/chat.php"
             ><i class="fi fi-rr-comment-alt ele"></i
           ></a>
           <a class="anchor ele" href="#"><i class="fi fi-rr-heart ele"></i></a>
@@ -34,7 +34,7 @@
           <a class="anchor" href="#"
             ><img
               class="profile_img"
-              src="/Page2/images/profile.jpg"
+              src="images/profile.jpg"
               alt="profile-img"
           /></a>
         </div>
@@ -73,10 +73,10 @@
         </div>
 
         <div class="img-con">
-          <img class="horo-img" src="/Page2/images/horo1.png" alt="img1" />
+          <img class="horo-img" src="images/horo1.png" alt="img1" />
           <img
             class="horo-img horo2"
-            src="/Page2/images/horo2.png"
+            src="images/horo2.png"
             alt="img2"
           />
         </div>
@@ -127,7 +127,7 @@
         </div>
 
         <footer>
-          <img src="/testAnimationLandingPage/img/logo.png" alt="logo" />
+          <img src="images/logo.png" alt="logo" />
         </footer>
       </div>
     </div>

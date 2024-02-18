@@ -17,8 +17,8 @@
             </div>
 
             <div class="elements">
-                <a class="anchor ele" href="/Page2/page2.html"><i class="fi fi-rr-home"></i></a>
-                <a class="anchor ele" href="/chatPage/chat.html"><i class="fi fi-rr-comment-alt ele"></i></a>
+                <a class="anchor ele" href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/Page2/page2.php"><i class="fi fi-rr-home"></i></a>
+                <a class="anchor ele" href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/chatPage/chat.php"><i class="fi fi-rr-comment-alt ele"></i></a>
                 <a class="anchor ele" href="#"><i class="fi fi-rr-heart ele"></i></a>
             </div>
 
