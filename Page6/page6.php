@@ -2,16 +2,18 @@
 
 $curl = curl_init();
 
-curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://json.freeastrologyapi.com/match-making/ashtakoot-score',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS =>'{
+curl_setopt_array(
+    $curl,
+    array(
+        CURLOPT_URL => 'https://json.freeastrologyapi.com/match-making/ashtakoot-score',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => '{
     "female":{
             "year": 1984,
 			"month": 7,
@@ -40,11 +42,12 @@ curl_setopt_array($curl, array(
         "ayanamsha": "lahiri"
     }
 }',
-    CURLOPT_HTTPHEADER => array(
-    'Content-Type: application/json',
-    'x-api-key: RWzd3MgPwk4O23AM0o1Dlaba5kkK0FRRaq1VMwj7'
-    ),
-));
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'x-api-key: RWzd3MgPwk4O23AM0o1Dlaba5kkK0FRRaq1VMwj7'
+        ),
+    )
+);
 
 $response = curl_exec($curl);
 // echo json_encode($response);
@@ -60,12 +63,14 @@ $totalScore = $data['output']['total_score'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detailed Report</title>
     <link rel="stylesheet" href="page6.css">
 </head>
+
 <body>
     <div class="navbar">
         <img class="img" src="img/logo.png" alt="logo">
@@ -77,46 +82,89 @@ $totalScore = $data['output']['total_score'];
 
     <div class="details-con">
         <div class="back-con">
-            <a style="text-decoration:none;" href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/Page2/page2.php"><i class="fi fi-rr-angle-left back"></i></a>
+            <a style="text-decoration:none;"
+                href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/Page2/page2.php"><i
+                    class="fi fi-rr-angle-left back"></i></a>
         </div>
 
         <div class="main-details-con">
 
-        <div id="pro-circle">
-            
-            <div id="progress">
+            <div id="pro-circle">
 
+                <div id="progress">
+
+                </div>
+
+                <div class="score-con">
+                    <?php
+                    echo '<h2 class="head">Total Matching Score: ' . $totalScore . '/36</h2>';
+                    ?>
+                </div>
             </div>
 
-            <div class="score-con">
-            <?php  
-            echo '<h2 class="head">Total Matching Score: ' . $totalScore . '/36</h2>';
-            ?>
+            <div class="ele-con">
+                <div class="chart">
+                    <select id="charts_opt">
+                        <option value="bar">Bar chart</option>
+                        <option value="line">Line chart</option>
+                        <option value="pie">Pie chart</option>
+                    </select>
+                    <canvas id="myChart"></canvas>
+                </div>
+
+                <div class="elements-main-con">
+                    <?php
+                    echo '<div class="elements-con">';
+                    echo '<h2 class="score">Kootam Scores</h2>';
+                    echo '<p class="score">Varna Kootam Score: ' . $varnaScore . '</p>';
+                    echo '<p class="score">Tara Kootam Score: ' . $taraScore . '</p>';
+                    echo '<p class="score">Graha Maitri Kootam Score: ' . $grahaMaitriScore . '</p>';
+                    echo '</div>';
+                    ?>
+                </div>
             </div>
         </div>
-
-
-        <div class="elements-main-con">
-            <?php
-                echo '<div class="elements-con">';
-                echo '<h2 class="score">Kootam Scores</h2>';
-                echo '<p class="score">Varna Kootam Score: ' . $varnaScore . '</p>';
-                echo '<p class="score">Tara Kootam Score: ' . $taraScore . '</p>';
-                echo '<p class="score">Graha Maitri Kootam Score: ' . $grahaMaitriScore . '</p>';
-                echo '</div>';
-            ?>
-
-            <?php
-                echo '<div class="elements-con">';
-                echo '<h2 class="score">Kootam Scores</h2>';
-                echo '<p class="score">Varna Kootam Score: ' . $varnaScore . '</p>';
-                echo '<p class="score">Tara Kootam Score: ' . $taraScore . '</p>';
-                echo '<p class="score">Graha Maitri Kootam Score: ' . $grahaMaitriScore . '</p>';
-                echo '</div>';
-            ?>
-            </div>
-            </div>
-    </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    var varnaScore = '<?php echo $varnaScore ?>';
+    var taraScore = '<?php echo $taraScore ?>';
+    var grahaMaitriScore = '<?php echo $grahaMaitriScore ?>';
+
+    const ctx = document.getElementById('myChart');
+    var chartTypeDropdown = document.getElementById('charts_opt');
+    change();
+
+    chartTypeDropdown.addEventListener('change', function() {
+    createChart();
+});
+
+
+    function change(){
+        new Chart(ctx, {
+        type: chartTypeDropdown.value,
+        data: {
+            labels: ['varna Score', 'tara Score', 'graha maitri Score'],
+            datasets: [{
+                label: 'All Scores Analysis',
+                data: [varnaScore, taraScore, grahaMaitriScore],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    }
+    
+</script>
+
 <script src="page6.js"></script>
+
 </html>

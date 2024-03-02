@@ -18,7 +18,7 @@ body{
 }
 
 .img{
-    width: 6%;
+    width: 5%;
     border-radius: 50px;
     margin-left: 10px;
 }
@@ -79,10 +79,10 @@ body{
 .elements-con{
     width: 100%;
     position: relative;
-    left: 100px;
+    left: 10px;
     height: 150px;
     background-color: darkorchid;
-    padding: 10px 15px;
+    padding: 10px 10px;
     padding-top: 10px;
     border-radius: 20px;
     color: white;
@@ -95,10 +95,26 @@ body{
 
 .main-details-con{
     display: flex;
-    margin-left: 150px;
+    margin-left: 60px;
 }
 
 .elements-main-con{
     position: relative;
-    bottom: 40px;
+    bottom: 0px;
+    left:  10px;
+}
+
+.ele-con{
+    display: flex;
+    position: relative;
+    bottom: 30px;
+    left: 10px;
+}
+
+.chart{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 60%;
+    height: 240px;
 }
