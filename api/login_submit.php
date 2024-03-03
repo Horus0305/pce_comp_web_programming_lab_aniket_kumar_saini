@@ -22,8 +22,6 @@ if ($row_count == 0) {
 }
 
 $row = mysqli_fetch_assoc($result);
-$_SESSION['user_id'] = $row['id'];
-$_SESSION['full_name'] = $row['full_name'];
 $_SESSION['email'] = $row['email'];
 
 $response = array("success" => true, "message" => "Login successful!");

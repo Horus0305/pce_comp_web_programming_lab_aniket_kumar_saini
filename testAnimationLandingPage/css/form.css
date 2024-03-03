@@ -196,3 +196,17 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+
+.eye {
+  position: absolute;
+  top: 15%;
+  left: 90%;
+  cursor: pointer;
+}
+
+.log {
+  position: absolute;
+  top: 15%;
+  left: 85%;
+  cursor: pointer;
+}
