@@ -49,7 +49,7 @@ function drawProgressBar(progress) {
 
         imgWidth *= scaleFactor;
         imgHeight *= scaleFactor;
-    
+
         var imgX = centerX - imgWidth / 2;
         var imgY = centerY - imgHeight / 2;
 
@@ -59,7 +59,7 @@ function drawProgressBar(progress) {
         context.fillStyle = 'black';
         context.fillRect(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
 
-    
+
         context.drawImage(img, imgX, imgY, imgWidth, imgHeight);
     };
     // drawHeart(context, centerX + radius * Math.cos(endAngle), centerY + radius * Math.sin(endAngle)-10, 25);
@@ -75,3 +75,4 @@ function drawProgressBar(progress) {
 //   }
 
 drawProgressBar(progress);
+
