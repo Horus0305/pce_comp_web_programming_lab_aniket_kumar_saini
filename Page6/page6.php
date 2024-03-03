@@ -44,7 +44,7 @@ curl_setopt_array(
 }',
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
-            'x-api-key: RWzd3MgPwk4O23AM0o1Dlaba5kkK0FRRaq1VMwj7'
+            'x-api-key: 50XtwIwAuD2hSWOeVHo5w4qsAVTBtnsO8vBWW8qc'
         ),
     )
 );
@@ -113,15 +113,22 @@ $totalScore = $data['output']['total_score'];
                 </div>
 
                 <div class="elements-main-con">
-                    <?php
-                    echo '<div class="elements-con">';
-                    echo '<h2 class="score">Kootam Scores</h2>';
-                    echo '<p class="score">Varna Kootam Score: ' . $varnaScore . '</p>';
-                    echo '<p class="score">Tara Kootam Score: ' . $taraScore . '</p>';
-                    echo '<p class="score">Graha Maitri Kootam Score: ' . $grahaMaitriScore . '</p>';
-                    echo '</div>';
-                    ?>
+                    <div class="card">
+                        <label class="card1" href="#">
+                            <p>Other Scores: </p>
+                            <?php
+                            echo '<p class="small">Varna Kootam Score: ' . $varnaScore . '</p>';
+                            echo '<p class="small">Tara Kootam Score: ' . $taraScore . '</p>';
+                            echo '<p class="small">Graha Maitri Kootam Score: ' . $grahaMaitriScore . '</p>';
+                            ?>
+                        </label>
+                    </div>
                 </div>
+
+                <div class="data-con">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus at a fuga quia optio, quos odit
+                    dolorumalias provident hic dolores voluptas.</p>
+            </div>
             </div>
         </div>
 </body>
@@ -133,36 +140,37 @@ $totalScore = $data['output']['total_score'];
     var taraScore = '<?php echo $taraScore ?>';
     var grahaMaitriScore = '<?php echo $grahaMaitriScore ?>';
 
-    const ctx = document.getElementById('myChart');
-    var chartTypeDropdown = document.getElementById('charts_opt');
-    change();
+    var chartTypeSelector = document.getElementById('charts_opt');
+    var ctx = document.getElementById('myChart').getContext('2d');
 
-    chartTypeDropdown.addEventListener('change', function() {
-    createChart();
-});
+    var chartType = chartTypeSelector.value;
 
+    var chartData = {
 
-    function change(){
-        new Chart(ctx, {
-        type: chartTypeDropdown.value,
-        data: {
-            labels: ['varna Score', 'tara Score', 'graha maitri Score'],
-            datasets: [{
-                label: 'All Scores Analysis',
-                data: [varnaScore, taraScore, grahaMaitriScore],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+        labels: ['varna score', 'tara score', 'graha maitriScore'],
+        datasets: [{
+            label: 'All score Analysis',
+            data: [varnaScore, taraScore, grahaMaitriScore],
+            borderWidth: 1
+        }]
+    };
+
+    var myChart = new Chart(ctx, {
+        type: chartType,
+        data: chartData
     });
-    }
-    
+
+    chartTypeSelector.addEventListener('change', function () {
+        chartType = this.value;
+
+        myChart.destroy();
+
+        myChart = new Chart(ctx, {
+            type: chartType,
+            data: chartData
+        });
+    });
+
 </script>
 
 <script src="page6.js"></script>

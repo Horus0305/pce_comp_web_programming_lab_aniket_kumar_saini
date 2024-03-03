@@ -75,7 +75,16 @@ setInterval(clock, 1000);
 
 
 function show_emojis() {
-    emojis.style.display = "block";
+
+    var emojis = document.getElementById('emojis');
+
+    if (emojis.style.display === "none" || emojis.style.display === ""){
+        emojis.style.display = "block";
+    }
+
+    else if (emojis.style.display === "block"){
+        emojis.style.display = "none";
+    }
 }
 
 function emo(emoji) {

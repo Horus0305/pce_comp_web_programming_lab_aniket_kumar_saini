@@ -1,5 +1,7 @@
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css');
+
 
 body{
     margin: 0;
@@ -117,7 +119,9 @@ body{
 
 
 #in{
-    width: 87%;
+    width: 85%;
+    position: relative;
+    top: 6px;
     padding-left: 10px;
     margin-left: 20px;
     font-size: 1.2rem;
@@ -134,7 +138,7 @@ body{
 
 .logo2{
     font-size: 2rem;
-    margin-left: 5px;
+    margin-left: 15px;
     position: relative;
     top: 8px;
     color: white;

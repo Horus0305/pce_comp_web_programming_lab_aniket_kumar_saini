@@ -2,38 +2,40 @@
 
 
 
-body{
+body {
     background: url(img/bg.jpg);
+    overflow-x: hidden;
 }
 
-.navbar{
+.navbar {
     display: flex;
     align-items: center;
 }
 
-.profile-img{
+.profile-img {
     width: 5%;
     margin-left: auto;
     margin-right: 10px;
 }
 
-.img{
+.img {
     width: 5%;
     border-radius: 50px;
     margin-left: 10px;
 }
 
-.pro-img{
+.pro-img {
     width: 85%;
     border-radius: 50px;
 }
 
-.back-con{
+.back-con {
     padding-top: 27px;
 }
 
-.back{
-    font-size: 2rem;
+.back {
+    font-size: 1.5rem;
+    padding-bottom: 3px;
     margin-left: 20px;
     padding-top: 10px;
     padding-left: 10px;
@@ -45,22 +47,23 @@ body{
     width: 5%;
 }
 
-.details-con{
+.details-con {
     font-family: sans-serif;
-    width: 90%;
+    width: 95%;
     margin: auto;
     margin-top: 20px;
-    background-color: rgba(255,255,255, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     height: 80vh;
     border-radius: 20px;
 }
 
-#pro-circle{
+#pro-circle {
     position: relative;
     bottom: 20px;
 }
 
-.head{
+.head {
+    width: 100%;
     font-family: sans-serif;
     margin-left: 0px;
     font-size: 1.3rem;
@@ -70,51 +73,268 @@ body{
     border-radius: 10px;
 }
 
-.score{
+.score {
     margin-top: 3px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 
-.elements-con{
+.elements-con {
     width: 100%;
     position: relative;
     left: 10px;
     height: 150px;
     background-color: darkorchid;
-    padding: 10px 10px;
+    padding: 10px 15px;
     padding-top: 10px;
     border-radius: 20px;
     color: white;
     margin-top: 20px;
 }
 
-.horo_img{
+.horo_img {
     position: absolute;
 }
 
-.main-details-con{
+.main-details-con {
     display: flex;
     margin-left: 60px;
 }
 
-.elements-main-con{
+.elements-main-con {
     position: relative;
-    bottom: 0px;
-    left:  10px;
-}
-
-.ele-con{
-    display: flex;
-    position: relative;
-    bottom: 30px;
+    bottom: 5px;
+    top: 15px;
     left: 10px;
 }
 
-.chart{
+.ele-con {
+    display: inline-flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 10px;
+    bottom: 0px;
+    left: 100px;
+}
+
+.chart {
     background-color: white;
     padding: 10px;
     border-radius: 10px;
-    width: 60%;
-    height: 240px;
+    width: 40%;
+    height: 200px;
+}
+
+.card p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #666;
+    margin-left: 10px;
+}
+
+.card p.small {
+    font-size: 14px;
+}
+
+.go-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background-color: #00838d;
+    border-radius: 0 4px 0 32px;
+}
+
+.go-arrow {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: white;
+    font-family: courier, sans;
+}
+
+.card1 {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background-color: #f2f8f9;
+    border-radius: 4px;
+    padding: 10px 10px;
+    margin: 7px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.card1:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: #00838d;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+}
+
+.card1:hover:before {
+    transform: scale(21);
+}
+
+.card1:hover p {
+    transition: all 0.3s ease-out;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card1:hover h3 {
+    transition: all 0.3s ease-out;
+    color: #fff;
+}
+
+.card2 {
+    display: block;
+    top: 0px;
+    position: relative;
+    max-width: 262px;
+    background-color: #f2f8f9;
+    border-radius: 4px;
+    padding: 32px 24px;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+}
+
+.card2:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+    top: -4px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.card2:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: #00838d;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(2);
+    transform-origin: 50% 50%;
+    transition: transform 0.15s ease-out;
+}
+
+.card2:hover:before {
+    transform: scale(2.15);
+}
+
+.card3 {
+    display: block;
+    top: 0px;
+    position: relative;
+    max-width: 262px;
+    background-color: #f2f8f9;
+    border-radius: 4px;
+    padding: 32px 24px;
+    margin: 12px;
+    text-decoration: none;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+}
+
+.card3 .go-corner {
+    opacity: 0.7;
+}
+
+.card3:hover {
+    border: 1px solid #00838d;
+    box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+    z-index: 500;
+}
+
+.card3:hover p {
+    color: #00838d;
+}
+
+.card3:hover .go-corner {
+    transition: opactiy 0.3s linear;
+    opacity: 1;
+}
+
+.card4 {
+    display: block;
+    top: 0px;
+    position: relative;
+    max-width: 262px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 32px 24px;
+    margin: 12px;
+    text-decoration: none;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+.card4 .go-corner {
+    background-color: #00838d;
+    height: 100%;
+    width: 16px;
+    padding-right: 9px;
+    border-radius: 0;
+    transform: skew(6deg);
+    margin-right: -36px;
+    align-items: start;
+    background-image: linear-gradient(-45deg, #8f479a 1%, #dc2a74 100%);
+}
+
+.card4 .go-arrow {
+    transform: skew(-6deg);
+    margin-left: -2px;
+    margin-top: 9px;
+    opacity: 0;
+}
+
+.card4:hover {
+    border: 1px solid #cd3d73;
+}
+
+.card4 h3 {
+    margin-top: 8px;
+}
+
+.card4:hover .go-corner {
+    margin-right: -12px;
+}
+
+.card4:hover .go-arrow {
+    opacity: 1;
+}
+
+.data-con {
+    width: 70%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    padding: 20px;
+    height: 40px;
+}
+
+.data-con p{
+    margin: 0px;
 }
