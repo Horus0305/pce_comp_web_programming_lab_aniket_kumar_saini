@@ -10,6 +10,8 @@ body {
     color: white;
     margin: 0px;
     width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .hamburger {
@@ -254,16 +256,75 @@ body {
 }
 
 .notify{
-    width: 60%;
+    width: 90%;
     margin: auto;
-    background-color: rgba(255,255,255,.65);
+    background-color: #000000;
     border-radius: 10px;
 }
 
 .progress-con{
-    margin-left: 110px;
     padding-top: 30px;
 }
+
+.title{
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.all-pro-con{
+    background-color: black;
+    margin-top: 50px;
+    border: 2px solid white;
+    padding-top: 20px;
+    border-radius: 10px;
+}
+
+.sign-con{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.notify h4{
+    margin-bottom: 50px;
+    background-color: white;
+    padding: 20px;
+    color: #000000;
+    border-radius: 20px;
+}
+
+.sign-con h5{
+    /* font-family: ; */
+    font-size: 1.5rem;
+    color: white;
+    margin: 0px;
+    padding-left: 90px;
+}
+
+
+.sign-row-1, .sign-row-2, .sign-row-3, .sign-row-4{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    left: 0px;
+}
+
+.sign-row-1 img, .sign-row-2 img, .sign-row-3 img, .sign-row-4 img{
+    width: 250px;
+}
+
+.sign{
+    width: 100%;
+}
+
+.sign img:hover{
+    background-color: white;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
 
 #pro{
     margin-left: 10px;
@@ -309,22 +370,54 @@ body {
     margin: auto;
 }
 
+
+.vid-con{
+    width: 93%;
+    margin-top: 50px;
+}
+
+.video-all-con{
+    padding-top: 50px;
+}
+
+video{
+    border-radius: 10px;
+}
+
 footer{
     background-color: rgba(255, 255, 255, 0.3);
     margin-top: 50px;
     margin-bottom: 20px;
     width: 98%;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
 }
 
 footer img{
     width: 5%;
 }
 
+.nav{
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.nav a{
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    padding-left: 15px;
+}
+
 .btn:hover {
     background-color: white;
     color: gold;
 }
+
+
+
 
 @media (max-width: 1020px) {
 
