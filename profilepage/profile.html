@@ -1,31 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/profile.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/profile.css" />
     <title>My Profile</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <a class="imgbtn" id="backbtn" href=""> <img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAATlJREFUaEPt2NENwjAMBFB7E9gENoFNYBJgEhiFTQxBqoSqNnFsN71K4bM04Z4diSRMG//wxvNTB6zdwd6B3gFnBfoSGhdQRHbM/HYWVj08tAMiciCiJxFdmfmiTuF4MQzwF36I0wQRApgIPyD2Sy8nNyAT/sjML8fqUA11AdYOn4RmAEJ4MwAlvAmAFL4agBa+CoAYXg1ADa8CIIcvAtDDZwGZ8Kp/yOiX+Ls7nJpz8iFa+F+lKwEnIrpFV9EzXxUg/ZCIQCGqARlEOm09Wh1YSl0rbuZmOgGDKALQO6ECICPUAFREFQARUQ1AQ5gASAgzAAXhAiAg3IACIt0NLXpPGgKYQZyZ+V7aCni/DwOMEE3CF09klups+nrdAvaOCV1C3jCW8R1gqVrkmN6ByGpa5uodsFQtcswHw7mlMdLGDtIAAAAASUVORK5CYII="/></a>
-        <p id="heading">My Profile</p>
-        <a class="imgbtn" id="logoutbtn" href=""><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAZpJREFUaEPtWYFtAjEMtDcpmzBKmaTtJLBJRymbuH8oVCEfcMg73zdyJMRLEMd3PieOn8n5YOf+UwD47whGBF4qAiLyRkQfRLQnIjxbjDMR4XNgZnzfDDMJJed/LDx+YGNXgrAEcJyYeh8M4IuZP/M1LAHIYOdh/szMu1UA8ESVBSARuSGmtGuyCBzVFuoFo9kNAFdmNaYiAomByIGUsEdmPuSycCGhdNriwNqXodw8ABFBffN9Zd1qn9eSWyOmaRsVEZQIYP5vuAEgItUaZ/MAcr3XwrxpAKXeNZ0u+V0j4ukcqOl9iYPa3BEAUG/jVrXKMAeQDipcB7FlWl0L75IxBEALCG1hq/A9nQNFeYAI4AyYScoFgKxUnuWFKwA1SbkDUIJwV8xlcrrkRdne0JKtN6k1u03FXMvi2kItNmr/0ewGgExaD/s3EYHEQFzq70lBSzYPEkJrfXTxN7S5u0Z7/VS2cyy30dEl+Ix9yNIMQFZqIBIAYymn0+QrXm6Me8XUm6RL55lGYKkzPfMDQA9rlnMiApZs9tj6BV6fG0CJal3uAAAAAElFTkSuQmCC"/></a>
+      <a class="imgbtn" id="backbtn" href="">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAATlJREFUaEPt2NENwjAMBFB7E9gENoFNYBJgEhiFTQxBqoSqNnFsN71K4bM04Z4diSRMG//wxvNTB6zdwd6B3gFnBfoSGhdQRHbM/HYWVj08tAMiciCiJxFdmfmiTuF4MQzwF36I0wQRApgIPyD2Sy8nNyAT/sjML8fqUA11AdYOn4RmAEJ4MwAlvAmAFL4agBa+CoAYXg1ADa8CIIcvAtDDZwGZ8Kp/yOiX+Ls7nJpz8iFa+F+lKwEnIrpFV9EzXxUg/ZCIQCGqARlEOm09Wh1YSl0rbuZmOgGDKALQO6ECICPUAFREFQARUQ1AQ5gASAgzAAXhAiAg3IACIt0NLXpPGgKYQZyZ+V7aCni/DwOMEE3CF09klups+nrdAvaOCV1C3jCW8R1gqVrkmN6ByGpa5uodsFQtcswHw7mlMdLGDtIAAAAASUVORK5CYII="
+      /></a>
+      <p id="heading">My Profile</p>
+      <a class="imgbtn" id="logoutbtn" href=""
+        ><img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAZpJREFUaEPtWYFtAjEMtDcpmzBKmaTtJLBJRymbuH8oVCEfcMg73zdyJMRLEMd3PieOn8n5YOf+UwD47whGBF4qAiLyRkQfRLQnIjxbjDMR4XNgZnzfDDMJJed/LDx+YGNXgrAEcJyYeh8M4IuZP/M1LAHIYOdh/szMu1UA8ESVBSARuSGmtGuyCBzVFuoFo9kNAFdmNaYiAomByIGUsEdmPuSycCGhdNriwNqXodw8ABFBffN9Zd1qn9eSWyOmaRsVEZQIYP5vuAEgItUaZ/MAcr3XwrxpAKXeNZ0u+V0j4ukcqOl9iYPa3BEAUG/jVrXKMAeQDipcB7FlWl0L75IxBEALCG1hq/A9nQNFeYAI4AyYScoFgKxUnuWFKwA1SbkDUIJwV8xlcrrkRdne0JKtN6k1u03FXMvi2kItNmr/0ewGgExaD/s3EYHEQFzq70lBSzYPEkJrfXTxN7S5u0Z7/VS2cyy30dEl+Ix9yNIMQFZqIBIAYymn0+QrXm6Me8XUm6RL55lGYKkzPfMDQA9rlnMiApZs9tj6BV6fG0CJal3uAAAAAElFTkSuQmCC"
+      /></a>
     </div>
     <div class="top">
-        <img src="img/banner2.jpg" alt="banner" id="banner">
-        <div class="profileimg">
-        <img class="sign" src="img/pisces.png" alt="sign" />
-        <img class="photo" src="img/male-user.png" alt="photo" />
+      <div class="row">
+        <div class="col-md-4 mt-1">
+          <div class="card text-center sidebar">
+            <div class="card-body">
+              <!-- <img
+                src="img/pisces.png"
+                class="rounded-circle sign"
+                width="150"
+              /> -->
+              <img
+                src="img/male-user.png"
+                class="rounded-circle photo"
+                width="150"
+              />
+              <div class="mt-3">
+                <h3>Burk Macklin</h3>
+                <div class="col">
+                  <button id="editpfbtn" onclick="">Edit Profile</button>
+                  <button id="delacbtn" onclick="">Delete Account</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="bottom">
-            <h1 id="name">Soumendu Manna</h1>
-            <p id="age">Age : 19</p>
-            <p id="sunsign">SunSign : Leo</p>
-            <p id="city">City : Thakurli</p>
-            <p id="work">Student</p>
-            <p id="chances">Compatibility : 97%</p>
+        <div class="col-md-8 mt-1">
+          <div class="card mb-3 content">
+            <h1 class="m-3 pt-3">Basic Information</h1>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Full Name</h5>
+                </div>
+                <div class="col-md-9 text-secondary">Burt Macklin</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Age</h5>
+                </div>
+                <div class="col-md-9 text-secondary">18</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Email</h5>
+                </div>
+                <div class="col-md-9 text-secondary">abc@gmail.com</div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Phone</h5>
+                </div>
+                <div class="col-md-9 text-secondary">0123456789</div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>City</h5>
+                </div>
+                <div class="col-md-9 text-secondary">Kalyan</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Gender</h5>
+                </div>
+                <div class="col-md-9 text-secondary">Male</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Height</h5>
+                </div>
+                <div class="col-md-9 text-secondary">178 cm</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Weight</h5>
+                </div>
+                <div class="col-md-9 text-secondary">69 Kg</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Place of Birth</h5>
+                </div>
+                <div class="col-md-9 text-secondary">Kalyan</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Date of Birth</h5>
+                </div>
+                <div class="col-md-9 text-secondary">03-03-2005</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Time of Birth</h5>
+                </div>
+                <div class="col-md-9 text-secondary">03:13 pm</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Sun Sign</h5>
+                </div>
+                <div class="col-md-9 text-secondary">Pisces</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>BMI</h5>
+                </div>
+                <div class="col-md-9 text-secondary">21.8</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>Short Description</h5>
+                </div>
+                <div class="col-md-9 text-secondary">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
+                  nesciunt minima maxime a ut explicabo culpa, doloremque
+                  perspiciatis aliquam. Debitis, temporibus atque fugit,
+                  eligendi id ut fugiat soluta aliquam odio repellendus sit in!
+                  Vel blanditiis eaque libero hic praesentium mollitia, fugiat
+                  laboriosam adipisci provident, iusto dolorum saepe voluptatum
+                  delectus numquam?
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-md-3">
+                  <h5>One-Line Quote</h5>
+                </div>
+                <div class="col-md-9 text-secondary">
+                  If it is to be it is up to me
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+    <div id="deleteModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm" action="del.php" method="post">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" required /><br /><br />
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+          /><br /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+
+    <div id="editModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="close">&times;</div>
+        <form id="modalForm">
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" name="fullname" required /><br />
+
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required /><br />
+
+          <label for="pob">Place of Birth:</label>
+          <input type="text" id="pob" name="pob" required /><br />
+
+          <label for="tob">Time of Birth:</label>
+          <input type="time" id="tob" name="tob" required /><br />
+
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option></select
+          ><br />
+
+          <label for="weight">Weight:</label>
+          <input type="number" id="weight" name="weight" required /><br />
+
+          <label for="height">Height:</label>
+          <input type="number" id="height" name="height" required /><br />
+
+          <label for="photo">Photo:</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            required
+          /><br />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br />
+
+          <label for="number">Number:</label>
+          <input type="tel" id="number" name="number" required /><br />
+
+          <input type="submit" value="Update" />
+        </form>
+      </div>
+    </div>
+    <script>
+      // Get the modals
+      var editModal = document.getElementById("editModal");
+      var deleteModal = document.getElementById("deleteModal");
+
+      // Get the buttons that opens the modals
+      var editBtn = document.getElementById("editpfbtn");
+      var deleteBtn = document.getElementById("delacbtn");
+
+      // Get the <span> elements that closes the modals
+      var editSpan = document.getElementsByClassName("close")[0];
+      var deleteSpan = document.getElementsByClassName("close")[1];
+
+      // When the user clicks the button, open the modal
+      editBtn.onclick = function () {
+        editModal.style.display = "block";
+      };
+      deleteBtn.onclick = function () {
+        deleteModal.style.display = "block";
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      editSpan.onclick = function () {
+        editModal.style.display = "none";
+      };
+      deleteSpan.onclick = function () {
+        deleteModal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == editModal) {
+          editModal.style.display = "none";
+        }
+        if (event.target == deleteModal) {
+          deleteModal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
 </html>
