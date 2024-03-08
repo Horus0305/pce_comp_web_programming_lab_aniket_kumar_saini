@@ -7,6 +7,7 @@
   <title>page 2</title>
   <!-- <link rel="stylesheet" href="/testAnimationLandingPage/bg.css"> -->
   <link rel="stylesheet" href="page2.css" />
+  <link rel="stylesheet" href="css/proCom.css" />
 </head>
 
 <body>
@@ -34,6 +35,79 @@
     </div>
 
     <div class="all-container">
+
+      <div id="profile_completion_popup" class="profile_completion_popup">
+        <section class="container">
+          <header>Profile Completion</header>
+          <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
+          <form class="form" action="#">
+            <div class="input-box">
+              <label>Full Name</label>
+              <input required="" name="full_name" placeholder="Enter full name" type="text">
+            </div>
+            <div class="column">
+              <div class="input-box">
+                <label>Phone Number</label>
+                <input required="" name="number" placeholder="Enter phone number" type="telephone">
+              </div>
+              <div class="input-box">
+                <label>Birth Date</label>
+                <input required="" name="birth_date" placeholder="Enter birth date" type="date">
+              </div>
+            </div>
+            <div class="gender-box">
+              <label>Gender</label>
+              <div class="gender-option">
+                <div class="gender">
+                  <input checked="" name="gender" id="check-male" type="radio">
+                  <label for="check-male">Male</label>
+                </div>
+                <div class="gender">
+                  <input name="gender" id="check-female" type="radio">
+                  <label for="check-female">Female</label>
+                </div>
+                <div class="gender">
+                  <input name="gender" id="check-other" type="radio">
+                  <label for="check-other">Prefer not to say</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-box address">
+              <label>Address</label>
+              <input required="" placeholder="Enter street address" type="text">
+              <div class="column">
+                <div class="select-box">
+                  <select>
+                    <option hidden="">Country</option>
+                    <option>USA</option>
+                    <option>UK</option>
+                    <option>Germany</option>
+                    <option>Japan</option>
+                  </select>
+                </div>
+                <input required="" name="city" placeholder="Enter your city" type="text">
+              </div>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </section>
+      </div>
+
+      <div id="partner_requirements_con" class="partner_requirements_con">
+        <section class="container">
+          <header>Hobbies and Requirements</header>
+          <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
+          <form class="form" action="#">
+            <label class="hob">Hobbies</label>
+            <textarea name="hobbies" id="hobbies" cols="50" rows="5"></textarea>
+            <br>
+            <label class="hob">Requirements</label>
+            <textarea name="req" id="req" cols="50" rows="5"></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </section>
+      </div>
+
       <div class="profile-progress-con">
         <center>
           <h2>Profile Progress <span>📄</span></h2>
@@ -50,10 +124,10 @@
         </div>
 
         <div class="completion-con2">
-          <div class="stage">Profile_Pic</div>
+          <div class="stage">Profile_comp</div>
           <div class="stage">Birth_Chart</div>
-          <div class="stage">Username</div>
-          <div class="stage">Password</div>
+          <div class="stage">Zodiac_info</div>
+          <div class="stage">Partner_req</div>
         </div>
 
         <center>
@@ -78,7 +152,9 @@
 
       <div class="notification">
         <div class="notify">
-        <center><h4 class="title">Cosmic Destiny Daily Horoscope 🦀</h4></center>
+          <center>
+            <h4 class="title">Cosmic Destiny Daily Horoscope 🦀</h4>
+          </center>
           <div class="sign-con">
             <div class="sign-row-1">
               <div class="sign">
@@ -191,7 +267,9 @@
 
       <center>
         <div class="video-all-con">
-          <h1 style="font-family: sans-serif; margin:0px; font-size:2rem; background-color:white; color:black; border-radius:20px; width:90%; padding: 20px;">We Cosmic Destiny Promise you...🪐</h1>
+          <h1
+            style="font-family: sans-serif; margin:0px; font-size:2rem; background-color:white; color:black; border-radius:20px; width:90%; padding: 20px;">
+            We Cosmic Destiny Promise you...🪐</h1>
           <div class="vid-con">
             <video width="100%" controls loop autoplay src="images/vid.mp4">
               <track label="English" kind="subtitles" srclang="en" src="eng.vtt" default>

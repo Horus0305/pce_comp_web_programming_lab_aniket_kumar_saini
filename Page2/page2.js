@@ -3,6 +3,9 @@ var c2 = document.getElementById('c2');
 var c3 = document.getElementById('c3');
 var c4 = document.getElementById('c4');
 
+var proCompCon = document.getElementById("profile_completion_popup");
+var reqCompCon = document.getElementById("partner_requirements_con");
+
 var all = document.querySelector(".all-container");
 
 var profileCon = document.querySelector('.profile-progress-con');
@@ -16,9 +19,13 @@ function completion_status(status) {
     if (completion.innerHTML != '100%') {
 
         if (status == "c1" && completion.innerHTML == "0%") {
-            bar.value = 25;
-            c1.style.backgroundColor = "lightgreen";
-            completion.innerHTML = "25%";
+            proCompCon.style.display = "block";
+            
+            
+
+            // bar.value = 25;
+            // c1.style.backgroundColor = "lightgreen";
+            // completion.innerHTML = "25%";
         }
 
         if (status == "c2" && completion.innerHTML == "25%") {
@@ -33,10 +40,13 @@ function completion_status(status) {
             completion.innerHTML = "75%";
         }
 
-        if (status == "c4" && completion.innerHTML == "75%") {
-            bar.value = 100;
-            c4.style.backgroundColor = "lightgreen";
-            completion.innerHTML = "100%";
+        if (status == "c4" && completion.innerHTML == "0%") {
+            reqCompCon.style.display = "block";
+
+            
+            // bar.value = 100;
+            // c4.style.backgroundColor = "lightgreen";
+            // completion.innerHTML = "100%";
         }
     } else {
         return;
@@ -115,3 +125,12 @@ function showNextCard() {
 }
 
 incrementProgress(0);
+
+function gaayab(ham){
+    if(ham === "cross"){
+        var proCon = document.getElementById("profile_completion_popup");
+        var reqCon = document.getElementById("partner_requirements_con");
+        proCon.style.display = "none";
+        reqCon.style.display = "none";
+    }
+}
