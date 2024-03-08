@@ -165,7 +165,7 @@ body{
 
 
 /* Close button */
-.close {
+#delclose, #edclose {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -174,8 +174,14 @@ body{
   margin-left: 95%;
 }
 
-.close:hover,
-.close:focus {
+#delclose:hover,
+#delclose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#edclose:hover,
+#edclose:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

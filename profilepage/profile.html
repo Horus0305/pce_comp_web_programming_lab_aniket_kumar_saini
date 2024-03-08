@@ -175,7 +175,7 @@
     <div id="deleteModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span id="delclose">&times;</span>
         <h2>Login</h2>
         <form id="loginForm" action="del.php" method="post">
           <label for="email">Email:</label>
@@ -195,7 +195,7 @@
     <div id="editModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
-        <div class="close">&times;</div>
+        <div id="edclose">&times;</div>
         <form id="modalForm">
           <label for="fullname">Full Name:</label>
           <input type="text" id="fullname" name="fullname" required /><br />
@@ -243,42 +243,41 @@
     </div>
     <script>
       // Get the modals
-      var editModal = document.getElementById("editModal");
-      var deleteModal = document.getElementById("deleteModal");
+      const editModal = document.getElementById("editModal");
+      const deleteModal = document.getElementById("deleteModal");
 
       // Get the buttons that opens the modals
-      var editBtn = document.getElementById("editpfbtn");
-      var deleteBtn = document.getElementById("delacbtn");
+      const editBtn = document.getElementById("editpfbtn");
+      const deleteBtn = document.getElementById("delacbtn");
 
       // Get the <span> elements that closes the modals
-      var editSpan = document.getElementsByClassName("close")[0];
-      var deleteSpan = document.getElementsByClassName("close")[1];
+      const editSpan = document.getElementById("edclose");
+      const deleteSpan = document.getElementById("delclose");
 
-      // When the user clicks the button, open the modal
-      editBtn.onclick = function () {
+      editBtn.addEventListener("click", function () {
         editModal.style.display = "block";
-      };
-      deleteBtn.onclick = function () {
+      });
+
+      deleteBtn.addEventListener("click", function () {
         deleteModal.style.display = "block";
-      };
+      });
 
-      // When the user clicks on <span> (x), close the modal
-      editSpan.onclick = function () {
+      editSpan.addEventListener("click", function () {
         editModal.style.display = "none";
-      };
-      deleteSpan.onclick = function () {
-        deleteModal.style.display = "none";
-      };
+      });
 
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function (event) {
+      deleteSpan.addEventListener("click", function () {
+        deleteModal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
         if (event.target == editModal) {
           editModal.style.display = "none";
         }
         if (event.target == deleteModal) {
           deleteModal.style.display = "none";
         }
-      };
+      });
     </script>
   </body>
 </html>
