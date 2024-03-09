@@ -3,10 +3,8 @@ session_start();
 require("../includes/database_connect.php");
 
 $email = $_POST['email'];
-$password = $_POST['password'];
-$password = sha1($password);
-
-$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+$pass = sha1($_POST['password']);
+$sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $response = array("success" => false, "message" => "Something went wrong!");
@@ -15,6 +13,7 @@ if (!$result) {
 }
 
 $row_count = mysqli_num_rows($result);
+echo "$row_count";
 if ($row_count == 0) {
     $response = array("success" => false, "message" => "Login failed! Invalid email or password.");
     echo json_encode($response);
