@@ -38,6 +38,11 @@
     padding-right: 30px;
 }
 
+.error{
+    color: red;
+    display: none;
+}
+
 #hobbies{
     margin-left: 45px;
 }

@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>page 2</title>
-  <!-- <link rel="stylesheet" href="/testAnimationLandingPage/bg.css"> -->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <link rel="stylesheet" href="page2.css" />
   <link rel="stylesheet" href="css/proCom.css" />
 </head>
@@ -40,15 +41,15 @@
         <section class="container">
           <header>Profile Completion</header>
           <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-          <form class="form" action="#">
+          <form class="form" id="pro_form" action="#">
             <div class="input-box">
-              <label>Full Name</label>
-              <input required="" name="full_name" placeholder="Enter full name" type="text">
+              <label>Full Name <span id="name_error" class="error">*Full name can only contain letters and spaces</span></label>
+              <input required="" id="fullName" name="full_name" placeholder="Enter full name" type="text">
             </div>
             <div class="column">
               <div class="input-box">
-                <label>Phone Number</label>
-                <input required="" name="number" placeholder="Enter phone number" type="telephone">
+                <label>Phone Number <span id="phone_error" class="error">*Phone number must be 10 digits</span></label>
+                <input required="" id="phoneNumber" name="number" placeholder="Enter phone number" type="telephone">
               </div>
               <div class="input-box">
                 <label>Birth Date</label>
@@ -79,6 +80,7 @@
                 <div class="select-box">
                   <select>
                     <option hidden="">Country</option>
+                    <option>India</option>
                     <option>USA</option>
                     <option>UK</option>
                     <option>Germany</option>
@@ -88,7 +90,7 @@
                 <input required="" name="city" placeholder="Enter your city" type="text">
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="profile_comp()">Submit</button>
           </form>
         </section>
       </div>
@@ -97,13 +99,13 @@
         <section class="container">
           <header>Hobbies and Requirements</header>
           <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-          <form class="form" action="#">
+          <form class="form" method="post">
             <label class="hob">Hobbies</label>
             <textarea name="hobbies" id="hobbies" cols="50" rows="5"></textarea>
             <br>
             <label class="hob">Requirements</label>
             <textarea name="req" id="req" cols="50" rows="5"></textarea>
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="hob_sub()">Submit</button>
           </form>
         </section>
       </div>
@@ -279,6 +281,13 @@
         </div>
       </center>
 
+      <center>
+        <header
+          style="font-family: sans-serif; margin:0px; font-size:2rem; background-color:white; color:black; border-radius:20px; width:90%; padding: 20px; margin-top:40px; margin-bottom:40px;">
+          Provide Good Dating places near you!!</header>
+        <div id="map" style="width: 93%; height: 380px"></div>
+      </center>
+
       <footer>
         <img src="images/logo.png" alt="logo" />
 
@@ -292,5 +301,38 @@
   </div>
 </body>
 <script src="page2.js"></script>
+
+<script>
+  // Creating map options
+  var mapOptions = {
+    center: [19.026257904490755, 73.01864851115762],
+    zoom: 12
+  }
+
+  // Creating a map object
+  var map = new L.map('map', mapOptions);
+
+  // Creating a Layer object
+  var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+  // Adding layer to the map
+  map.addLayer(layer);
+
+  var markerData = [
+    { location: [19.026257904490755, 73.01864851115762], name: "McDonald's" },
+    { location: [19.07366885401678, 72.99771626362873], name: "McDonald's" },
+    { location: [19.05059302863161, 73.00904552684088], name: "Dominos" },
+    { location: [19.047635761932863, 73.02415134022735], name: "Cafe Martin" }
+  ];
+  markerData.forEach(function (data, index) {
+    var marker = L.marker(data.location).addTo(map);
+    marker.bindPopup("<div style='color:black';><b>" + data.name + "</b><br>This is " + data.name + ".</div>").openPopup();
+  });
+
+  var markerLocations = markerData.map(function (data) {
+    return data.location;
+  });
+  var polyline = L.polyline(markerLocations, { color: 'red' }).addTo(map);
+</script>
 
 </html>
