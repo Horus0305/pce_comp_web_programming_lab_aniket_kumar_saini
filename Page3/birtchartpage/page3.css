@@ -4,7 +4,7 @@
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 
 body {
-    background-image: url("/testAnimationLandingPage/img/bg.jpg");
+    background-image: url("D:\xaamo\htdocs\pce_comp_web_programming_lab_aniket_kumar_saini\img\bg.png");
     color: white;
     margin: 0px;
     width: 100%;
@@ -85,7 +85,7 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(15px);
   text-align: center;
-
+  margin-left: 20vw;
   margin-top: 5vh;
   height: fit-content;  
   
@@ -100,7 +100,7 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(15px);
   text-align: center;
-
+  margin-left: 20vw;
   margin-top: 5vh;
   height: 28vh;  
   overflow: hidden;
@@ -121,10 +121,10 @@ body {
    margin-left: 65%;
 
 }
-.divtriggerr {
+.divtrigger {
     display: flexbox;
     flex-direction:column;
-    width: 80%;
+    width: 60%;
     height: 10%;
     justify-content: center;
     padding: 10px;
@@ -151,7 +151,6 @@ body {
     width: 80vw;
     flex-direction: column;
     height: fit-content;
-   right: 0;
  
 }
 
