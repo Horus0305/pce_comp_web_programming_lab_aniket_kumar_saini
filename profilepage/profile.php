@@ -19,7 +19,6 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $_SESSION['id'] = $row['uid'];
 $_SESSION['pass'] = $row['pass'];
-echo $row['pob'];
 $v1="";
 $v2="";
 $v3="";
@@ -32,7 +31,7 @@ if ($row['dob'] != NULL) {
   $v2 = "readonly='readonly'";
 }
 if ($row['gender'] != NULL) {
-  $v3 = "readonly='readonly'";
+  $v3 = "disabled";
 }
 if ($row['pob'] != NULL) {
   $v4 = "readonly='readonly'";
@@ -367,10 +366,11 @@ const calculateAge = (dateOfBirth) => Math.floor((new Date() - new Date(dateOfBi
 const validateWeight = (weight) => !isNaN(weight) && weight > 0 && weight < 1000;
 const validateHeight = (height) => !isNaN(height) && height > 0 && height < 300;
 const validatePhoneNumber = (number) => /^\d{10}$/.test(number);
+const validatePlaceOfBirth = (placeOfBirth) => /^[a-zA-Z\s]+$/.test(placeOfBirth);
 
 
 const form = document.getElementById('modalForm');
-const inputs = ['fullname', 'tob', 'dob', 'weight', 'height', 'number'].map(id => document.getElementById(id));
+const inputs = ['fullname', 'tob', 'dob', 'pob', 'weight', 'height', 'number'].map(id => document.getElementById(id));
 
 form.addEventListener('submit', (event) => {
   inputs.forEach(input => {
@@ -421,6 +421,12 @@ inputs.forEach(input => {
     } else if (input.id === 'weight') {
       if (!validateWeight(input.value)) {
         input.setCustomValidity('Weight should be a number between 1 and 1000');
+      } else {
+        input.setCustomValidity('');
+      }
+    } else if(input.id === 'pob'){
+      if (!validatePlaceOfBirth(input.value)) {
+        input.setCustomValidity('Place of Birth should only contain characaters');
       } else {
         input.setCustomValidity('');
       }
