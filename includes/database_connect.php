@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("127.0.0.1", "root","", "cd");
+$conn = mysqli_connect("127.0.0.1", "root","", "cosmicdestiny");
 
 if (mysqli_connect_errno()) {
     // Throw error message based on ajax or not

@@ -3,6 +3,7 @@ require("../includes/database_connect.php");
 
 $f_name = $_POST['f_name'];
 $l_name = $_POST['l_name'];
+$name = $f_name . " " . $l_name;
 $email = $_POST['email'];
 $password = $_POST['password'];
 $password = sha1($password);
@@ -22,7 +23,7 @@ if ($row_count != 0) {
     return;
 }
 
-$sql = "INSERT INTO users (email, password, f_name, l_name) VALUES ('$email', '$password', '$f_name', '$l_name')";
+$sql = "INSERT INTO users (name, email, pass) VALUES ( '$name', '$email', '$password')";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $response = array("success" => false, "message" => "Something went wrong!");
