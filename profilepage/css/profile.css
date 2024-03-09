@@ -35,9 +35,7 @@ body{
 }
 
 #heading{
-    padding: 1%;
-    /* margin: 1%; */
-    /* margin-left: 40%; */
+    /* padding: 1%; */
     font-size:3rem;
     font-weight: bold;
 }
@@ -46,7 +44,6 @@ body{
     min-height: 40vh;
     width: 80%;
     border: 2px solid white;
-    /* align-items: center; */
     flex-direction: column;
     border-radius: 20px;
     justify-content: space-around;
@@ -106,8 +103,21 @@ body{
 }
 #editpfbtn,#delacbtn{
     color: black;
-    padding: 0.5%;
+    padding: 2%;
+    margin: 1%;
+    border: black 2px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border 0.7s , transform 0.7s, background-color 0.7s, color 0.5s;
 }
+
+#editpfbtn:hover,#delacbtn:hover{
+  border: cyan 2px solid;
+  transform: scale(0.95);
+  background-color:indigo;
+  color: white;
+}
+
 /* ---------------------MODAL-------------------------------- */
 .modal {
     display: none;
@@ -122,21 +132,15 @@ body{
   }
   
   .modal-content {
-    background-color: #000000;
+    background-color: #464e5b;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
     max-width: 600px;
     color: rgb(255, 255, 255);
   }
-
-  select, label, option, input{
-    color: rgb(255, 255, 255);
-  }
   
-  /* Form Styles */
-  input[type=text], input[type=email], input[type=number], input[type=date], input[type=time],input[type=password] {
+  input[type=text], input[type=email], input[type=number], input[type=date], input[type=time],input[type=password], input[type=tel]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -144,6 +148,26 @@ body{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;
+    color: black;
+  }
+  select, option{
+    color: black;
+  }
+
+  #description{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: black;
+    text-wrap:wrap;
+  }
+
+  input:focus{
+    border: 1px solid #ccc;
   }
   
   input[type=submit] {
@@ -186,4 +210,31 @@ body{
   text-decoration: none;
   cursor: pointer;
 }
+.modal-content input[type=tel] {
+  color: black !important;
+}
+.modal::-webkit-scrollbar {
+  display: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+.card-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+.text-secondary {
+  color: #ffffff !important;
+}
+.h5, h5 {
+  font-size: 1.25rem;
+}
 
+form > *:focus{
+  outline-color: aqua;
+  outline-offset: 0;
+  outline-style: groove;
+  outline-width: 0.15rem;
+}
