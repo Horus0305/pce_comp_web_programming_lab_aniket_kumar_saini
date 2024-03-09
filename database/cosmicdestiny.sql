@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2024 at 12:36 PM
+-- Generation Time: Mar 09, 2024 at 05:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -32,14 +32,14 @@ CREATE TABLE `users` (
   `name` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
-  `age` int(11) DEFAULT NULL,
+  `age` int(11) DEFAULT 0,
   `gender` text DEFAULT NULL,
   `number` int(11) DEFAULT NULL,
   `pob` text DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `tob` time DEFAULT NULL,
-  `height` int(11) DEFAULT NULL,
-  `weight` float DEFAULT NULL,
+  `height` int(11) DEFAULT 0,
+  `weight` float DEFAULT 0,
   `bmi` float DEFAULT NULL,
   `sign` text DEFAULT NULL,
   `quote` varchar(255) DEFAULT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`uid`, `name`, `email`, `pass`, `age`, `gender`, `number`, `pob`, `dob`, `tob`, `height`, `weight`, `bmi`, `sign`, `quote`, `description`, `match`, `photo`) VALUES
-(1, 'Soumedu', 'soumedumanna1232gmail.com', '1234567890', 18, 'Male', 1234567890, 'West Bengal', '2005-05-17', '15:49:48', 170, 75, 25.9516, 'Taurus', 'If it is to be it is upto me', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nesciunt minima maxime a ut explicabo culpa, doloremque perspiciatis aliquam. Debitis, temporibus atque fugit.\" ', NULL, 0x53637265656e73686f742066726f6d20323032342d30332d30392031342d30342d35392e706e67);
+(1, '', 'a@s', '356a192b7913b04c54574d18c28d46e6395428ab', 19, 'Male', 1234567891, 'Kalyan', '2005-03-03', '03:10:00', 178, 98, 30.9304, NULL, 'If it is to be it is upto ma', 'If it is to be it is upto ma', NULL, 0x53637265656e73686f742066726f6d20323032342d30332d30352032332d35362d31332e706e67);
 
 --
 -- Indexes for dumped tables
