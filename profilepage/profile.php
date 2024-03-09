@@ -11,8 +11,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$email = 'soumedumanna1232gmail.com';
-$pass = '1234567890';
+$email = $_SESSION['email'];
+$pass = $_SESSION['password'];
 
 $sql = "SELECT * FROM users WHERE email='$email' AND pass='$pass'";
 $result = $conn->query($sql);
@@ -214,7 +214,7 @@ $conn->close();
               </div>
               <div class="col-md-9 text-secondary">
                 <?php
-                echo $row["bmi"]."<p>tmkc</p>";
+                echo $row["bmi"];
                 ?>
                 
               </div>
@@ -340,3 +340,7 @@ $conn->close();
 </body>
 
 </html>
+<?php
+
+
+?>

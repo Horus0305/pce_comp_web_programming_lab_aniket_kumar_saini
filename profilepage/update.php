@@ -37,13 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newquote = $_POST['quote'];
     $newdescription = $_POST['description'];
     $passw = $_POST['edpass'];
-    echo $passw . "\n" . $_SESSION['pass'];
 
     // Calculate new BMI
     $newbmi = calculateBMI($newweight, $newheight);
 
     // Check if password matches session password
-    if ($passw == $_SESSION['pass']) {
+    if (sha1($passw) == $_SESSION['pass']) {
         // Update user information in the database
         $sql = "UPDATE users SET weight='$newweight', height='$newheight', photo='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription' WHERE uid=$id";
 

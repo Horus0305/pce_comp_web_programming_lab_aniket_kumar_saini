@@ -21,7 +21,8 @@ if ($row_count == 0) {
 
 $row = mysqli_fetch_assoc($result);
 $_SESSION['email'] = $row['email'];
-
+$_SESSION['password'] = $row['pass'];
+session_commit();
 $response = array("success" => true, "message" => "Login successful!");
 echo json_encode($response);
 mysqli_close($conn);
