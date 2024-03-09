@@ -1,6 +1,106 @@
 <?php
 include "../includes/base.php"
 ?>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var formSubmitted = false;
+
+    document.getElementById('Forms').addEventListener('submit', function (event) {
+      formSubmitted = true;
+
+      // Validate Female Details
+      var femaleValidations = [
+        validateField('femaleName', 'Female Name is required.'),
+        validateRegex('femaleName', /^[a-zA-Z\s]+$/, 'Female Name should only contain letters and spaces.'),
+        validateField('femaleDateTime', 'Female Date and Time is required.'),
+        validateField('femaleAddress', 'Female Address is required.'),
+        validateRegex('femaleAddress', /^[a-zA-Z0-9\s]+$/, 'Female Address should not contain special characters except white spaces.'),
+        validateField('femaleTimezone', 'Female Timezone is required.'),
+        validateRange('femaleTimezone', -12, 14, 'Female Timezone should be between -12 and 14.')
+      ];
+
+      // Validate Male Details
+      var maleValidations = [
+        validateField('maleName', 'Male Name is required.'),
+        validateRegex('maleName', /^[a-zA-Z\s]+$/, 'Male Name should only contain letters and spaces.'),
+        validateField('maleDateTime', 'Male Date and Time is required.'),
+        validateField('maleAddress', 'Male Address is required.'),
+        validateRegex('maleAddress', /^[a-zA-Z0-9\s]+$/, 'Male Address should not contain special characters except white spaces.'),
+        validateField('maleTimezone', 'Male Timezone is required.'),
+        validateRange('maleTimezone', -12, 14, 'Male Timezone should be between -12 and 14.')
+      ];
+
+      if (femaleValidations.some(validation => !validation) || maleValidations.some(validation => !validation)) {
+        event.preventDefault();
+        return false;
+      }
+
+      return true;
+    });
+
+    function validateField(fieldId, errorMessage) {
+      var fieldValue = document.querySelector('#' + fieldId).value.trim();
+      var fieldElement = document.querySelector('#' + fieldId);
+
+      if (formSubmitted) {
+        if (fieldValue === '') {
+          fieldElement.setCustomValidity(errorMessage);
+          return false;
+        } else {
+          fieldElement.setCustomValidity('');
+          clearErrorMessage(fieldId);
+          return true;
+        }
+      }
+
+      return true;
+    }
+
+    function validateRegex(fieldId, regex, errorMessage) {
+      var fieldValue = document.querySelector('#' + fieldId).value.trim();
+      var fieldElement = document.querySelector('#' + fieldId);
+
+      if (formSubmitted) {
+        if (!regex.test(fieldValue)) {
+          fieldElement.setCustomValidity(errorMessage);
+          return false;
+        } else {
+          fieldElement.setCustomValidity('');
+          clearErrorMessage(fieldId);
+          return true;
+        }
+      }
+
+      return true;
+    }
+
+    function validateRange(fieldId, min, max, errorMessage) {
+      var fieldValue = parseFloat(document.querySelector('#' + fieldId).value);
+      var fieldElement = document.querySelector('#' + fieldId);
+
+      if (formSubmitted) {
+        if (isNaN(fieldValue) || fieldValue < min || fieldValue > max) {
+          fieldElement.setCustomValidity(errorMessage);
+          return false;
+        } else {
+          fieldElement.setCustomValidity('');
+          clearErrorMessage(fieldId);
+          return true;
+        }
+      }
+
+      return true;
+    }
+
+    function clearErrorMessage(fieldId) {
+      var errorElement = document.querySelector('#' + fieldId + ' + span.error-message');
+      if (errorElement) {
+        errorElement.textContent = '';
+      }
+    }
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <link rel="stylesheet" href="css/match.css" />
@@ -10,7 +110,7 @@ include "../includes/base.php"
 
   <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Debugging: Display the contents of the $_POST array
+ 
         echo '<pre>';
         print_r($_POST);
         echo '</pre>';
@@ -126,33 +226,33 @@ include "../includes/base.php"
         <div class="match-card">
           
             <h2>Details Female:</h2>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <!-- Female Form -->
+            <form id="Forms" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+       
                 <label for="femaleName">Female Name:</label>
-                <input type="text" id="femaleName" name="femaleName" required>
-                
+                <input type="text" id="femaleName" name="femaleName" >
+                <span id="femaleName-error" class="error-message"></span>
                 <label for="femaleDateTime">Female Date and Time:</label>
-                <input type="datetime-local" id="femaleDateTime" name="femaleDateTime" required>
+                <input type="datetime-local" id="femaleDateTime" name="femaleDateTime" >
 
                 <label for="femaleAddress">Female Address:</label>
-                <input type="text" id="femaleAddress" name="femaleAddress" required>
+                <input type="text" id="femaleAddress" name="femaleAddress">
 
                 <label for="femaleTimezone">Female Timezone:</label>
-                <input type="text" id="femaleTimezone" name="femaleTimezone" required>
+                <input type="text" id="femaleTimezone" name="femaleTimezone" >
 </div>      <div class="match-card"> 
-        <h2>Details Male:</h2>         <!-- Male Form -->
+        <h2>Details Male:</h2>       
         <label for="maleName">Male Name:</label>
-                <input type="text" id="maleName" name="maleName" required>
+                <input type="text" id="maleName" name="maleName">
                 <label for="maleDateTime">Male Date and Time:</label>
-                <input type="datetime-local" id="maleDateTime" name="maleDateTime" required>
+                <input type="datetime-local" id="maleDateTime" name="maleDateTime" >
 
                 <label for="maleAddress">Male Address:</label>
-                <input type="text" id="maleAddress" name="maleAddress" required>
+                <input type="text" id="maleAddress" name="maleAddress">
 
                 <label for="maleTimezone">Male Timezone:</label>
-                <input type="text" id="maleTimezone" name="maleTimezone" required>
+                <input type="text" id="maleTimezone" name="maleTimezone">
 
-                <!-- Common Submit Button -->
+                
                 </div>
  </div>
                 <div class="but">
@@ -160,6 +260,113 @@ include "../includes/base.php"
             </form>
             </div>
         </div>
+        <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var formSubmitted = false;
+
+    document.getElementById('Forms').addEventListener('submit', function (event) {
+      formSubmitted = true;
+
+      // Validate Female Details
+      var femaleValidations = [
+        validateField('femaleName', 'Female Name is required.'),
+        validateRegex('femaleName', /^[a-zA-Z\s]+$/, 'Female Name should only contain letters and spaces.'),
+        validateField('femaleDateTime', 'Female Date and Time is required.'),
+        validateField('femaleAddress', 'Female Address is required.'),
+        validateRegex('femaleAddress', /^[a-zA-Z0-9\s]+$/, 'Female Address should not contain special characters except white spaces.'),
+        validateField('femaleTimezone', 'Female Timezone is required.'),
+        validateRange('femaleTimezone', -12, 14, 'Female Timezone should be between -12 and 14.')
+      ];
+
+      // Validate Male Details
+      var maleValidations = [
+        validateField('maleName', 'Male Name is required.'),
+        validateRegex('maleName', /^[a-zA-Z\s]+$/, 'Male Name should only contain letters and spaces.'),
+        validateField('maleDateTime', 'Male Date and Time is required.'),
+        validateField('maleAddress', 'Male Address is required.'),
+        validateRegex('maleAddress', /^[a-zA-Z0-9\s]+$/, 'Male Address should not contain special characters except white spaces.'),
+        validateField('maleTimezone', 'Male Timezone is required.'),
+        validateRange('maleTimezone', -12, 14, 'Male Timezone should be between -12 and 14.')
+      ];
+
+      if (femaleValidations.some(validation => !validation) || maleValidations.some(validation => !validation)) {
+        event.preventDefault();
+        return false;
+      }
+
+      return true;
+    });
+
+    function validateField(fieldId, errorMessage) {
+      var fieldValue = document.querySelector('#' + fieldId).value.trim();
+      var fieldElement = document.querySelector('#' + fieldId);
+
+      if (formSubmitted) {
+        if (fieldValue === '') {
+          fieldElement.setCustomValidity(errorMessage);
+          return false;
+        } else {
+          fieldElement.setCustomValidity('');
+          clearErrorMessage(fieldId);
+          return true;
+        }
+      }
+
+      return true;
+    }
+
+    function validateRegex(fieldId, regex, errorMessage) {
+      var fieldValue = document.querySelector('#' + fieldId).value.trim();
+      var fieldElement = document.querySelector('#' + fieldId);
+
+      if (formSubmitted) {
+        if (!regex.test(fieldValue)) {
+          fieldElement.setCustomValidity(errorMessage);
+          return false;
+        } else {
+          fieldElement.setCustomValidity('');
+          clearErrorMessage(fieldId);
+          return true;
+        }
+      }
+
+      return true;
+    }
+
+    function validateRange(fieldId, min, max, errorMessage) {
+      var fieldValue = parseFloat(document.querySelector('#' + fieldId).value);
+      var fieldElement = document.querySelector('#' + fieldId);
+
+      if (formSubmitted) {
+        if (isNaN(fieldValue) || fieldValue < min || fieldValue > max) {
+          fieldElement.setCustomValidity(errorMessage);
+          return false;
+        } else {
+          fieldElement.setCustomValidity('');
+          clearErrorMessage(fieldId);
+          return true;
+        }
+      }
+
+      return true;
+    }
+
+    function clearErrorMessage(fieldId) {
+      var errorElement = document.querySelector('#' + fieldId + '-error');
+      if (errorElement) {
+        errorElement.textContent = '';
+      }
+    }
+  });
+</script>
+
+
+
+
+       
+  
+
+
         <?php
 
 if (isset($responseData['output']['total_score'])) {
@@ -184,5 +391,53 @@ if (isset($responseData['output']['total_score'])) {
                 options: options
             });
           </script>';
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+    if (isset($responseData['output']['total_score'])) {
+        $totalScore = $responseData['output']['total_score'];
+
+
+        $dbHost = "localhost";
+        $dbName = "astrology";
+        $dbUser = "root";
+        $dbPassword = "";
+
+        
+        $conn = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName,8111);
+
+  
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+
+        $sql = "INSERT INTO compatibility_data 
+            (femaleName, femaleDateTime, femaleAddress, femaleTimezone,
+            maleName, maleDateTime, maleAddress, maleTimezone, totalScore)
+            VALUES (
+                '{$_POST['femaleName']}',
+                '{$_POST['femaleDateTime']}',
+                '{$_POST['femaleAddress']}',
+                '{$_POST['femaleTimezone']}',
+                '{$_POST['maleName']}',
+                '{$_POST['maleDateTime']}',
+                '{$_POST['maleAddress']}',
+                '{$_POST['maleTimezone']}',
+                $totalScore
+            )";
+
+  
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+
+        // Close the database connection
+        mysqli_close($conn);
+    }
 }
 ?>
