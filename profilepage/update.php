@@ -26,6 +26,16 @@ function calculateBMI($weight_kg, $height_cm) {
     $bmi = $weight_kg / ($height_m * $height_m);
     return $bmi;
 }
+function ageCalculator($dob){
+    if(!empty($dob)){
+        $birthdate = new DateTime($dob);
+        $today   = new DateTime('today');
+        $age = $birthdate->diff($today)->y;
+        return $age;
+    }else{
+        return 0;
+    }
+}
 
 // Check if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,7 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newnum = $_POST['number'];
     $newquote = $_POST['quote'];
     $newdescription = $_POST['description'];
+    $newdob = $_POST['dob'];
+    $gender = $_POST['gender'];
+    $newpob = $_POST['pob'];
+    $newtob = $_POST['tob'];
+    $newage = ageCalculator($newdob);
     $passw = $_POST['edpass'];
+
 
     // Calculate new BMI
     $newbmi = calculateBMI($newweight, $newheight);
@@ -44,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if password matches session password
     if (sha1($passw) == $_SESSION['pass']) {
         // Update user information in the database
-        $sql = "UPDATE users SET weight='$newweight', height='$newheight', photo='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription' WHERE uid=$id";
+        $sql = "UPDATE users SET weight='$newweight', dob='$newdob', pob='$newpob', gender='$gender', tob='$newtob', age='$newage', height='$newheight', photo='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription' WHERE uid=$id";
 
         // Execute the update query
         if ($conn->query($sql) === TRUE) {

@@ -19,6 +19,28 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $_SESSION['id'] = $row['uid'];
 $_SESSION['pass'] = $row['pass'];
+echo $row['pob'];
+$v1="";
+$v2="";
+$v3="";
+$v4="";
+$v5="";
+if ($row['name'] != NULL) {
+  $v1 = "disabled";
+}
+if ($row['dob'] != NULL) {
+  $v2 = "readonly='readonly'";
+}
+if ($row['gender'] != NULL) {
+  $v3 = "readonly='readonly'";
+}
+if ($row['pob'] != NULL) {
+  $v4 = "readonly='readonly'";
+}
+if ($row['tob'] != NULL) {
+  $v5 = "readonly='readonly'";
+}
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -246,22 +268,22 @@ $conn->close();
       <div id="edclose">&times;</div>
       <form id="modalForm" action="update.php" method="post">
         <label for="fullname"><b>Full Name:</b></label>
-        <input type="text" id="fullname" name="fullname" value="<?php echo $row["name"];?>" disabled required /><br />
+        <input type="text" id="fullname" name="fullname" value="<?php echo $row["name"];?>" <?php echo $v1?> required /><br />
 
         <label for="dob"><b>Date of Birth:</b></label>
-        <input type="date" id="dob" name="dob" value="<?php echo $row["dob"];?>" disabled required /><br />
+        <input type="date" id="dob" name="dob" value="<?php echo $row["dob"];?>" <?php echo $v2?>required /><br />
 
         <label for="pob"><b>Place of Birth:</b></label>
-        <input type="text" id="pob" name="pob" value="<?php echo $row["pob"];?>" disabled required /><br />
+        <input type="text" id="pob" name="pob" value="<?php echo $row["pob"];?>" <?php echo $v4?> required /><br />
 
         <label for="tob"><b>Time of Birth:</b></label>
-        <input type="time" id="tob" name="tob" value="<?php echo $row["tob"];?>" disabled required /><br />
+        <input type="time" id="tob" name="tob" value="<?php echo $row["tob"];?>" <?php echo $v5?> required /><br />
 
         <label for="gender"><b>Gender:</b></label>
-        <select id="gender" name="gender" disabled required>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
+        <select id="gender" name="gender" value="Male" <?php echo $v3?> required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
         </select><br />
 
         <label for="weight"><b>Weight:</b></label>
@@ -283,7 +305,7 @@ $conn->close();
         <input type="text" id="onelinequote" name="quote" value="<?php echo $row["quote"];?>" required />
 
         <label for="description"><b>Short Description About Yourself:</b></label>
-        <textarea type="text" id="description" name="description" required rows="7"><?php echo $row["description"];?>" </textarea>
+        <textarea type="text" id="description" name="description" required rows="7"><?php echo $row["description"];?></textarea>
 
         <label for="password"><b>Password</b></label>
         <input type="password" id="edpass" name="edpass" required />
