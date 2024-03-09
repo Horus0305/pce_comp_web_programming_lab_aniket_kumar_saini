@@ -359,6 +359,76 @@ $conn->close();
       }
     });
   </script>
+  <script>
+const validateFullName = (fullName) => /^[a-zA-Z\s]+$/.test(fullName);
+const validateTimeOfBirth = (timeOfBirth) => /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(timeOfBirth);
+const validateDateOfBirth = (dateOfBirth) => new Date(dateOfBirth) <= new Date();
+const calculateAge = (dateOfBirth) => Math.floor((new Date() - new Date(dateOfBirth)) / (1000 * 60 * 60 * 24 * 365));
+const validateWeight = (weight) => !isNaN(weight) && weight > 0 && weight < 1000;
+const validateHeight = (height) => !isNaN(height) && height > 0 && height < 300;
+const validatePhoneNumber = (number) => /^\d{10}$/.test(number);
+
+
+const form = document.getElementById('modalForm');
+const inputs = ['fullname', 'tob', 'dob', 'weight', 'height', 'number'].map(id => document.getElementById(id));
+
+form.addEventListener('submit', (event) => {
+  inputs.forEach(input => {
+    if (!input.checkValidity()) {
+      event.preventDefault();
+      return;
+    }
+  });
+});
+
+inputs.forEach(input => {
+  input.addEventListener('input', () => {
+    if (input.id === 'dob') {
+      if (validateDateOfBirth(input.value)) {
+        const age = calculateAge(input.value);
+        if (age < 18) {
+          input.setCustomValidity('You must be at least 18 years old');
+        } else {
+          input.setCustomValidity('');
+        }
+      } else {
+        input.setCustomValidity('Date of birth cannot be a date in the future');
+      }
+    } else if (input.id === 'tob') {
+      if (!validateTimeOfBirth(input.value)) {
+        input.setCustomValidity('Time of birth should be in HH:MM format');
+      } else {
+        input.setCustomValidity('');
+      }
+    } else if (input.id === 'fullname') {
+      if (!validateFullName(input.value)) {
+        input.setCustomValidity('Full name should only contain characters');
+      } else {
+        input.setCustomValidity('');
+      }
+    } else if (input.id === 'number') {
+      if (!validatePhoneNumber(input.value)) {
+        input.setCustomValidity('Phone number should be a 10-digit number');
+      } else {
+        input.setCustomValidity('');
+      }
+    } else if (input.id === 'height') {
+      if (!validateHeight(input.value)) {
+        input.setCustomValidity('Height should be a number between 1 and 300');
+      } else {
+        input.setCustomValidity('');
+      }
+    } else if (input.id === 'weight') {
+      if (!validateWeight(input.value)) {
+        input.setCustomValidity('Weight should be a number between 1 and 1000');
+      } else {
+        input.setCustomValidity('');
+      }
+    }
+  });
+});
+  </script>
+
 </body>
 
 </html>
