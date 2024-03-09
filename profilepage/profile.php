@@ -292,7 +292,7 @@ $conn->close();
         <input type="number" id="height" name="height" value="<?php echo $row["height"]; ?>" required /><br />
 
         <label for="photo"><b>Photo:</b></label>
-        <input type="file" id="photo" name="photo" accept="image/*" required /><br />
+        <input type="file" id="photo" name="photo" accept="image/*" /><br />
 
         <!-- <label for="email"><b>Email:</b></label>
         <input type="email" id="email" name="email" value="<?php echo $row["email"]; ?>" required /><br /> -->
