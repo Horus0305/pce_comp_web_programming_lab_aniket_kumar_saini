@@ -3,6 +3,13 @@ var c2 = document.getElementById('c2');
 var c3 = document.getElementById('c3');
 var c4 = document.getElementById('c4');
 
+
+var fullName = document.getElementById('fullName');
+var phoneNumber = document.getElementById('phoneNumber');
+
+var proCompCon = document.getElementById("profile_completion_popup");
+var reqCompCon = document.getElementById("partner_requirements_con");
+
 var all = document.querySelector(".all-container");
 
 var profileCon = document.querySelector('.profile-progress-con');
@@ -12,13 +19,45 @@ var bar = document.getElementById('file');
 
 var interval = 50;
 
+function profile_comp() {
+    var nameError = document.getElementById('name_error');
+    var phoneError = document.getElementById('phone_error');
+    var nameRegex = /^[a-zA-Z\s]+$/;
+    var phoneRegex = /^\d{10}$/;
+
+    if (!nameRegex.test(fullName.value)){
+        nameError.style.display = 'block';
+        document.getElementById('pro_form').addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+    }
+
+    else if (!phoneRegex.test(phoneNumber.value)){
+        phoneError.style.display = 'block';
+        document.getElementById('pro_form').addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+    }
+
+    else {
+        nameError.style.display = 'none';
+        alert("Done");
+        document.getElementById('pro_form').submit();
+    }
+}
+
+
+
 function completion_status(status) {
     if (completion.innerHTML != '100%') {
 
         if (status == "c1" && completion.innerHTML == "0%") {
-            bar.value = 25;
-            c1.style.backgroundColor = "lightgreen";
-            completion.innerHTML = "25%";
+            proCompCon.style.display = "block";
+
+
+            // bar.value = 25;
+            // c1.style.backgroundColor = "lightgreen";
+            // completion.innerHTML = "25%";
         }
 
         if (status == "c2" && completion.innerHTML == "25%") {
@@ -33,10 +72,12 @@ function completion_status(status) {
             completion.innerHTML = "75%";
         }
 
-        if (status == "c4" && completion.innerHTML == "75%") {
-            bar.value = 100;
-            c4.style.backgroundColor = "lightgreen";
-            completion.innerHTML = "100%";
+        if (status == "c4" && completion.innerHTML == "0%") {
+            reqCompCon.style.display = "block";
+
+            // bar.value = 100;
+            // c4.style.backgroundColor = "lightgreen";
+            // completion.innerHTML = "100%";
         }
     } else {
         return;
@@ -48,6 +89,27 @@ function completion_status(status) {
             profileCon.style.display = "none";
         }
     }, 1000);
+}
+
+function hob_sub() {
+    var hobbies = document.getElementById("hobbies");
+    var req = document.getElementById("req");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'datacon.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("Message send in datacon.php");
+            window.location.reload();
+        }
+    };
+    var data = 'hobbies=' + encodeURIComponent(hobbies.value) + '&req=' + encodeURIComponent(req.value);
+    xhr.send(data);
+
+    bar.value = 100;
+    c4.style.backgroundColor = "lightgreen";
+    completion.innerHTML = "100%";
 }
 
 function show_burger() {
@@ -115,3 +177,12 @@ function showNextCard() {
 }
 
 incrementProgress(0);
+
+function gaayab(ham) {
+    if (ham === "cross") {
+        var proCon = document.getElementById("profile_completion_popup");
+        var reqCon = document.getElementById("partner_requirements_con");
+        proCon.style.display = "none";
+        reqCon.style.display = "none";
+    }
+}
