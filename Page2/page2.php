@@ -9,6 +9,7 @@
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <link rel="stylesheet" href="page2.css" />
   <link rel="stylesheet" href="css/proCom.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -41,9 +42,10 @@
         <section class="container">
           <header>Profile Completion</header>
           <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-          <form class="form" id="pro_form" action="#">
+          <div class="form">
             <div class="input-box">
-              <label>Full Name <span id="name_error" class="error">*Full name can only contain letters and spaces</span></label>
+              <label>Full Name <span id="name_error" class="error">*Full name can only contain letters and
+                  spaces</span></label>
               <input required="" id="fullName" name="full_name" placeholder="Enter full name" type="text">
             </div>
             <div class="column">
@@ -53,7 +55,7 @@
               </div>
               <div class="input-box">
                 <label>Birth Date</label>
-                <input required="" name="birth_date" placeholder="Enter birth date" type="date">
+                <input id="birthDate" required="" name="birth_date" placeholder="Enter birth date" type="date">
               </div>
             </div>
             <div class="gender-box">
@@ -75,7 +77,7 @@
             </div>
             <div class="input-box address">
               <label>Address</label>
-              <input required="" placeholder="Enter street address" type="text">
+              <input id="address" required="" placeholder="Enter street address" type="text">
               <div class="column">
                 <div class="select-box">
                   <select>
@@ -87,11 +89,11 @@
                     <option>Japan</option>
                   </select>
                 </div>
-                <input required="" name="city" placeholder="Enter your city" type="text">
+                <input id="city" required="" name="city" placeholder="Enter your city" type="text">
               </div>
             </div>
-            <button type="submit" onclick="profile_comp()">Submit</button>
-          </form>
+            <button onclick="profile_sub()">Submit</button>
+          </div>
         </section>
       </div>
 
@@ -99,14 +101,14 @@
         <section class="container">
           <header>Hobbies and Requirements</header>
           <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-          <form class="form" method="post">
+          <div class="form">
             <label class="hob">Hobbies</label>
             <textarea name="hobbies" id="hobbies" cols="50" rows="5"></textarea>
             <br>
             <label class="hob">Requirements</label>
             <textarea name="req" id="req" cols="50" rows="5"></textarea>
-            <button type="submit" onclick="hob_sub()">Submit</button>
-          </form>
+            <button onclick="hob_sub()">Submit</button>
+          </div>
         </section>
       </div>
 

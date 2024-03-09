@@ -4,8 +4,8 @@ var c3 = document.getElementById('c3');
 var c4 = document.getElementById('c4');
 
 
-var fullName = document.getElementById('fullName');
-var phoneNumber = document.getElementById('phoneNumber');
+var FullName = document.getElementById('fullName');
+var PhoneNumber = document.getElementById('phoneNumber');
 
 var proCompCon = document.getElementById("profile_completion_popup");
 var reqCompCon = document.getElementById("partner_requirements_con");
@@ -19,33 +19,6 @@ var bar = document.getElementById('file');
 
 var interval = 50;
 
-function profile_comp() {
-    var nameError = document.getElementById('name_error');
-    var phoneError = document.getElementById('phone_error');
-    var nameRegex = /^[a-zA-Z\s]+$/;
-    var phoneRegex = /^\d{10}$/;
-
-    if (!nameRegex.test(fullName.value)){
-        nameError.style.display = 'block';
-        document.getElementById('pro_form').addEventListener('submit', function (event) {
-            event.preventDefault();
-        });
-    }
-
-    else if (!phoneRegex.test(phoneNumber.value)){
-        phoneError.style.display = 'block';
-        document.getElementById('pro_form').addEventListener('submit', function (event) {
-            event.preventDefault();
-        });
-    }
-
-    else {
-        nameError.style.display = 'none';
-        alert("Done");
-        document.getElementById('pro_form').submit();
-    }
-}
-
 
 
 function completion_status(status) {
@@ -53,11 +26,6 @@ function completion_status(status) {
 
         if (status == "c1" && completion.innerHTML == "0%") {
             proCompCon.style.display = "block";
-
-
-            // bar.value = 25;
-            // c1.style.backgroundColor = "lightgreen";
-            // completion.innerHTML = "25%";
         }
 
         if (status == "c2" && completion.innerHTML == "25%") {
@@ -72,23 +40,12 @@ function completion_status(status) {
             completion.innerHTML = "75%";
         }
 
-        if (status == "c4" && completion.innerHTML == "0%") {
+        if (status == "c4" && completion.innerHTML == "75%") {
             reqCompCon.style.display = "block";
-
-            // bar.value = 100;
-            // c4.style.backgroundColor = "lightgreen";
-            // completion.innerHTML = "100%";
         }
     } else {
         return;
     }
-
-    setTimeout(function () {
-        if (completion.innerHTML == "100%") {
-            all.style.display = "none";
-            profileCon.style.display = "none";
-        }
-    }, 1000);
 }
 
 function hob_sub() {
@@ -101,7 +58,6 @@ function hob_sub() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log("Message send in datacon.php");
-            window.location.reload();
         }
     };
     var data = 'hobbies=' + encodeURIComponent(hobbies.value) + '&req=' + encodeURIComponent(req.value);
@@ -110,6 +66,53 @@ function hob_sub() {
     bar.value = 100;
     c4.style.backgroundColor = "lightgreen";
     completion.innerHTML = "100%";
+
+    all.style.display = "none";
+    profileCon.style.display = "none";
+}
+
+function profile_sub() {
+
+    var nameError = document.getElementById('name_error');
+    var phoneError = document.getElementById('phone_error');
+    var nameRegex = /^[a-zA-Z\s]+$/;
+    var phoneRegex = /^\d{10}$/;
+
+    if (!nameRegex.test(FullName.value)) {
+        nameError.style.display = 'block';
+    }
+
+    else if (!phoneRegex.test(PhoneNumber.value)) {
+        phoneError.style.display = 'block';
+    }
+
+    else {
+
+        var fullName = document.getElementById("fullName");
+        var phoneNumber = document.getElementById("phoneNumber");
+        var birthDate = document.getElementById("birthDate");
+        var address = document.getElementById("address");
+        var city = document.getElementById("city");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'datacon.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log("Message send in datacon.php");
+                console.log(xhr.responseText);
+            }
+        };
+
+        var data = 'fullName=' + encodeURIComponent(fullName.value) + '&phoneNumber=' + encodeURIComponent(phoneNumber.value) + '&birthDate=' + encodeURIComponent(birthDate.value) + '&address=' + encodeURIComponent(address.value) + '&city=' + encodeURIComponent(city.value);
+        xhr.send(data);
+
+        var con = document.getElementById("profile_completion_popup"); 
+        con.style.display = "none";
+        bar.value = 25;
+        c1.style.backgroundColor = "lightgreen";
+        completion.innerHTML = "25%";
+    }
 }
 
 function show_burger() {
