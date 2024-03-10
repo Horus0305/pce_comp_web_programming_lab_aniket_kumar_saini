@@ -1,34 +1,47 @@
 <?php
+session_start();
+
 $servername = "localhost";
-$username = "root"; 
-$password = ""; 
+$username = "root";
+$password = "";
 $dbname = "cosmicdestiny";
 
+// Create a new MySQLi connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check if the connection was successful
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$email = "soumedumanna1232gmail.com";
-$pass = "1234567890";
+// Check if form data is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data (sanitize them if needed)
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']); // Assuming password is stored as SHA1 hash in the database
+    
+    // Escape special characters in the email and password to prevent SQL injection
+    $email = mysqli_real_escape_string($conn, $email);
+    $password = mysqli_real_escape_string($conn, $password);
 
-$sql = "SELECT * FROM users WHERE email='$email' AND pass='$pass'";
-$result = $conn->query($sql);
+    // Retrieve gender from session
+    $gender = $_SESSION['gender'];
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["uid"]. " - Name: " . $row["name"]. " - Email: " . $row["email"]. "<br>";
-        // You can print other columns similarly
+    // Construct the SQL query
+    $sql = "DELETE FROM $gender WHERE email='$email' AND pass='$password'";
+
+    // Execute the delete query
+    if ($conn->query($sql) === TRUE) {
+        if ($conn->affected_rows > 0) {
+            echo '<script>alert("Account deleted successfully!"); window.location.href = "../testAnimationLandingPage/main.html";</script>';
+        } else {
+            echo '<script>alert("Invalid email and password."); window.location.href = "./profile.php";</script>';
+        }
+    } else {
+        echo '<script>alert("Error deleting account: ' . $conn->error . '"); window.location.href = "./profile.php";</script>';
     }
-} else {
-    echo "0 results";
 }
-// if ($result->num_rows > 0) {
-//     echo "<h1>ACCOUNT DELETED SUCCESSFULLY</h1><br/>$row['name']";
-// } else {
-//     echo "Invalid username or password";
-// }
+
+// Close the database connection
 $conn->close();
 ?>
