@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2024 at 05:26 PM
+-- Generation Time: Mar 10, 2024 at 12:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,59 +24,135 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `Female`
 --
 
-CREATE TABLE `users` (
-  `uid` int(11) NOT NULL,
+CREATE TABLE `Female` (
+  `fid` int(11) NOT NULL,
   `name` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
-  `age` int(11) DEFAULT 0,
-  `gender` text DEFAULT NULL,
-  `number` int(11) DEFAULT NULL,
-  `pob` text DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` text NOT NULL,
+  `number` bigint(20) DEFAULT NULL,
+  `city` text DEFAULT NULL,
   `dob` date DEFAULT NULL,
+  `pob` text DEFAULT NULL,
   `tob` time DEFAULT NULL,
-  `height` int(11) DEFAULT 0,
-  `weight` float DEFAULT 0,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `height` int(11) DEFAULT NULL,
+  `weight` float DEFAULT NULL,
   `bmi` float DEFAULT NULL,
   `sign` text DEFAULT NULL,
   `quote` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `match` int(11) DEFAULT NULL,
-  `photo` blob DEFAULT NULL
+  `photocontent` longblob DEFAULT NULL,
+  `phototype` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `users`
+-- Table structure for table `liketable`
 --
 
-INSERT INTO `users` (`uid`, `name`, `email`, `pass`, `age`, `gender`, `number`, `pob`, `dob`, `tob`, `height`, `weight`, `bmi`, `sign`, `quote`, `description`, `match`, `photo`) VALUES
-(1, '', 'a@s', '356a192b7913b04c54574d18c28d46e6395428ab', 19, 'Male', 1234567891, 'Kalyan', '2005-03-03', '03:10:00', 178, 98, 30.9304, NULL, 'If it is to be it is upto ma', 'If it is to be it is upto ma', NULL, 0x53637265656e73686f742066726f6d20323032342d30332d30352032332d35362d31332e706e67);
+CREATE TABLE `liketable` (
+  `id` int(11) NOT NULL,
+  `s_id` int(11) DEFAULT NULL,
+  `r_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Male`
+--
+
+CREATE TABLE `Male` (
+  `mid` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` text NOT NULL,
+  `number` bigint(20) DEFAULT NULL,
+  `city` text DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `pob` text DEFAULT NULL,
+  `tob` time DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `height` int(11) DEFAULT NULL,
+  `weight` float DEFAULT NULL,
+  `bmi` float DEFAULT NULL,
+  `sign` text DEFAULT NULL,
+  `quote` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `photocontent` longblob DEFAULT NULL,
+  `phototype` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `matchtable`
+--
+
+CREATE TABLE `matchtable` (
+  `id` int(11) NOT NULL,
+  `u1` int(11) NOT NULL,
+  `u2` int(11) NOT NULL,
+  `matched` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `Female`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`uid`),
+ALTER TABLE `Female`
+  ADD PRIMARY KEY (`fid`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `number` (`number`),
-  ADD UNIQUE KEY `match` (`match`);
+  ADD UNIQUE KEY `number` (`number`);
+
+--
+-- Indexes for table `liketable`
+--
+ALTER TABLE `liketable`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `Male`
+--
+ALTER TABLE `Male`
+  ADD PRIMARY KEY (`mid`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `number` (`number`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `Female`
 --
-ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `Female`
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `liketable`
+--
+ALTER TABLE `liketable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Male`
+--
+ALTER TABLE `Male`
+  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
