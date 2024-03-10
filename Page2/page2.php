@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -112,6 +111,20 @@
         </section>
       </div>
 
+      <div id="profile_picture_con" class="profile_picture_con">
+        <section class="container">
+          <header>Hobbies and Requirements</header>
+          <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
+          <div class="form">
+            <div id="img_con">
+
+            </div>
+            <input type="file" name="image" id="image" id="pro_img">
+            <button onclick="pro_img_sub()">Submit</button>
+          </div>
+        </section>
+      </div>
+
       <div class="profile-progress-con">
         <center>
           <h2>Profile Progress <span>📄</span></h2>
@@ -129,7 +142,7 @@
 
         <div class="completion-con2">
           <div class="stage">Profile_comp</div>
-          <div class="stage">Birth_Chart</div>
+          <div class="stage">Profile_pic</div>
           <div class="stage">Zodiac_info</div>
           <div class="stage">Partner_req</div>
         </div>

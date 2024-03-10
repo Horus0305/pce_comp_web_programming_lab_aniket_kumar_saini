@@ -17,6 +17,15 @@
     z-index: 1000;
 }
 
+.profile_picture_con{
+    display: none;
+    width: 70%;
+    position: fixed;
+    top: 70px;
+    left: 350px;
+    z-index: 1000;
+}
+
 .cross{
     color: black;
     font-size: 1.2rem;

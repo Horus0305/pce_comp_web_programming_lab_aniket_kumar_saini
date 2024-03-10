@@ -26,6 +26,11 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
+
+
+
+
+
 // Hobbies and Req pages data:
 $hob = $_POST['hobbies'];
 $r = $_POST['req'];
