@@ -11,14 +11,16 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$email = $_SESSION['email'];
-$pass = $_SESSION['password'];
+$gender = $_SESSION['gender'];
+$id = $_SESSION['id'];
 
-$sql = "SELECT * FROM users WHERE email='$email' AND pass='$pass'";
+$sql = "SELECT * FROM $gender WHERE id='$id'";
+
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$_SESSION['id'] = $row['uid'];
-$_SESSION['pass'] = $row['pass'];
+
+
+
 $v1 = "";
 $v2 = "";
 $v3 = "";
@@ -39,7 +41,7 @@ if ($row['pob'] != NULL) {
 if ($row['tob'] != NULL) {
   $v5 = "readonly='readonly'";
 }
-
+session_commit();
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -285,6 +287,10 @@ $conn->close();
           <option value="Other">Other</option>
         </select><br />
 
+        <label for="city"><b>City:</b></label>
+        <input type="text" id="city" name="city" value="<?php echo $row["city"]; ?>"/><br />
+
+
         <label for="weight"><b>Weight:</b></label>
         <input type="number" id="weight" name="weight" value="<?php echo $row["weight"]; ?>" required /><br />
 
@@ -367,6 +373,7 @@ $conn->close();
     const validateHeight = (height) => !isNaN(height) && height > 0 && height < 300;
     const validatePhoneNumber = (number) => /^\d{10}$/.test(number);
     const validatePlaceOfBirth = (placeOfBirth) => /^[a-zA-Z\s]+$/.test(placeOfBirth);
+    const validateCity = (city) => /^[a-zA-Z\s]+$/.test(placeOfBirth);
 
 
     const form = document.getElementById('modalForm');
@@ -427,6 +434,12 @@ $conn->close();
         } else if (input.id === 'pob') {
           if (!validatePlaceOfBirth(input.value)) {
             input.setCustomValidity('Place of Birth should only contain characaters');
+          } else {
+            input.setCustomValidity('');
+          }
+        }else if (input.id === 'city') {
+          if (!validatePlaceOfBirth(input.value)) {
+            input.setCustomValidity('City should only contain characaters');
           } else {
             input.setCustomValidity('');
           }

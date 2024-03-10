@@ -8,6 +8,7 @@ $dbname = "cosmicdestiny";
 
 // Retrieve session ID
 $id = $_SESSION['id'];
+$gender = $_SESSION['gender'];
 
 // Create a new MySQLi connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -47,11 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newquote = $_POST['quote'];
     $newdescription = $_POST['description'];
     $newdob = $_POST['dob'];
-    $gender = $_POST['gender'];
     $newpob = $_POST['pob'];
     $newtob = $_POST['tob'];
     $newage = ageCalculator($newdob);
     $passw = $_POST['edpass'];
+    $newcity = $_POST['city'];
 
 
     // Calculate new BMI
@@ -60,13 +61,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if password matches session password
     if (sha1($passw) == $_SESSION['pass']) {
         // Update user information in the database
-        $sql = "UPDATE users SET weight='$newweight', dob='$newdob', pob='$newpob', gender='$gender', tob='$newtob', age='$newage', height='$newheight', photo='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription' WHERE uid=$id";
+        $sql = "UPDATE $gender SET weight='$newweight', city = '$newcity', dob='$newdob', pob='$newpob', tob='$newtob', age='$newage', height='$newheight', photocontent='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription' WHERE id=$id";
 
         // Execute the update query
         if ($conn->query($sql) === TRUE) {
             echo '<script>alert("Details updated successfully!!!");window.location.href = "../profilepage/profile.php";</script>';
         } else {
-            echo '<script>alert("Error updating record: . '$conn->error;'");window.location.href = "../profilepage/profile.php";</script>';
+            echo '<script>alert("Error updating record: ' . $conn->error . '");window.location.href = "../profilepage/profile.php";</script>';
             // echo "Error updating record: " . $conn->error;
         }
     } else {
