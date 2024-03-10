@@ -64,12 +64,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Execute the update query
         if ($conn->query($sql) === TRUE) {
-            echo "Record updated successfully";
+            echo '<script>alert("Details updated successfully!!!");window.location.href = "../profilepage/profile.php";</script>';
         } else {
-            echo "Error updating record: " . $conn->error;
+            echo '<script>alert("Error updating record: . '$conn->error;'");window.location.href = "../profilepage/profile.php";</script>';
+            // echo "Error updating record: " . $conn->error;
         }
     } else {
-        echo "Invalid password";
+        echo '<script>alert("Password is incorrect");window.location.href = "../profilepage/profile.php";</script>';
     }
 }
 
