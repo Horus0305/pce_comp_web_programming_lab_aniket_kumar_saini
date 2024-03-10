@@ -11,3 +11,84 @@
     height: 60vh;
     right:0;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.circle:hover {
+    background-color: #2980b9;
+}
+
+.modal-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle:hover .modal-overlay {
+    display: flex;
+}
+
+.modal-content {
+    text-align: center;
+}
+#downloadButton {
+    background: #5E5DF0;
+    border-radius: 999px;
+    box-shadow: #a2a2d6 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 10px;
+    opacity: 1;
+    height: 5vh;
+    width: 10vw;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+  }
+  
+  #downloadButton:hover{
+    background-color: #45a049;
+  }

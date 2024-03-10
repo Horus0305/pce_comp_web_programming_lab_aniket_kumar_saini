@@ -231,11 +231,27 @@ form input {
 
 /* Styling for the submit button */
 .but> button {
-  padding: 10px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
+  background: #5E5DF0;
+  border-radius: 999px;
+  box-shadow: #a2a2d6 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
   cursor: pointer;
+  margin-left: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 10px;
+  opacity: 1;
+  height: 5vh;
+  width: 10vw;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
 }
 
 .but>button:hover {
@@ -270,6 +286,7 @@ form input {
 .but{
   display: flex;
   justify-content: center;
+  
 }
 #ashtakootChart{
   
@@ -280,3 +297,4 @@ form input {
  
 
 }
+
