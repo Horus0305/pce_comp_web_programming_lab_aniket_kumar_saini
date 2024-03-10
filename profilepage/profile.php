@@ -19,12 +19,11 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $_SESSION['id'] = $row['uid'];
 $_SESSION['pass'] = $row['pass'];
-echo $row['pob'];
-$v1="";
-$v2="";
-$v3="";
-$v4="";
-$v5="";
+$v1 = "";
+$v2 = "";
+$v3 = "";
+$v4 = "";
+$v5 = "";
 if ($row['name'] != NULL) {
   $v1 = "disabled";
 }
@@ -32,7 +31,7 @@ if ($row['dob'] != NULL) {
   $v2 = "readonly='readonly'";
 }
 if ($row['gender'] != NULL) {
-  $v3 = "readonly='readonly'";
+  $v3 = "disabled";
 }
 if ($row['pob'] != NULL) {
   $v4 = "readonly='readonly'";
@@ -238,7 +237,7 @@ $conn->close();
                 <?php
                 echo $row["bmi"];
                 ?>
-                
+
               </div>
             </div>
           </div>
@@ -268,44 +267,44 @@ $conn->close();
       <div id="edclose">&times;</div>
       <form id="modalForm" action="update.php" method="post">
         <label for="fullname"><b>Full Name:</b></label>
-        <input type="text" id="fullname" name="fullname" value="<?php echo $row["name"];?>" <?php echo $v1?> required /><br />
+        <input type="text" id="fullname" name="fullname" value="<?php echo $row["name"]; ?>" <?php echo $v1 ?> required /><br />
 
         <label for="dob"><b>Date of Birth:</b></label>
-        <input type="date" id="dob" name="dob" value="<?php echo $row["dob"];?>" <?php echo $v2?>required /><br />
+        <input type="date" id="dob" name="dob" value="<?php echo $row["dob"]; ?>" <?php echo $v2 ?>required /><br />
 
         <label for="pob"><b>Place of Birth:</b></label>
-        <input type="text" id="pob" name="pob" value="<?php echo $row["pob"];?>" <?php echo $v4?> required /><br />
+        <input type="text" id="pob" name="pob" value="<?php echo $row["pob"]; ?>" <?php echo $v4 ?> required /><br />
 
         <label for="tob"><b>Time of Birth:</b></label>
-        <input type="time" id="tob" name="tob" value="<?php echo $row["tob"];?>" <?php echo $v5?> required /><br />
+        <input type="time" id="tob" name="tob" value="<?php echo $row["tob"]; ?>" <?php echo $v5 ?> required /><br />
 
         <label for="gender"><b>Gender:</b></label>
-        <select id="gender" name="gender" value="Male" <?php echo $v3?> required>
+        <select id="gender" name="gender" value="Male" <?php echo $v3 ?> required>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </select><br />
 
         <label for="weight"><b>Weight:</b></label>
-        <input type="number" id="weight" name="weight" value="<?php echo $row["weight"];?>" required /><br />
+        <input type="number" id="weight" name="weight" value="<?php echo $row["weight"]; ?>" required /><br />
 
         <label for="height"><b>Height:</b></label>
-        <input type="number" id="height" name="height" value="<?php echo $row["height"];?>" required /><br />
+        <input type="number" id="height" name="height" value="<?php echo $row["height"]; ?>" required /><br />
 
         <label for="photo"><b>Photo:</b></label>
-        <input type="file" id="photo" name="photo" accept="image/*" required /><br />
+        <input type="file" id="photo" name="photo" accept="image/*" /><br />
 
         <!-- <label for="email"><b>Email:</b></label>
-        <input type="email" id="email" name="email" value="<?php echo $row["email"];?>" required /><br /> -->
+        <input type="email" id="email" name="email" value="<?php echo $row["email"]; ?>" required /><br /> -->
 
         <label for="number"><b>Number:</b></label>
-        <input type="tel" id="number" name="number" value="<?php echo $row["number"];?>" required />
+        <input type="tel" id="number" name="number" value="<?php echo $row["number"]; ?>" required />
 
         <label for="onelinequote"><b>One Liner:</b></label>
-        <input type="text" id="onelinequote" name="quote" value="<?php echo $row["quote"];?>" required />
+        <input type="text" id="onelinequote" name="quote" value="<?php echo $row["quote"]; ?>" required />
 
         <label for="description"><b>Short Description About Yourself:</b></label>
-        <textarea type="text" id="description" name="description" required rows="7"><?php echo $row["description"];?></textarea>
+        <textarea type="text" id="description" name="description" required rows="7"><?php echo $row["description"]; ?></textarea>
 
         <label for="password"><b>Password</b></label>
         <input type="password" id="edpass" name="edpass" required />
@@ -359,10 +358,82 @@ $conn->close();
       }
     });
   </script>
+  <script>
+    const validateFullName = (fullName) => /^[a-zA-Z\s]+$/.test(fullName);
+    const validateTimeOfBirth = (timeOfBirth) => /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(timeOfBirth);
+    const validateDateOfBirth = (dateOfBirth) => new Date(dateOfBirth) <= new Date();
+    const calculateAge = (dateOfBirth) => Math.floor((new Date() - new Date(dateOfBirth)) / (1000 * 60 * 60 * 24 * 365));
+    const validateWeight = (weight) => !isNaN(weight) && weight > 0 && weight < 1000;
+    const validateHeight = (height) => !isNaN(height) && height > 0 && height < 300;
+    const validatePhoneNumber = (number) => /^\d{10}$/.test(number);
+    const validatePlaceOfBirth = (placeOfBirth) => /^[a-zA-Z\s]+$/.test(placeOfBirth);
+
+
+    const form = document.getElementById('modalForm');
+    const inputs = ['fullname', 'tob', 'dob', 'pob', 'weight', 'height', 'number'].map(id => document.getElementById(id));
+
+    form.addEventListener('submit', (event) => {
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          event.preventDefault();
+          return;
+        }
+      });
+    });
+
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        if (input.id === 'dob') {
+          if (validateDateOfBirth(input.value)) {
+            const age = calculateAge(input.value);
+            if (age < 18) {
+              input.setCustomValidity('You must be at least 18 years old');
+            } else {
+              input.setCustomValidity('');
+            }
+          } else {
+            input.setCustomValidity('Date of birth cannot be a date in the future');
+          }
+        } else if (input.id === 'tob') {
+          if (!validateTimeOfBirth(input.value)) {
+            input.setCustomValidity('Time of birth should be in HH:MM format');
+          } else {
+            input.setCustomValidity('');
+          }
+        } else if (input.id === 'fullname') {
+          if (!validateFullName(input.value)) {
+            input.setCustomValidity('Full name should only contain characters');
+          } else {
+            input.setCustomValidity('');
+          }
+        } else if (input.id === 'number') {
+          if (!validatePhoneNumber(input.value)) {
+            input.setCustomValidity('Phone number should be a 10-digit number');
+          } else {
+            input.setCustomValidity('');
+          }
+        } else if (input.id === 'height') {
+          if (!validateHeight(input.value)) {
+            input.setCustomValidity('Height should be a number between 1 and 300');
+          } else {
+            input.setCustomValidity('');
+          }
+        } else if (input.id === 'weight') {
+          if (!validateWeight(input.value)) {
+            input.setCustomValidity('Weight should be a number between 1 and 1000');
+          } else {
+            input.setCustomValidity('');
+          }
+        } else if (input.id === 'pob') {
+          if (!validatePlaceOfBirth(input.value)) {
+            input.setCustomValidity('Place of Birth should only contain characaters');
+          } else {
+            input.setCustomValidity('');
+          }
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
-<?php
-
-
-?>
