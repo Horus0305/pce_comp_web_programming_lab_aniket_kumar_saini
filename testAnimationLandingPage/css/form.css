@@ -54,6 +54,13 @@ p {
   align-items: center;
   justify-content: center;
 }
+.pgender {
+  padding-right: 100px;
+}
+#male,
+#female {
+  accent-color: red;
+}
 .form {
   display: flex;
   flex-direction: column;

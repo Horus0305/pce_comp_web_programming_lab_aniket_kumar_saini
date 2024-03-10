@@ -11,13 +11,13 @@
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
     />
-
+    <link rel="website icon" type="png" href="img/favicon.png" />
     <link rel="stylesheet" type="text/css" href="css/form.css" />
   </head>
 
   <body>
     <div class="main">
-      <form action="../api/signup_submit.php" method="post" class="form" id="form">
+      <form action="../api/signup_submit.php" method="post" class="form" id="form" style="height: 520px;">
         <p class="title">&emsp;&emsp;Let's set up your account<br>while we find your Cosmic Destiny</p>
         <p class="info">
           Welcome !!!
@@ -49,12 +49,16 @@
             <span>Last name</span>
           </label>
         </div>
-        <div class="gender">
-          <p>Gender</p>
-            <input class="gender" id="gender" name="gender"  required=""  value="male" type="radio"> &emsp; <b>Male</b> &emsp;&emsp;
-            <input class="gender" id="gender" name="gender" required="" value="female" type="radio"> &emsp; <b>Female</b>
-        </div>
-        
+        <!-- <span>Gender</span> -->
+        <label>
+          <span>&emsp;Gender&emsp;&emsp;&emsp;</span>
+          <input type="radio" name="gender" id="male" value="male">
+          <span for="male">Male&emsp;&emsp;&emsp;&emsp;</span>
+          <label>
+            <input type="radio" name="gender" id="female" value="female" required>
+            <span for="female">Female</span>
+          </label>
+        </label>
         <!-- <label>
           <input
             class="input"
