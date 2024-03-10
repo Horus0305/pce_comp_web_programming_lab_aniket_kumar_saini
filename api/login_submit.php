@@ -4,7 +4,9 @@ require("../includes/database_connect.php");
 
 $email = $_POST['email'];
 $pass = sha1($_POST['password']);
-$sql = "SELECT * FROM users WHERE email='$email' AND pass='$pass'";
+
+$sql = "SELECT * FROM male WHERE email='$email' AND pass='$pass'";
+$sql = "SELECT * FROM female WHERE email='$email' AND pass='$pass'";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $response = array("success" => false, "message" => "Something went wrong!");
@@ -13,6 +15,7 @@ if (!$result) {
 }
 
 $row_count = mysqli_num_rows($result);
+$gender = $_SESSION['gender'];
 if ($row_count == 0) {
     $response = array("success" => false, "message" => "Login failed! Invalid email or password.");
     echo '<script>alert("'.$response["message"].'");window.location.href = "../testAnimationLandingPage/login.html";</script>';

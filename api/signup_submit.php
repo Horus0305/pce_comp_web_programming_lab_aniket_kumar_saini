@@ -5,10 +5,11 @@ $f_name = $_POST['f_name'];
 $l_name = $_POST['l_name'];
 $name = $f_name . " " . $l_name;
 $email = $_POST['email'];
+$gender = $_POST['gender'];
 $password = $_POST['password'];
 $password = sha1($password);
 
-$sql = "SELECT * FROM users WHERE email='$email'";
+$sql = "SELECT * FROM $gender WHERE email='$email'";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $response = array("success" => false, "message" => "Something went wrong!");
@@ -23,7 +24,7 @@ if ($row_count != 0) {
     return;
 }
 
-$sql = "INSERT INTO users (name, email, pass) VALUES ( '$name', '$email', '$password')";
+$sql = "INSERT INTO $gender (name, email, pass, gender) VALUES ( '$name', '$email', '$password', '$gender')";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $response = array("success" => false, "message" => "Something went wrong!");
