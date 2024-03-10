@@ -30,16 +30,16 @@ if ($row['name'] != NULL) {
   $v1 = "disabled";
 }
 if ($row['dob'] != NULL) {
-  $v2 = "readonly='readonly'";
+  $v2 = "readonly='readonly' style='background-color: rgb(121, 125, 136)'";
 }
 if ($row['gender'] != NULL) {
   $v3 = "disabled";
 }
 if ($row['pob'] != NULL) {
-  $v4 = "readonly='readonly'";
+  $v4 = "readonly='readonly' style='background-color: rgb(121, 125, 136)'";
 }
 if ($row['tob'] != NULL) {
-  $v5 = "readonly='readonly'";
+  $v5 = "readonly='readonly' style='background-color: rgb(121, 125, 136)'";
 }
 session_commit();
 $conn->close();
@@ -281,11 +281,7 @@ $conn->close();
         <input type="time" id="tob" name="tob" value="<?php echo $row["tob"]; ?>" <?php echo $v5 ?> required /><br />
 
         <label for="gender"><b>Gender:</b></label>
-        <select id="gender" name="gender" value="Male" <?php echo $v3 ?> required>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select><br />
+        <input type="text" id="gender" name="gender" value="<?php echo ucfirst($row["gender"]); ?>" <?php echo $v3 ?> required /><br />
 
         <label for="city"><b>City:</b></label>
         <input type="text" id="city" name="city" value="<?php echo $row["city"]; ?>"/><br />
