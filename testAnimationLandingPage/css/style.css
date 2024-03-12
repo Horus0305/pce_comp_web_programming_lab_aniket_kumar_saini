@@ -48,6 +48,12 @@ p {
   font-family: Consolas, monaco, monospace;
   font-family: "Open Sans",  sans-serif;
 }
+@media only screen and (max-width: 600px) {
+  .chakra,
+  .flower {
+    display: none;
+  }
+}
 .chakra {
   height: 105%;
   width: auto;
@@ -177,6 +183,7 @@ button {
   font-weight: 600;
   color: white;
   margin-left: 475px;
+  margin-top: -30px;
   font-family: "Oswald", sans-serif;
   font-family: "Poppins", sans-serif;
   font-family: "Roboto Condensed", sans-serif;
