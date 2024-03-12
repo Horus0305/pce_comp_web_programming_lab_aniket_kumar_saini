@@ -30,13 +30,13 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+$gender = $_SESSION['gender'];
+$id = $_SESSION['id'];
 
-$email = $_SESSION['email'];
-$pass = $_SESSION['password'];
-$sql = "SELECT * FROM users WHERE email='$email' AND pass='$pass'";
+$sql = "SELECT * FROM $gender WHERE id='$id'";
+
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-
 
         // Set the cURL POST fields for the first API call (Birth Chart)
         $postDataBirthChart = '{
