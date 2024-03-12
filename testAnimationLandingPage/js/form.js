@@ -1,17 +1,17 @@
-var password = document.getElementById("password"),
-  confirm_password = document.getElementById("confirm_password");
-var email = document.getElementById("email");
-var fname = document.getElementById("f_name");
-var lname = document.getElementById("l_name");
+const password = document.getElementById("password");
+const confirm_password = document.getElementById("confirm_password");
+const email = document.getElementById("email");
+const fname = document.getElementById("f_name");
+const lname = document.getElementById("l_name");
 
 function validatePassword() {
-  var passformat = /^(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{8,}$/;
+  const passformat = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
 
   if (password.value !== confirm_password.value) {
     password.setCustomValidity("Passwords Don't Match");
   } else if (!passformat.test(password.value)) {
     password.setCustomValidity(
-      "Password should contain 1 uppercase and minimum 8 digits"
+      "Password should contain at least 1 uppercase, 1 lowercase, and 1 digit"
     );
   } else {
     password.setCustomValidity("");
@@ -19,8 +19,8 @@ function validatePassword() {
 }
 
 function validateEmail() {
-  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (email.value == "") {
+  const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (email.value === "") {
     email.setCustomValidity("Email is required for registration");
   } else if (email.value.match(mailformat)) {
     email.setCustomValidity("");
@@ -29,63 +29,58 @@ function validateEmail() {
   }
 }
 
-function validateFname() {
-  var nameformat = /^[A-Za-z\s]+$/;
-  if (fname.value == "") {
-    fname.setCustomValidity("First name is required");
-  } else if (fname.value.match(nameformat)) {
-    fname.setCustomValidity("");
+function validateName(input, name) {
+  const nameformat = /^[A-Za-z\s]+$/;
+  const minLength = 2;
+
+  if (input.value.length < minLength) {
+    input.setCustomValidity(
+      `${name} should be at least ${minLength} characters long`
+    );
+  } else if (input.value === "") {
+    input.setCustomValidity(`${name} is required`);
+  } else if (input.value.match(nameformat)) {
+    input.setCustomValidity("");
   } else {
-    fname.setCustomValidity("First Name should contain only letters");
-  }
-}
-function validateLname() {
-  var nameformat = /^[A-Za-z\s]+$/;
-  if (lname.value == "") {
-    fname.setCustomValidity("Last name is required");
-  } else if (fname.value.match(nameformat)) {
-    lname.setCustomValidity("");
-  } else {
-    lname.setCustomValidity("Last Name should contain only letters");
+    input.setCustomValidity(`${name} should contain only letters`);
   }
 }
 
+function checkValidity(event) {
+  const currentInput = event.target;
+  const nextInput = currentInput.nextElementSibling;
+
+  if (currentInput.checkValidity()) {
+    if (nextInput) {
+      nextInput.focus();
+    }
+  } else {
+    event.preventDefault();
+  }
+}
+
+fname.addEventListener("input", (event) => validateName(fname, "First name"));
+lname.addEventListener("input", (event) => validateName(lname, "Last name"));
+email.addEventListener("input", validateEmail);
+password.addEventListener("input", validatePassword);
+confirm_password.addEventListener("input", validatePassword);
+
+document.querySelectorAll("input").forEach((input) => {
+  input.addEventListener("blur", checkValidity);
+});
 const eye = document.querySelector(".eye");
 
 eye.addEventListener("click", () => {
   const pass = document.getElementById("password");
-  if (pass.type === "password") {
-    pass.type = "text";
-    eye.src = "../img/eye.svg";
-  } else {
-    pass.type = "password";
-    eye.src = "../img/eyeclose.svg";
-  }
-});
+  const passl = document.getElementById("confirm_password");
 
-eye.addEventListener("click", () => {
-  const pass = document.getElementById("confirm_password");
   if (pass.type === "password") {
     pass.type = "text";
+    passl.type = "text";
     eye.src = "../img/eye.svg";
   } else {
     pass.type = "password";
+    passl.type = "password";
     eye.src = "../img/eyeclose.svg";
   }
 });
-// const eyel = document.querySelector(".eyelogin");
-// eyel.addEventListener("click", () => {
-//   const passl = document.getElementById("password");
-//   if (passl.type === "password") {
-//     passl.type = "text";
-//     eyel.src = "../img/eye.svg";
-//   } else {
-//     passl.type = "password";
-//     eyel.src = "../img/eyeclose.svg";
-//   }
-// });
-fname.onchange = validateFname;
-lname.onchange = validateLname;
-email.onchange = validateEmail;
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
