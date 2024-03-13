@@ -20,7 +20,7 @@ if (!$result) {
 $row_count = mysqli_num_rows($result);
 if ($row_count != 0) {
     $response = array("success" => false, "message" => "This email id is already registered with us!");
-    echo '<script>alert("'.$response["message"].'");window.location.href = "../testAnimationLandingPage/signup.html";</script>';
+    echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/signup.html";</script>';
     return;
 }
 
@@ -28,10 +28,10 @@ $sql = "INSERT INTO $gender (name, email, pass, gender) VALUES ( '$name', '$emai
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $response = array("success" => false, "message" => "Something went wrong!");
-    echo '<script>alert("'.$response["message"].'");window.location.href = "../testAnimationLandingPage/signup.html";</script>';
+    echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/signup.html";</script>';
     return;
 }
 
 $response = array("success" => true, "message" => "Your account has been created successfully!");
-echo '<script>alert("'.$response["message"].'");window.location.href = "../testAnimationLandingPage/main.html";</script>';
+echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/main.html";</script>';
 mysqli_close($conn);

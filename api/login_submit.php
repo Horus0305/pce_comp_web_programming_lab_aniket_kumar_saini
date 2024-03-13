@@ -35,7 +35,7 @@ if (!$result) {
 }
 else{
     $response = array("success" => false, "message" => "Login M failed! Invalid email or password.");
-    echo '<script>alert("'.$response["message"].'");window.location.href = "../testAnimationLandingPage/login.html";</script>';
+    echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/login.html";</script>';
 }
 
 if ($result) {
@@ -47,7 +47,7 @@ if ($result) {
     
 } else {
     $response = array("success" => false, "message" => "User does not exist!");
-    echo '<script>alert("'.$response["message"].'");window.location.href = "../testAnimationLandingPage/login.html";</script>';
+    echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/login.html";</script>';
     return;
 }
 session_commit();

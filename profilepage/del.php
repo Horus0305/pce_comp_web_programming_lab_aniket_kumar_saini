@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute the delete query
     if ($conn->query($sql) === TRUE) {
         if ($conn->affected_rows > 0) {
-            echo '<script>alert("Account deleted successfully!"); window.location.href = "../testAnimationLandingPage/main.html";</script>';
+            echo '<script>alert("Account deleted successfully!"); window.location.href = "../landingpage/main.html";</script>';
         } else {
             echo '<script>alert("Invalid email and password."); window.location.href = "./profile.php";</script>';
         }
