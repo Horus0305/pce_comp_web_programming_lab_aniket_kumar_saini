@@ -124,6 +124,16 @@ $conn->close();
                 ?>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h5>Gender</h5>
+              </div>
+              <div class="col-md-9 text-secondary">
+                <?php
+                echo $row["gender"];
+                ?>
+              </div>
+            </div>
             <hr />
             <div class="row">
               <div class="col-md-3">
@@ -158,17 +168,7 @@ $conn->close();
               </div>
             </div>
             <hr />
-            <div class="row">
-              <div class="col-md-3">
-                <h5>Gender</h5>
-              </div>
-              <div class="col-md-9 text-secondary">
-                <?php
-                echo $row["gender"];
-                ?>
-              </div>
-            </div>
-            <hr />
+
             <div class="row">
               <div class="col-md-3">
                 <h5>Height</h5>
@@ -179,7 +179,7 @@ $conn->close();
                 ?>
                 cm</div>
             </div>
-            <hr />
+
             <div class="row">
               <div class="col-md-3">
                 <h5>Weight</h5>
@@ -187,6 +187,17 @@ $conn->close();
               <div class="col-md-9 text-secondary"><?php
                                                     echo $row["weight"];
                                                     ?> Kg</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h5>BMI</h5>
+              </div>
+              <div class="col-md-9 text-secondary">
+                <?php
+                echo $row["bmi"];
+                ?>
+
+              </div>
             </div>
             <hr />
             <div class="row">
@@ -231,17 +242,7 @@ $conn->close();
               </div>
             </div>
             <hr />
-            <div class="row">
-              <div class="col-md-3">
-                <h5>BMI</h5>
-              </div>
-              <div class="col-md-9 text-secondary">
-                <?php
-                echo $row["bmi"];
-                ?>
 
-              </div>
-            </div>
           </div>
         </div>
       </div>
