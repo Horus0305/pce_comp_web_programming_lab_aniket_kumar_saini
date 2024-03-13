@@ -1,200 +1,212 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    color: white;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-body{
-    background: url(../../testAnimationLandingPage/img/bg.jpg);
-    background-position: fixed;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;  
+body {
+  background: url(../../img/bg.png);
+  background-position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.header{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
-.header > .imgbtn{
-    align-self: flex-start;
-    margin: 1% 0 0 1%;
-    transition: transform 0.3s, background-color 0.3s;
-    border-radius: 50%;
+.header > .imgbtn {
+  align-self: flex-start;
+  margin: 1% 0 0 1%;
+  transition: transform 0.3s, background-color 0.3s;
+  border-radius: 50%;
 }
-.header > #logoutbtn{
-    margin: 1% 1% 0 0;
-    padding-right: 0.3%;
-}
-
-.imgbtn:hover{
-    cursor: pointer;
-    transform: scale(1.08);
-    background-color: blueviolet;
+.header > #logoutbtn {
+  margin: 1% 1% 0 0;
+  padding-right: 0.3%;
 }
 
-#heading{
-    /* padding: 1%; */
-    font-size:3rem;
-    font-weight: bold;
+.imgbtn:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+  background-color: blueviolet;
 }
-.top{
-    display: flex;
-    min-height: 40vh;
-    width: 80%;
-    border: 2px solid white;
-    flex-direction: column;
-    border-radius: 20px;
-    justify-content: space-around;
+
+#heading {
+  /* padding: 1%; */
+  font-size: 3rem;
+  font-weight: bold;
 }
-#banner{
-    align-self: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
+.top {
+  display: flex;
+  min-height: 40vh;
+  width: 80%;
+  border: 2px solid wheat;
+  flex-direction: column;
+  border-radius: 20px;
+  justify-content: space-around;
+}
+#banner {
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
 }
 .profileimg {
-    display: flex;
-    /* border: 2px rgb(0, 0, 0) solid; */
-    height: 40vh;
-    width: auto;
-    position: absolute; 
-    z-index: 0;
-    padding: 2%;
+  display: flex;
+  /* border: 2px rgb(0, 0, 0) solid; */
+  height: 40vh;
+  width: auto;
+  position: absolute;
+  z-index: 0;
+  padding: 2%;
 }
 
 .photo {
-    position: relative;
-    border-radius: 50%;
-    border: 2px rgb(255, 255, 255) solid;
-    width: 50%;
-    padding: 5px; 
+  position: relative;
+  border-radius: 50%;
+  border: 2px wheat solid;
+  width: 50%;
+  padding: 5px;
 }
 .sign {
-    border: 2px rgb(255, 255, 255) solid;
-    width: 11%;
-    height: 15%;
-    position: absolute;
-    bottom: 30%;
-    background-color: white;
-    left: 20%; 
-    transform: translateX(+100%);
-    z-index: 1000;
+  border: 2px rgb(255, 255, 255) solid;
+  width: 11%;
+  height: 15%;
+  position: absolute;
+  bottom: 30%;
+  background-color: white;
+  left: 20%;
+  transform: translateX(+100%);
+  z-index: 1000;
 }
 .top > * {
-    background-color: transparent;
+  background-color: transparent;
 }
 .card {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: transparent;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: 0.25rem;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: transparent;
+  background-clip: border-box;
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
+  border-radius: 0.25rem;
 }
-#editpfbtn,#delacbtn{
-    color: black;
-    padding: 2%;
-    margin: 1%;
-    border: black 2px solid;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border 0.7s , transform 0.7s, background-color 0.7s, color 0.5s;
+#editpfbtn,
+#delacbtn {
+  color: black;
+  padding: 2%;
+  margin: 1%;
+  border: black 2px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border 0.7s, transform 0.7s, background-color 0.7s, color 0.5s;
 }
 
-#editpfbtn:hover,#delacbtn:hover{
+#editpfbtn:hover,
+#delacbtn:hover {
   border: cyan 2px solid;
   transform: scale(0.95);
-  background-color:indigo;
+  background-color: indigo;
   color: white;
 }
 
 /* ---------------------MODAL-------------------------------- */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .modal-content {
-    background-color: #464e5b;
-    margin: 10% auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
-    color: rgb(255, 255, 255);
-  }
-  
-  input[type=text], input[type=email], input[type=number], input[type=date], input[type=time],input[type=password], input[type=tel]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: black;
-  }
-  select, option{
-    color: black;
-  }
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
 
-  #description{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-    color: black;
-    text-wrap:wrap;
-  }
+.modal-content {
+  background-color: #464e5b;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  color: rgb(255, 255, 255);
+}
 
-  input:focus{
-    border: 1px solid #ccc;
-  }
-  
-  input[type=submit] {
-    width: 100%;
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="password"],
+input[type="tel"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: black;
+}
+select,
+option {
+  color: black;
+}
 
-  /* ---------------------Delete Acccount Modal -------------------------- */
+#description {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: black;
+  text-wrap: wrap;
+}
 
+input:focus {
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* ---------------------Delete Acccount Modal -------------------------- */
 
 /* Close button */
-#delclose, #edclose {
+#delclose,
+#edclose {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
-  width:fit-content;
+  width: fit-content;
   margin-left: 95%;
 }
 
@@ -210,7 +222,7 @@ body{
   text-decoration: none;
   cursor: pointer;
 }
-.modal-content input[type=tel] {
+.modal-content input[type="tel"] {
   color: black !important;
 }
 .modal::-webkit-scrollbar {
@@ -228,11 +240,12 @@ body{
 .text-secondary {
   color: #ffffff !important;
 }
-.h5, h5 {
+.h5,
+h5 {
   font-size: 1.25rem;
 }
 
-form > *:focus{
+form > *:focus {
   outline-color: aqua;
   outline-offset: 0;
   outline-style: groove;
