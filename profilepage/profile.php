@@ -1,25 +1,18 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cosmicdestiny";
+require("../includes/database_connect.php");
+$_SESSION['gender'] = $gender;
+$_SESSION['id'] = $id;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if (!isset($_SESSION['$gender']) || !isset($_SESSION['$id'])) {
+  die("Missing session variables");
 }
 
-$gender = $_SESSION['gender'];
-$id = $_SESSION['id'];
 
-$sql = "SELECT * FROM $gender WHERE id='$id'";
-
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-
-
+$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $v1 = "";
 $v2 = "";
@@ -42,7 +35,7 @@ if ($row['tob'] != NULL) {
   $v5 = "readonly='readonly' style='background-color: rgb(121, 125, 136)'";
 }
 session_commit();
-$conn->close();
+$db = null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
