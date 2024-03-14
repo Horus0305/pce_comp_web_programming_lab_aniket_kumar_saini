@@ -3,7 +3,7 @@
     ?>
 <div class="nav">
       <div class="emblem">
-        <a href="../testAnimationLandingPage/main.html">
+        <a href="../landingpage/main.html">
           <img class="logo" src="../img/favicon.png" alt="logo" />
         </a>
       </div>
