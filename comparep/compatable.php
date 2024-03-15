@@ -103,7 +103,7 @@ include "../includes/base.php"
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link rel="stylesheet" href="css/match.css" />
+<link rel="stylesheet" href="css/compatablerep.css" />
 <div class="content">
   <div class="heading">Check Compatibility</div>
 
