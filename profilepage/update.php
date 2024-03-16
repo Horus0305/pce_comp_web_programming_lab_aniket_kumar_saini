@@ -38,6 +38,37 @@ function ageCalculator($dob){
     }
 }
 
+
+
+function getLatLongFromAddress($address) {
+    $api_url = "https://geocode.maps.co/search";
+    $api_key = "65b1303f9d4df715521005atg495293";
+
+    $params = [
+        'q' => $address,
+        'api_key' => $api_key
+    ];
+
+    $url = $api_url . '?' . http_build_query($params);
+    $response = file_get_contents($url);
+
+    if ($response !== false) {
+        $data = json_decode($response, true);
+        if (!empty($data) && is_array($data) && isset($data[0]['lat']) && isset($data[0]['lon'])) {
+            return [
+                'latitude' => $data[0]['lat'],
+                'longitude' => $data[0]['lon']
+            ];
+        }
+    }
+
+    return null;
+}
+
+
+
+
+
 // Check if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -58,10 +89,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Calculate new BMI
     $newbmi = calculateBMI($newweight, $newheight);
 
+
+    $AddressInfo = getLatLongFromAddress($_POST['pob']);
+if ($AddressInfo === null) {
+    echo '<div>Error: Unable to fetch latitude and longitude for female address.</div>';
+    exit;
+}  
+else{
+
+
+    $lat=$AddressInfo['latitude'];
+    $long=$AddressInfo['longitude'];
     // Check if password matches session password
     if (sha1($passw) == $_SESSION['pass']) {
         // Update user information in the database
-        $sql = "UPDATE $gender SET weight='$newweight', city = '$newcity', dob='$newdob', pob='$newpob', tob='$newtob', age='$newage', height='$newheight', photocontent='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription' WHERE id=$id";
+        $sql = "UPDATE $gender SET weight='$newweight', city = '$newcity', dob='$newdob', pob='$newpob', tob='$newtob', age='$newage', height='$newheight', photocontent='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription',latitude='$lat',longitude='$long' WHERE id=$id";
 
         // Execute the update query
         if ($conn->query($sql) === TRUE) {
@@ -72,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         echo '<script>alert("Password is incorrect");window.location.href = "../profilepage/profile.php";</script>';
-    }
+    }}
 }
 
 // Close the database connection
