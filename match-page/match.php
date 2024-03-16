@@ -22,6 +22,26 @@ $username = 'root';
 $password = '';
 $dbname = 'cosmicdestiny';
 
+function interpretBMI($bmi) {
+  if ($bmi < 18.5) {
+      return "Underweight";
+  } elseif ($bmi >= 18.5 && $bmi < 23) {
+      return "Normal weight (Healthy BMI)";
+  } elseif ($bmi >= 23 && $bmi < 25) {
+      return "Overweight (Potential risk)";
+  } elseif ($bmi >= 25 && $bmi < 30) {
+      return "Overweight (Increased risk)";
+  } elseif ($bmi >= 30 && $bmi < 35) {
+      return "Obese (Moderate risk)";
+  } elseif ($bmi >= 35 && $bmi < 40) {
+      return "Obese (High risk)";
+  } elseif ($bmi >= 40) {
+      return "Obese (Very high risk)";
+  } else {
+      return "Invalid BMI";
+  }
+}
+
 try {
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
@@ -52,6 +72,7 @@ try {
                     <p id="age">Age : '.$row["age"].'</p>
                     <p id="sunsign">SunSign : '.$row["sign"].'</p>
                     <p id="city">City : '.$row["city"].'</p>
+                    <p id="work">Physique :'.interpretBMI($row['bmi']).'</p>
                     <p id="work">'.$row["work"].'</p>
                     <p id="chances">Compatibility : 97%</p>
                   </div>
