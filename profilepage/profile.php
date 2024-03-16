@@ -60,9 +60,9 @@ $conn->close();
 <body>
   <div class="header">
     <a class="imgbtn" id="backbtn" href="">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAATlJREFUaEPt2NENwjAMBFB7E9gENoFNYBJgEhiFTQxBqoSqNnFsN71K4bM04Z4diSRMG//wxvNTB6zdwd6B3gFnBfoSGhdQRHbM/HYWVj08tAMiciCiJxFdmfmiTuF4MQzwF36I0wQRApgIPyD2Sy8nNyAT/sjML8fqUA11AdYOn4RmAEJ4MwAlvAmAFL4agBa+CoAYXg1ADa8CIIcvAtDDZwGZ8Kp/yOiX+Ls7nJpz8iFa+F+lKwEnIrpFV9EzXxUg/ZCIQCGqARlEOm09Wh1YSl0rbuZmOgGDKALQO6ECICPUAFREFQARUQ1AQ5gASAgzAAXhAiAg3IACIt0NLXpPGgKYQZyZ+V7aCni/DwOMEE3CF09klups+nrdAvaOCV1C3jCW8R1gqVrkmN6ByGpa5uodsFQtcswHw7mlMdLGDtIAAAAASUVORK5CYII=" /></a>
+      <img src="img/back-btn.png" /></a>
     <p id="heading">My Profile</p>
-    <a class="imgbtn" id="logoutbtn" href="logout.php"><img src=":image/png;base64,+UwD47whGBF4qAiLyRkQfRLQnIjxbjDMR4XNgZnzfDDMJJed/LDx+/M1LAHIYOdh/szMu1UA8ESVBSARuSGmtGuyCBzVFuoFo9kNAFdmNaYiAomByIGUsEdmPuSycCGhdNriwNqXodw8ABFBffN9Zd1qn9eSWyOmaRsVEZQIYP5vuAEgItUaZ/MAcr3XwrxpAKXeNZ0u+V0j4ukcqOl9iYPa3BEAUG/jVrXKMAeQDipcB7FlWl0L75IxBEALCG1hq/A9nQNFeYAI4AyYScoFgKxUnuWFKwA1SbkDUIJwV8xlcrrkRdne0JKtN6k1u03FXMvi2kItNmr/0ewGgExaD/s3EYHEQFzq70lBSzYPEkJrfXTxN7S5u0Z7/VS2cyy30dEl+Ix9yNIMQFZqIBIAYymn0+QrXm6Me8XUm6RL55lGYKkzPfMDQA9rlnMiApZs9tj6BV6fG0CJal3uAAAAAElFTkSuQmCC" /></a>
+    <a class="imgbtn" id="logoutbtn" href="logout.php"><img src="img/log-out.png" /></a>
   </div>
   <div class="top">
     <div class="row">
