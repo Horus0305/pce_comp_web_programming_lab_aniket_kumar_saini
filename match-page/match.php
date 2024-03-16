@@ -5,7 +5,15 @@ include "../includes/base.php"
     <div class="content">
       <div class="heading">MATCHES</div>
       <div class="matches">
-      <?php
+<?php
+$matchgender='';
+session_start();
+if($_SESSION['gender']=='male'){
+  $matchgender = 'female';
+}
+else{
+  $matchgender ='male';
+}
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -20,7 +28,7 @@ try {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM male";
+    $sql = "SELECT * FROM $matchgender";
     $result = $conn->query($sql);
 
     if ($result === false) {

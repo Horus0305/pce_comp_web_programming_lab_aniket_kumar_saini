@@ -28,7 +28,7 @@
           <img src="../img/notification.svg" alt="" id="modalactive" onclick="opcl()"/>
       </div>
       <div class="profile">
-        <a href="../profilepage/profile.html">
+        <a href="../profilepage/profile.php">
           <img class="profileimg" src="../img/profile.jpg" alt="profile-img" />
         </a>
       </div>
