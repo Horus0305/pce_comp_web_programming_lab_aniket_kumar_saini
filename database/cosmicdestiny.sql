@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 10, 2024 at 02:01 PM
+-- Host: 127.0.0.1
+-- Generation Time: Mar 16, 2024 at 02:24 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,6 +36,7 @@ CREATE TABLE `female` (
   `gender` text NOT NULL,
   `number` bigint(20) DEFAULT NULL,
   `city` text DEFAULT NULL,
+  `work` text DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `pob` text DEFAULT NULL,
   `tob` time DEFAULT NULL,
@@ -45,11 +46,19 @@ CREATE TABLE `female` (
   `weight` float DEFAULT NULL,
   `bmi` float DEFAULT NULL,
   `sign` text DEFAULT NULL,
+  `compatibility` float DEFAULT NULL,
   `quote` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `photocontent` longblob DEFAULT NULL,
   `phototype` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `female`
+--
+
+INSERT INTO `female` (`id`, `name`, `email`, `pass`, `age`, `gender`, `number`, `city`, `work`, `dob`, `pob`, `tob`, `latitude`, `longitude`, `height`, `weight`, `bmi`, `sign`, `compatibility`, `quote`, `description`, `photocontent`, `phototype`) VALUES
+(2, 'Ananya Gupta', 'a@g.com', 'a753c776ff3ed4fefa2af948af87448910153281', 19, 'female', 1234567891, 'kalyan', 'College Student', '2005-03-10', 'Kalyan', '19:33:00', 19.2716, 73.2359, 165, 55, 20.202, 'Pisces', NULL, 'If it is to be it is upto me', 'Hi, I am Ananya', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -78,6 +87,7 @@ CREATE TABLE `male` (
   `gender` text NOT NULL,
   `number` bigint(20) DEFAULT NULL,
   `city` text DEFAULT NULL,
+  `work` text NOT NULL,
   `dob` date DEFAULT NULL,
   `pob` text DEFAULT NULL,
   `tob` time DEFAULT NULL,
@@ -87,6 +97,7 @@ CREATE TABLE `male` (
   `weight` float DEFAULT NULL,
   `bmi` float DEFAULT NULL,
   `sign` text DEFAULT NULL,
+  `compatibility` float NOT NULL,
   `quote` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `photocontent` longblob DEFAULT NULL,
@@ -97,8 +108,8 @@ CREATE TABLE `male` (
 -- Dumping data for table `male`
 --
 
-INSERT INTO `male` (`id`, `name`, `email`, `pass`, `age`, `gender`, `number`, `city`, `dob`, `pob`, `tob`, `latitude`, `longitude`, `height`, `weight`, `bmi`, `sign`, `quote`, `description`, `photocontent`, `phototype`) VALUES
-(1, 'a s', 'a@s.com', '211b8b86c4ed2c192aa9fa105e656d1facba10ab', 19, 'male', 1234567891, 'kalyan', '2005-03-03', 'Kalyan', '21:26:00', NULL, NULL, 96, 69, 74.8698, NULL, 'If it is to be it is upto ma', 'If it is to be it is upto ma', 0x53637265656e73686f742066726f6d20323032342d30332d30392031342d30342d35392e706e67, NULL);
+INSERT INTO `male` (`id`, `name`, `email`, `pass`, `age`, `gender`, `number`, `city`, `work`, `dob`, `pob`, `tob`, `latitude`, `longitude`, `height`, `weight`, `bmi`, `sign`, `compatibility`, `quote`, `description`, `photocontent`, `phototype`) VALUES
+(2, 'Arjun  Patel', 'a@p.com', 'a753c776ff3ed4fefa2af948af87448910153281', 19, 'male', 1234567890, 'Kalyan', 'College Student', '2005-03-03', 'Kalyan', '15:13:00', 19.2716, 73.2359, 178, 69, 21.7776, 'Pisces', 0, 'If it is to be it is upto me', 'Hi ! I am Arjun', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -147,7 +158,7 @@ ALTER TABLE `male`
 -- AUTO_INCREMENT for table `female`
 --
 ALTER TABLE `female`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `liketable`
@@ -159,7 +170,7 @@ ALTER TABLE `liketable`
 -- AUTO_INCREMENT for table `male`
 --
 ALTER TABLE `male`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
