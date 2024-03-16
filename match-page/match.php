@@ -52,7 +52,7 @@ try {
                     <p id="age">Age : '.$row["age"].'</p>
                     <p id="sunsign">SunSign : '.$row["sign"].'</p>
                     <p id="city">City : '.$row["city"].'</p>
-                    <p id="work">Student</p>
+                    <p id="work">'.$row["work"].'</p>
                     <p id="chances">Compatibility : 97%</p>
                   </div>
                   <div class="basic2">

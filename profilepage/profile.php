@@ -115,7 +115,6 @@ $conn->close();
                 ?>
               </div>
             </div>
-            <hr />
             <div class="row">
               <div class="col-md-3">
                 <h5>Age</h5>
@@ -136,7 +135,6 @@ $conn->close();
                 ?>
               </div>
             </div>
-            <hr />
             <div class="row">
               <div class="col-md-3">
                 <h5>Email</h5>
@@ -166,6 +164,16 @@ $conn->close();
               <div class="col-md-9 text-secondary">
                 <?php
                 echo $row["pob"];
+                ?>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h5>Occupation</h5>
+              </div>
+              <div class="col-md-9 text-secondary">
+                <?php
+                echo $row["work"];
                 ?>
               </div>
             </div>
@@ -210,7 +218,6 @@ $conn->close();
                                                     echo $row["pob"];
                                                     ?></div>
             </div>
-            <hr />
             <div class="row">
               <div class="col-md-3">
                 <h5>Date of Birth</h5>
@@ -221,7 +228,6 @@ $conn->close();
                 ?>
               </div>
             </div>
-            <hr />
             <div class="row">
               <div class="col-md-3">
                 <h5>Time of Birth</h5>
@@ -232,7 +238,6 @@ $conn->close();
                 ?>
               </div>
             </div>
-            <hr />
             <div class="row">
               <div class="col-md-3">
                 <h5>Sun Sign</h5>
@@ -244,6 +249,7 @@ $conn->close();
               </div>
             </div>
             <hr />
+
 
           </div>
         </div>
@@ -289,6 +295,8 @@ $conn->close();
         <label for="city"><b>City:</b></label>
         <input type="text" id="city" name="city" value="<?php echo $row["city"]; ?>"/><br />
 
+        <label for="city"><b>Occupation:</b></label>
+        <input type="text" id="occupation" name="occupation" value="<?php echo $row["work"]; ?>"/><br />
 
         <label for="weight"><b>Weight:</b></label>
         <input type="number" id="weight" name="weight" value="<?php echo $row["weight"]; ?>" required /><br />
@@ -373,10 +381,11 @@ $conn->close();
     const validatePhoneNumber = (number) => /^\d{10}$/.test(number);
     const validatePlaceOfBirth = (placeOfBirth) => /^[a-zA-Z\s]+$/.test(placeOfBirth);
     const validateCity = (city) => /^[a-zA-Z\s]+$/.test(placeOfBirth);
+    const validateOccupation = (occupation) => /^[a-zA-Z\s]+$/.test(occupation);
 
 
     const form = document.getElementById('modalForm');
-    const inputs = ['fullname', 'tob', 'dob', 'pob', 'weight', 'height', 'number'].map(id => document.getElementById(id));
+    const inputs = ['fullname', 'tob', 'dob', 'pob', 'weight', 'height', 'number', 'occupation'].map(id => document.getElementById(id));
 
     form.addEventListener('submit', (event) => {
       inputs.forEach(input => {
@@ -439,6 +448,12 @@ $conn->close();
         }else if (input.id === 'city') {
           if (!validatePlaceOfBirth(input.value)) {
             input.setCustomValidity('City should only contain characaters');
+          } else {
+            input.setCustomValidity('');
+          }
+        }else if (input.id === 'occupation') {
+          if (!validateOccupation(input.value)) {
+            input.setCustomValidity('Occupation should only contain characaters');
           } else {
             input.setCustomValidity('');
           }

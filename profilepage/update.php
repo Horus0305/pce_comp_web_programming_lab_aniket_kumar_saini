@@ -84,6 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newage = ageCalculator($newdob);
     $passw = $_POST['edpass'];
     $newcity = $_POST['city'];
+    $newwork = $_POST['occupation'];
 
 
     // Calculate new BMI
@@ -103,7 +104,7 @@ else{
     // Check if password matches session password
     if (sha1($passw) == $_SESSION['pass']) {
         // Update user information in the database
-        $sql = "UPDATE $gender SET weight='$newweight', city = '$newcity', dob='$newdob', pob='$newpob', tob='$newtob', age='$newage', height='$newheight', photocontent='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription',latitude='$lat',longitude='$long' WHERE id=$id";
+        $sql = "UPDATE $gender SET weight='$newweight', work='$newwork',city = '$newcity', dob='$newdob', pob='$newpob', tob='$newtob', age='$newage', height='$newheight', photocontent='$newphoto', number='$newnum', bmi='$newbmi', quote='$newquote', description='$newdescription',latitude='$lat',longitude='$long' WHERE id=$id";
 
         // Execute the update query
         if ($conn->query($sql) === TRUE) {
