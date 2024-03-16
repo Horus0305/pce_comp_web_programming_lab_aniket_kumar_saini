@@ -1,18 +1,25 @@
 <?php
 session_start();
-require("../includes/database_connect.php");
-$_SESSION['gender'] = $gender;
-$_SESSION['id'] = $id;
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cosmicdestiny";
 
-if (!isset($_SESSION['$gender']) || !isset($_SESSION['$id'])) {
-  die("Missing session variables");
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
 
+$gender = $_SESSION['gender'];
+$id = $_SESSION['id'];
 
-$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
-$stmt->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$sql = "SELECT * FROM $gender WHERE id='$id'";
+
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+
 
 $v1 = "";
 $v2 = "";
@@ -35,7 +42,7 @@ if ($row['tob'] != NULL) {
   $v5 = "readonly='readonly' style='background-color: rgb(121, 125, 136)'";
 }
 session_commit();
-$db = null;
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +60,9 @@ $db = null;
 <body>
   <div class="header">
     <a class="imgbtn" id="backbtn" href="">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAATlJREFUaEPt2NENwjAMBFB7E9gENoFNYBJgEhiFTQxBqoSqNnFsN71K4bM04Z4diSRMG//wxvNTB6zdwd6B3gFnBfoSGhdQRHbM/HYWVj08tAMiciCiJxFdmfmiTuF4MQzwF36I0wQRApgIPyD2Sy8nNyAT/sjML8fqUA11AdYOn4RmAEJ4MwAlvAmAFL4agBa+CoAYXg1ADa8CIIcvAtDDZwGZ8Kp/yOiX+Ls7nJpz8iFa+F+lKwEnIrpFV9EzXxUg/ZCIQCGqARlEOm09Wh1YSl0rbuZmOgGDKALQO6ECICPUAFREFQARUQ1AQ5gASAgzAAXhAiAg3IACIt0NLXpPGgKYQZyZ+V7aCni/DwOMEE3CF09klups+nrdAvaOCV1C3jCW8R1gqVrkmN6ByGpa5uodsFQtcswHw7mlMdLGDtIAAAAASUVORK5CYII=" /></a>
+      <img src="img/back-btn.png" /></a>
     <p id="heading">My Profile</p>
-    <a class="imgbtn" id="logoutbtn" href="logout.php"><img src=":image/png;base64,+UwD47whGBF4qAiLyRkQfRLQnIjxbjDMR4XNgZnzfDDMJJed/LDx+/M1LAHIYOdh/szMu1UA8ESVBSARuSGmtGuyCBzVFuoFo9kNAFdmNaYiAomByIGUsEdmPuSycCGhdNriwNqXodw8ABFBffN9Zd1qn9eSWyOmaRsVEZQIYP5vuAEgItUaZ/MAcr3XwrxpAKXeNZ0u+V0j4ukcqOl9iYPa3BEAUG/jVrXKMAeQDipcB7FlWl0L75IxBEALCG1hq/A9nQNFeYAI4AyYScoFgKxUnuWFKwA1SbkDUIJwV8xlcrrkRdne0JKtN6k1u03FXMvi2kItNmr/0ewGgExaD/s3EYHEQFzq70lBSzYPEkJrfXTxN7S5u0Z7/VS2cyy30dEl+Ix9yNIMQFZqIBIAYymn0+QrXm6Me8XUm6RL55lGYKkzPfMDQA9rlnMiApZs9tj6BV6fG0CJal3uAAAAAElFTkSuQmCC" /></a>
+    <a class="imgbtn" id="logoutbtn" href="logout.php"><img src="img/log-out.png" /></a>
   </div>
   <div class="top">
     <div class="row">
