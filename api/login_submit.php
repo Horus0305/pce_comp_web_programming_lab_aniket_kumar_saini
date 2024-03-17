@@ -1,55 +1,54 @@
 <?php
 session_start();
-require("../includes/database_connect.php");
+require("../includes/database_connect.php"); // Assuming this file includes your database connection
+
 $email = $_POST['email'];
-$pass = sha1($_POST['password']);
+$pass = sha1($_POST['password']); // Note: SHA-1 is not recommended for password hashing due to security vulnerabilities. Consider using more secure methods like bcrypt.
 
-$gender='';
+$gender = '';
 
-function checkmale($email, $pass,$conn){
-    $sql = "SELECT * FROM male WHERE email='$email' AND pass='$pass'";
-    $result = mysqli_query($conn, $sql);
-    if ($result && mysqli_num_rows($result) > 0) {
-        $gender='male';
-        $response = array("success" => true, "message" => "Login successful!");
-        echo '<script>alert("'.$response["message"].'");window.location.href = "../profilepage/profile.php";</script>';
-        return $result;
+function checkMale($email, $pass, $conn, &$gender) {
+    $sql = "SELECT * FROM male WHERE email = :email AND pass = :pass";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':pass', $pass);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $gender = 'male';
+        return $row;
     }
-    
+    return false;
 }
 
-function checkfemale($email, $pass,$conn){
-    $sql = "SELECT * FROM female WHERE email='$email' AND pass='$pass'";
-    $result = mysqli_query($conn, $sql);
-    if ($result && mysqli_num_rows($result) > 0) {
-        $gender='female';
-        $response = array("success" => true, "message" => "Login successful!");
-        echo '<script>alert("'.$response["message"].'");window.location.href = "../profilepage/profile.php";</script>';
-        return $result;
+function checkFemale($email, $pass, $conn, &$gender) {
+    $sql = "SELECT * FROM female WHERE email = :email AND pass = :pass";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':pass', $pass);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $gender = 'female';
+        return $row;
     }
+    return false;
 }
 
-$result = checkfemale($email, $pass, $conn);
-if (!$result) {
-    $result = checkmale($email, $pass, $conn);
-}
-else{
-    $response = array("success" => false, "message" => "Login M failed! Invalid email or password.");
-    echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/login.html";</script>';
+$row = checkFemale($email, $pass, $conn, $gender);
+if (!$row) {
+    $row = checkMale($email, $pass, $conn, $gender);
 }
 
-if ($result) {
-    $row = mysqli_fetch_assoc($result);
-    $_SESSION['id'] = $row['id'];
-    $_SESSION['gender'] = $row['gender'];
-    // $_SESSION['email'] = $row['email'];
-    $_SESSION['pass'] = $row['pass'];
-    
+if ($row) {
+    $_SESSION['id'] = $row['id']; // Assuming there's an 'id' column in your user tables
+    $_SESSION['gender'] = $gender;
+    $_SESSION['pass'] = $row['pass']; // This might not be necessary to store in the session
+    $response = array("success" => true, "message" => "Login successful!");
+    echo '<script>alert("' . $response["message"] . '");window.location.href = "../profilepage/profile.php";</script>';
+    exit; // Add exit after redirecting to prevent further execution
 } else {
-    $response = array("success" => false, "message" => "User does not exist!");
-    echo '<script>alert("'.$response["message"].'");window.location.href = "../landingpage/login.html";</script>';
-    return;
+    $response = array("success" => false, "message" => "Incorrect Details!");
+    echo '<script>alert("' . $response["message"] . '");window.location.href = "../landingpage/login.html";</script>';
+    exit; // Add exit after redirecting to prevent further execution
 }
-session_commit();
-mysqli_close($conn);
-?>

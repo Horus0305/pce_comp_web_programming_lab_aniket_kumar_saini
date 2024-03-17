@@ -1,8 +1,6 @@
 <?php
-$conn = mysqli_connect("127.0.0.1", "root","", "cosmicdestiny");
-
-if (mysqli_connect_errno()) {
-    // Throw error message based on ajax or not
-    echo "Failed to connect to Database! Please contact the admin.";
-    return;
-}
+   $db = new PDO('sqlite:../database/baba.db');
+   $db->exec("PRAGMA foreign_keys = ON;");
+   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   $conn = $db;
+?>
