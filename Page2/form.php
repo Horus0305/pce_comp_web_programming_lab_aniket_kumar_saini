@@ -4,7 +4,7 @@
     <section class="container">
         <header>Profile Completion</header>
         <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-        <form class="form" action="page2.php" method="post">
+        <form class="form" action="#" method="post">
             <div class="input-box">
                 <label>Full Name <span id="name_error" class="error">*Full name can only contain letters and
                         spaces</span></label>
@@ -60,3 +60,16 @@
 
     </section>
 </div>
+
+<?php 
+error_reporting(0);
+
+session_start();
+$name = $_POST["full_name"];
+
+if($name === "smith"){
+    header("Location: D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/chatPage/chat.php");
+}
+
+
+?>
