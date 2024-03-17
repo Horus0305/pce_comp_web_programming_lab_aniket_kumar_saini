@@ -44,6 +44,8 @@ if ($row) {
     $_SESSION['id'] = $row['id']; // Assuming there's an 'id' column in your user tables
     $_SESSION['gender'] = $gender;
     $_SESSION['pass'] = $row['pass']; // This might not be necessary to store in the session
+    $_SESSION['age'] = $row['age'];
+    $_SESSION['sign'] = $row['sign'];
     $response = array("success" => true, "message" => "Login successful!");
     echo '<script>alert("' . $response["message"] . '");window.location.href = "../profilepage/profile.php";</script>';
     exit; // Add exit after redirecting to prevent further execution
