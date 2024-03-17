@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,106 +11,14 @@
   <link rel="stylesheet" href="css/proCom.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-
 <body>
   <div class="main-con">
-    <div class="side-bar">
-      <div class="logo-con">
-        <img class="logo" src="images/logo.png" alt="logo" />
-      </div>
-
-      <div class="elements">
-        <a class="anchor ele" href="#"><i class="fi fi-rr-home"></i></a>
-        <a class="anchor ele" href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/chatPage/chat.php"><i
-            class="fi fi-rr-comment-alt ele"></i></a>
-        <a class="anchor ele" href="#"><i class="fi fi-rr-heart ele"></i></a>
-      </div>
-
-      <div class="profile-con">
-        <a class="anchor ele" href="#"><i class="fi fi-rr-bell ele noti"></i></a>
-        <a class="anchor" href="#"><img class="profile_img" src="images/profile.jpg" alt="profile-img" /></a>
-      </div>
-    </div>
 
     <div onclick="show_burger()" class="hamburger">
       <i class="fi fi-rr-menu-burger menu"></i>
     </div>
 
     <div class="all-container">
-
-      <div id="profile_completion_popup" class="profile_completion_popup">
-        <section class="container">
-          <header>Profile Completion</header>
-          <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-          <div class="form">
-            <div class="input-box">
-              <label>Full Name <span id="name_error" class="error">*Full name can only contain letters and
-                  spaces</span></label>
-              <input required="" id="fullName" name="full_name" placeholder="Enter full name" type="text">
-            </div>
-            <div class="column">
-              <div class="input-box">
-                <label>Phone Number <span id="phone_error" class="error">*Phone number must be 10 digits</span></label>
-                <input required="" id="phoneNumber" name="number" placeholder="Enter phone number" type="telephone">
-              </div>
-              <div class="input-box">
-                <label>Birth Date</label>
-                <input id="birthDate" required="" name="birth_date" placeholder="Enter birth date" type="date">
-              </div>
-            </div>
-            <div class="gender-box">
-              <label>Gender</label>
-              <div class="gender-option">
-                <div class="gender">
-                  <input checked="" name="gender" id="check-male" type="radio">
-                  <label for="check-male">Male</label>
-                </div>
-                <div class="gender">
-                  <input name="gender" id="check-female" type="radio">
-                  <label for="check-female">Female</label>
-                </div>
-                <div class="gender">
-                  <input name="gender" id="check-other" type="radio">
-                  <label for="check-other">Prefer not to say</label>
-                </div>
-              </div>
-            </div>
-            <div class="input-box address">
-              <label>Address</label>
-              <input id="address" required="" placeholder="Enter street address" type="text">
-              <div class="column">
-                <div class="select-box">
-                  <select>
-                    <option hidden="">Country</option>
-                    <option>India</option>
-                    <option>USA</option>
-                    <option>UK</option>
-                    <option>Germany</option>
-                    <option>Japan</option>
-                  </select>
-                </div>
-                <input id="city" required="" name="city" placeholder="Enter your city" type="text">
-              </div>
-            </div>
-            <button onclick="profile_sub()">Submit</button>
-          </div>
-        </section>
-      </div>
-
-      <div id="partner_requirements_con" class="partner_requirements_con">
-        <section class="container">
-          <header>Hobbies and Requirements</header>
-          <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-          <div class="form">
-            <label class="hob">Hobbies</label>
-            <textarea name="hobbies" id="hobbies" cols="50" rows="5"></textarea>
-            <br>
-            <label class="hob">Requirements</label>
-            <textarea name="req" id="req" cols="50" rows="5"></textarea>
-            <button onclick="hob_sub()">Submit</button>
-          </div>
-        </section>
-      </div>
 
       <div id="profile_picture_con" class="profile_picture_con">
         <section class="container">
@@ -257,25 +166,26 @@
             <div id="card1">
               <h2 class="title">Matches based on Birth-Chart</h2>
               <p class="para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                deleniti voluptatum non accusamus, sint repudiandae officia
-                tempore quam expedita sit!
+                "Matches based on Birth-Chart" typically refers to astrological compatibility between two individuals
+                based on their birth charts, also known as natal charts. A birth chart is a diagrammatic representation
+                of the positions of celestial bodies at the time of an individual's birth. It's primarily based on the
+                individual's birth date, time, and place.
               </p>
             </div>
             <div id="card2" class="hidden">
               <h2 class="title">Location recommendation for dates</h2>
               <p class="para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                deleniti voluptatum non accusamus, sint repudiandae officia
-                tempore quam expedita sit!
+                Choosing a location for a date depends on various factors such as interests, preferences, budget, and
+                the nature of the relationship. Here are some location recommendations for dates across different
+                categories:
               </p>
             </div>
             <div id="card3" class="hidden">
               <h2 class="title">Daily Horoscope</h2>
               <p class="para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                deleniti voluptatum non accusamus, sint repudiandae officia
-                tempore quam expedita sit!
+                We provide a general daily horoscope based on astrological principles. However, it's important to
+                remember that horoscopes are for entertainment purposes only and should not be taken as serious
+                predictions. Here's a general daily horoscope for each zodiac sign:
               </p>
             </div>
           </div>

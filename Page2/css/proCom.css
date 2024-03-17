@@ -1,7 +1,6 @@
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 .profile_completion_popup{
-    display: none;
     position: fixed;
     top: 70px;
     left: 415px;

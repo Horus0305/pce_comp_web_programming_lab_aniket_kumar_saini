@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,37 +41,39 @@
                     $name = "Happy";
                     echo '<li id="name">' . $name . '</li>';
                     ?>
-                    <i class="fi fi-rr-menu-burger menu"></i>
                 </div>
 
-                <?php
+                <div class="main-message-con" id="main-message-con">
 
-                try {
+                    <?php
 
-                    $pdo = new PDO("sqlite:celestial_connections.db");
+                    try {
 
-                    $query2 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
-                    $query2->bindValue(':username', $name, PDO::PARAM_STR);
-                    $query2->execute();
-                    $messages = $query2->fetchAll(PDO::FETCH_ASSOC);
+                        $pdo = new PDO("sqlite:celestial_connections.db");
 
-                } catch (PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
+                        $query2 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
+                        $query2->bindValue(':username', $name, PDO::PARAM_STR);
+                        $query2->execute();
+                        $messages = $query2->fetchAll(PDO::FETCH_ASSOC);
 
-
-                if ($messages) {
-                    foreach ($messages as $message) {
-                        echo '<div class="message">';
-                        echo '<p class="main_message">' . htmlspecialchars($message['message']) . '</p>';
-                        echo '<label class="time">' . htmlspecialchars($message['date']) . '</label>';
-                        echo '</div>';
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
                     }
-                } else {
-                    //no
-                }
 
-                ?>
+
+                    if ($messages) {
+                        foreach ($messages as $message) {
+                            echo '<div class="message" id="message">';
+                            echo '<p class="main_message">' . htmlspecialchars($message['message']) . '</p>';
+                            echo '<label class="time">' . htmlspecialchars($message['date']) . '</label>';
+                            echo '</div>';
+                        }
+                    } else {
+                        //no
+                    }
+                    ?>
+
+                </div>
 
                 <div class="emojis-con" id="emojis">
                     <span onclick="emo(this.id)" id="e1" class="emojis">&#128525;</span>

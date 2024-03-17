@@ -3,7 +3,7 @@ $src_path = "D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kuma
 $pdo = new PDO('sqlite:' . $src_path);
 
 // Profile Picture Upload:
-$username = "ramp";
+$username = "map";
 $file = $_FILES['file'];
 $file_name = basename($file["name"]);
 $targetDir = "uploads/";

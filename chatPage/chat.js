@@ -26,6 +26,24 @@ function clock() {
     return currentTime;
 }
 
+$(document).ready(function () {
+    setInterval( function() {
+        $("#main-message-con").load(location.href + " #message");
+    }, 1000 );
+});
+
+setInterval( function() {
+    var mainMessageCon = document.getElementById('message-con');
+    mainMessageCon.scrollTop = mainMessageCon.scrollHeight;
+}, 3000 );
+
+
+
+$("#main-message-con").load(location.href + " #message", function() {
+    var mainMessageCon = document.getElementById('message-con');
+    mainMessageCon.scrollTop = mainMessageCon.scrollHeight;
+});
+
 
 function send_btn() {
     if (input.value == "") {

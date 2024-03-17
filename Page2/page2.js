@@ -27,50 +27,33 @@ function completion_status(status) {
 
         if (status == "c1" && completion.innerHTML == "0%") {
             proCompCon.style.display = "block";
+            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/profilepage/profile.php';
         }
 
-        if (status == "c2" && completion.innerHTML == "0%") {
+        if (status == "c2" && completion.innerHTML == "25%") {
             pro_pic_con.style.display = "block";
             bar.value = 50;
             c2.style.backgroundColor = "lightgreen";
             completion.innerHTML = "50%";
+            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/profilepage/profile.php';
         }
 
         if (status == "c3" && completion.innerHTML == "50%") {
             bar.value = 75;
             c3.style.backgroundColor = "lightgreen";
             completion.innerHTML = "75%";
+            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/profilepage/profile.php';
         }
 
         if (status == "c4" && completion.innerHTML == "75%") {
-            reqCompCon.style.display = "block";
+            bar.value = 100;
+            c4.style.backgroundColor = "lightgreen";
+            completion.innerHTML = "100%";
+            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/Page3/birthchart.php';
         }
     } else {
         return;
     }
-}
-
-function hob_sub() {
-    var hobbies = document.getElementById("hobbies");
-    var req = document.getElementById("req");
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'datacon.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Message send in datacon.php");
-        }
-    };
-    var data = 'hobbies=' + encodeURIComponent(hobbies.value) + '&req=' + encodeURIComponent(req.value);
-    xhr.send(data);
-
-    bar.value = 100;
-    c4.style.backgroundColor = "lightgreen";
-    completion.innerHTML = "100%";
-
-    all.style.display = "none";
-    profileCon.style.display = "none";
 }
 
 function pro_img_sub(){
@@ -94,10 +77,6 @@ function pro_img_sub(){
         }
     };
     xhr.send(formData);
-
-
-
-    
 }
 
 function profile_sub() {
@@ -116,26 +95,6 @@ function profile_sub() {
     }
 
     else {
-
-        var fullName = document.getElementById("fullName");
-        var phoneNumber = document.getElementById("phoneNumber");
-        var birthDate = document.getElementById("birthDate");
-        var address = document.getElementById("address");
-        var city = document.getElementById("city");
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'datacon.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("Message send in datacon.php");
-                console.log(xhr.responseText);
-            }
-        };
-
-        var data = 'fullName=' + encodeURIComponent(fullName.value) + '&phoneNumber=' + encodeURIComponent(phoneNumber.value) + '&birthDate=' + encodeURIComponent(birthDate.value) + '&address=' + encodeURIComponent(address.value) + '&city=' + encodeURIComponent(city.value);
-        xhr.send(data);
-
         var con = document.getElementById("profile_completion_popup"); 
         con.style.display = "none";
         bar.value = 25;
@@ -213,10 +172,8 @@ incrementProgress(0);
 function gaayab(ham) {
     if (ham === "cross") {
         var proCon = document.getElementById("profile_completion_popup");
-        var reqCon = document.getElementById("partner_requirements_con");
         var pro_pic = document.getElementById("profile_picture_con");
         proCon.style.display = "none";
-        reqCon.style.display = "none";
         pro_pic.style.display = "none";
     }
 }
