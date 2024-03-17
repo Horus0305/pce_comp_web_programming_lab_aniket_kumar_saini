@@ -49,7 +49,7 @@
 
                     try {
 
-                        $pdo = new PDO("sqlite:celestial_connections.db");
+                        $pdo = new PDO("sqlite:D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/database/baba.db");
 
                         $query2 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
                         $query2->bindValue(':username', $name, PDO::PARAM_STR);
