@@ -42,8 +42,6 @@ function getZodiacSign($date) {
     $dob = new DateTime($date);
     $month = (int)$dob->format('m');
     $day = (int)$dob->format('d');
-
-    // Zodiac sign dates
     $zodiacSigns = array(
         array("Aquarius", "01-20", "02-18"),
         array("Pisces", "02-19", "03-20"),
@@ -62,8 +60,8 @@ function getZodiacSign($date) {
     $dateStr = sprintf("%02d-%02d", $month, $day);
 
     foreach ($zodiacSigns as $sign) {
-        $start_date = DateTime::createFromFormat('m-d', $sign[1]);
-        $end_date = DateTime::createFromFormat('m-d', $sign[2]);
+        $start_date = DateTime::createFromFormat('m-d', $sign[1])->modify('-1 day');
+        $end_date = DateTime::createFromFormat('m-d', $sign[2])->modify('+1 day');
         $check_date = DateTime::createFromFormat('m-d', $dateStr);
 
         if (($check_date >= $start_date) && ($check_date <= $end_date)) {
@@ -73,6 +71,7 @@ function getZodiacSign($date) {
 
     return "Invalid date";
 }
+
 
 function getLatLongFromAddress($address) {
     $api_url = "https://geocode.maps.co/search";
@@ -99,10 +98,6 @@ function getLatLongFromAddress($address) {
     return null;
 }
 
-
-
-
-
 // Check if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -119,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passw = $_POST['edpass'];
     $newcity = $_POST['city'];
     $newwork = $_POST['occupation'];
-    $newsign = getZodiacSign($dateOfBirth);
+    $newsign = getZodiacSign($newdob);
 
 
     // Calculate new BMI
