@@ -1,5 +1,6 @@
 <?php
 include "../includes/base.php";
+require("../includes/database_connect.php");
 ?>
 <link rel="stylesheet" href="css/match.css" />
 <div class="content">
@@ -15,11 +16,6 @@ include "../includes/base.php";
     }
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '';
-    $dbname = 'cosmicdestiny';
 
     function interpretBMI($bmi)
     {
@@ -43,13 +39,8 @@ include "../includes/base.php";
     }
 
     try {
-      $conn = new mysqli($servername, $username, $password, $dbname);
-      if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-      }
 
       $currentUserAge = $_SESSION['age'];
-
 
       $compatibility = array(
         "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius"),
@@ -66,26 +57,20 @@ include "../includes/base.php";
         "Pisces" => array("Cancer", "Scorpio", "Capricorn", "Taurus")
       );
 
-
       $currentSunSign = $_SESSION['sign'];
       $compatibleSigns = isset($compatibility[$currentSunSign]) ? $compatibility[$currentSunSign] : array();
-
 
       $minAge = $currentUserAge - 5;
       $maxAge = $currentUserAge + 5;
 
-
+      // Construct SQL query
       $sql = "SELECT * FROM $matchgender WHERE sign IN ('" . implode("', '", $compatibleSigns) . "') AND age BETWEEN $minAge AND $maxAge";
 
       $result = $conn->query($sql);
 
-      if ($result === false) {
-        throw new Exception("Query failed: " . $conn->error);
-      }
-
-      if ($result->num_rows > 0) {
+      if ($result !== false) {
         // Output data of each row
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
           echo '
             <div class="match-card">
               <div class="image">
@@ -125,8 +110,8 @@ include "../includes/base.php";
         echo "0 results";
       }
 
-      $conn->close();
-    } catch (Exception $e) {
+      $conn = null; // Close the connection
+    } catch (PDOException $e) {
       echo 'Error: ' . $e->getMessage();
     }
     ?>
