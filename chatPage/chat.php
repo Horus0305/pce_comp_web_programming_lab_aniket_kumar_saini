@@ -38,9 +38,8 @@
                 <div class="nav">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
                     <?php
-                    session_start();
-                    $pro_name = $name;
-                    echo '<li id="name">' . $pro_name . '</li>';
+                    $name = "Happy";
+                    echo '<li id="name">' . $name . '</li>';
                     ?>
                 </div>
 
