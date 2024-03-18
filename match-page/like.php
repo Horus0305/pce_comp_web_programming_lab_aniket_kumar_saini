@@ -1,6 +1,12 @@
 <?php
 require("../includes/database_connect.php");
 session_start();
+$matchgender = '';
+if ($_SESSION['gender'] == 'male') {
+  $matchgender = 'female';
+} else {
+  $matchgender = 'male';
+}
 
 $s_id = $_POST['likesender'];
 $r_id = $_POST['likereceiver'];
@@ -28,12 +34,27 @@ if ($reciprocalLikeExists) {
     echo "Matched!";
 }
 else{
-    $stmt = $conn->prepare("INSERT INTO liketable (s_id, r_id) VALUES (:s_id, :r_id)");
+    $stmt = $conn->prepare("SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = :s_id AND r_id = :r_id) OR (s_id = :r_id AND r_id = :s_id)");
     $stmt->bindParam(':s_id', $s_id);
     $stmt->bindParam(':r_id', $r_id);
     $stmt->execute();
-    echo "Like added successfully";
+    $like_count = $stmt->fetch(PDO::FETCH_ASSOC)['like_count']; 
+
+    if ($like_count > 0) {
+        
+        $delete_stmt = $conn->prepare("DELETE FROM liketable WHERE (s_id = :s_id AND r_id = :r_id) OR (s_id = :r_id AND r_id = :s_id)");
+        $delete_stmt->bindParam(':s_id', $s_id);
+        $delete_stmt->bindParam(':r_id', $r_id);
+        $delete_stmt->execute();
+        echo "Like removed successfully";
+    } else {
+        // Insert a new like record
+        $insert_sql = "INSERT INTO liketable (s_id, r_id) VALUES (:s_id, :r_id)";
+        $insert_stmt = $conn->prepare($insert_sql);
+        $insert_stmt->bindParam(':s_id', $s_id);
+        $insert_stmt->bindParam(':r_id', $r_id);
+        $insert_stmt->execute();
+        echo "Like added successfully";
+    }
 }
-
-
 ?>

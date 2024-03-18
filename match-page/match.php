@@ -71,6 +71,14 @@ require("../includes/database_connect.php");
       if ($result !== false) {
         // Output data of each row
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          // Check if there exists a like record for this pair of users
+          $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = {$_SESSION['id']} AND r_id = {$row['id']}) OR (s_id = {$row['id']} AND r_id = {$_SESSION['id']})";
+    $match_sql = "SELECT COUNT(*) AS match_count FROM matchtable WHERE (u1 = {$_SESSION['id']} AND u2 = {$row['id']}) OR (u1 = {$row['id']} AND u2 = {$_SESSION['id']})";
+    $like_result = $conn->query($like_sql);
+    $match_result = $conn->query($match_sql);
+    $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
+    $match_row = $match_result->fetch(PDO::FETCH_ASSOC);
+    $liked_class = ($like_row['like_count'] > 0 || $match_row['match_count'] > 0) ? ' liked' : ''; // Add 'liked' class if there's a like or match record
           echo '
             <div class="match-card">
               <div class="image">
@@ -97,11 +105,11 @@ require("../includes/database_connect.php");
               <div class="decision">
                 <p>Send a Like !!</p>
                 <div class="like-button" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
-                  <div class="heart-bg">
-                    <div class="heart-icon"></div>
-                  </div>
+                    <div class="heart-bg">
+                        <div class="heart-icon' . $liked_class . '"></div>
+                    </div>
                 </div>
-              </div>
+            </div>
             </div>
             ';
         }
