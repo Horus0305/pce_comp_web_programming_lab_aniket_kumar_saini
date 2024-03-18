@@ -86,7 +86,6 @@ require("../includes/database_connect.php");
                     <p id="city">City : ' . $row["city"] . '</p>
                     <p id="work">Physique :' . interpretBMI($row['bmi']) . '</p>
                     <p id="work">' . $row["work"] . '</p>
-                    <p id="chances">Compatibility : 97%</p>
                   </div>
                   <div class="basic2">
                     <h3>More about me</h3>
@@ -97,7 +96,7 @@ require("../includes/database_connect.php");
               </div>
               <div class="decision">
                 <p>Send a Like !!</p>
-                <div class="like-button">
+                <div class="like-button" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
                   <div class="heart-bg">
                     <div class="heart-icon"></div>
                   </div>
@@ -118,3 +117,22 @@ require("../includes/database_connect.php");
   </div>
 </div>
 <script src="js/match.js"></script>
+<script>
+  function sendLike(likerUserId, likedUserId) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "like.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // Handle success response
+          console.log(xhr.responseText);
+        } else {
+          // Handle error response
+          console.error('Request failed: ' + xhr.status);
+        }
+      }
+    };
+    xhr.send("likesender=" + likerUserId + "&likereceiver=" + likedUserId);
+  }
+</script>
