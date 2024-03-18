@@ -110,6 +110,30 @@ try {
         $newwork = $_POST['occupation'];
         $newsign = getZodiacSign($newdob);
 
+        // Validate password
+        if (empty($passw)) {
+            echo '<script>alert("Password cannot be empty");window.location.href = "../profilepage/profile.php";</script>';
+            exit;
+        }
+
+        // Validate date of birth
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $newdob)) {
+            echo '<script>alert("Invalid date of birth format");window.location.href = "../profilepage/profile.php";</script>';
+            exit;
+        }
+
+        // Validate height and weight
+        if (!is_numeric($newheight) || !is_numeric($newweight) || $newheight <= 0 || $newweight <= 0) {
+            echo '<script>alert("Invalid height or weight");window.location.href = "../profilepage/profile.php";</script>';
+            exit;
+        }
+
+        // Validate phone number
+        if (!preg_match('/^\d{10}$/', $newnum)) {
+            echo '<script>alert("Invalid phone number");window.location.href = "../profilepage/profile.php";</script>';
+            exit;
+        }
+
         // Calculate new BMI
         $newbmi = calculateBMI($newweight, $newheight);
 
