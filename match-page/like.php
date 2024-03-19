@@ -2,7 +2,8 @@
 require("../includes/database_connect.php");
 session_start();
 $matchgender = '';
-if ($_SESSION['gender'] == 'male') {
+$gender = $_SESSION['gender'];
+if ($gender == 'male') {
   $matchgender = 'female';
 } else {
   $matchgender = 'male';
@@ -26,7 +27,7 @@ if ($reciprocalLikeExists) {
     $stmtDelete->execute();
 
     // Add a new entry to matchtable with matched set to 1
-    $stmtInsert = $conn->prepare("INSERT INTO matchtable (u1, u2, matched) VALUES (:s_id, :r_id, 1)");
+    $stmtInsert = $conn->prepare("INSERT INTO matchtable ($gender, $matchgender, matched) VALUES (:s_id, :r_id, 1)");
     $stmtInsert->bindParam(':s_id', $s_id);
     $stmtInsert->bindParam(':r_id', $r_id);
     $stmtInsert->execute();

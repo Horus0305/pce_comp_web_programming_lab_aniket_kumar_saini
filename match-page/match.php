@@ -7,9 +7,10 @@ require("../includes/database_connect.php");
   <div class="heading">MATCHES</div>
   <div class="matches">
     <?php
-    $matchgender = '';
     session_start();
-    if ($_SESSION['gender'] == 'male') {
+    $matchgender = '';
+    $gender = $_SESSION['gender'];
+    if ($gender == 'male') {
       $matchgender = 'female';
     } else {
       $matchgender = 'male';
@@ -72,8 +73,8 @@ require("../includes/database_connect.php");
         // Output data of each row
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
           // Check if there exists a like record for this pair of users
-          $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = {$_SESSION['id']} AND r_id = {$row['id']}) OR (s_id = {$row['id']} AND r_id = {$_SESSION['id']})";
-    $match_sql = "SELECT COUNT(*) AS match_count FROM matchtable WHERE (u1 = {$_SESSION['id']} AND u2 = {$row['id']}) OR (u1 = {$row['id']} AND u2 = {$_SESSION['id']})";
+          $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = {$_SESSION['id']} AND r_id = {$row['id']})";
+    $match_sql = "SELECT COUNT(*) AS match_count FROM matchtable WHERE ($gender = {$_SESSION['id']} AND $matchgender = {$row['id']})";
     $like_result = $conn->query($like_sql);
     $match_result = $conn->query($match_sql);
     $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
