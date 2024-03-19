@@ -1,6 +1,6 @@
 <?php
 // error_reporting(0);
-$db_path = " ../database/baba.db";
+$db_path = "../database/baba.db";
 $pdo = new PDO("sqlite:" .$db_path);
 
 $mess = $_POST["message"];

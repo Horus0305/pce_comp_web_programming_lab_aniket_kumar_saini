@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section class="container">
         <header>Profile Completion</header>
         <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-        <form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form class="form" action="" method="post">
             <div class="input-box">
                 <label>Full Name <span id="name_error" class="error"><?php echo $nameError; ?></span></label>
                 <input required="" id="fullName" name="full_name" placeholder="Enter full name" type="text">
