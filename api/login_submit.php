@@ -3,6 +3,10 @@ session_start();
 require("../includes/database_connect.php"); // Assuming this file includes your database connection
 
 $email = $_POST['email'];
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>alert('Invalid email format');window.location.href = '../landingpage/login.html';</script>";
+    exit;
+}
 $pass = sha1($_POST['password']); // Note: SHA-1 is not recommended for password hashing due to security vulnerabilities. Consider using more secure methods like bcrypt.
 
 $gender = '';
