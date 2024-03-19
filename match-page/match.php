@@ -10,11 +10,8 @@ require("../includes/database_connect.php");
     session_start();
     $matchgender = '';
     $gender = $_SESSION['gender'];
-    if ($gender == 'male') {
-      $matchgender = 'female';
-    } else {
-      $matchgender = 'male';
-    }
+    $id = $_SESSION['id'];
+    $matchgender = ($gender == 'male') ? 'female' : 'male';
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -40,7 +37,53 @@ require("../includes/database_connect.php");
     }
 
     try {
+      $ismatched_sql = "SELECT matched FROM matchtable WHERE $gender = $id";
+      $ismatched_result = $conn->query($ismatched_sql);
+      $ismatched_row = $ismatched_result->fetch(PDO::FETCH_ASSOC);
+      $isMatched = $ismatched_row;
 
+      if ($isMatched) {
+        // If matched, display the matched user's card
+        $match_sql = "SELECT * FROM $matchgender WHERE id = (
+          SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1
+        )";
+        $match_result = $conn->query($match_sql);
+        $row = $match_result->fetch(PDO::FETCH_ASSOC);
+
+        echo '
+            <div class="match-card">
+              <div class="image">
+                <img class="sign" src="img/pisces.png" alt="sign" />
+                <img class="photo" src="img/male-user.png" alt="photo" />
+              </div>
+              <div class="overview">
+                <div class="basic-info">
+                  <div class="basic1">
+                    <h1 id="name">' . $row["name"] . '</h1>
+                    <p id="age">Age : ' . $row["age"] . '</p>
+                    <p id="sunsign">SunSign : ' . $row["sign"] . '</p>
+                    <p id="city">City : ' . $row["city"] . '</p>
+                    <p id="work">Physique :' . interpretBMI($row['bmi']) . '</p>
+                    <p id="work">' . $row["work"] . '</p>
+                  </div>
+                  <div class="basic2">
+                    <h3>More about me</h3>
+                    <p>' . $row["description"] . '</p>    
+                  </div>
+                </div>
+                <div class="openline">"' . $row["quote"] . '"</div>
+              </div>
+              <div class="decision">
+                <p>Send a Like !!</p>
+                <div class="like-button" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
+                    <div class="heart-bg">
+                        <div class="heart-icon liked"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            ';
+      } else {
       $currentUserAge = $_SESSION['age'];
 
       $compatibility = array(
@@ -74,12 +117,12 @@ require("../includes/database_connect.php");
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
           // Check if there exists a like record for this pair of users
           $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = {$_SESSION['id']} AND r_id = {$row['id']})";
-    $match_sql = "SELECT COUNT(*) AS match_count FROM matchtable WHERE ($gender = {$_SESSION['id']} AND $matchgender = {$row['id']})";
-    $like_result = $conn->query($like_sql);
-    $match_result = $conn->query($match_sql);
-    $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
-    $match_row = $match_result->fetch(PDO::FETCH_ASSOC);
-    $liked_class = ($like_row['like_count'] > 0 || $match_row['match_count'] > 0) ? ' liked' : ''; // Add 'liked' class if there's a like or match record
+          $match_sql = "SELECT COUNT(*) AS match_count FROM matchtable WHERE ($gender = {$_SESSION['id']} AND $matchgender = {$row['id']})";
+          $like_result = $conn->query($like_sql);
+          $match_result = $conn->query($match_sql);
+          $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
+          $match_row = $match_result->fetch(PDO::FETCH_ASSOC);
+          $liked_class = ($like_row['like_count'] > 0 || $match_row['match_count'] > 0) ? ' liked' : ''; // Add 'liked' class if there's a like or match record
           echo '
             <div class="match-card">
               <div class="image">
@@ -106,7 +149,7 @@ require("../includes/database_connect.php");
               <div class="decision">
                 <p>Send a Like !!</p>
                 <div class="like-button" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
-                    <div class="heart-bg">
+                <div class="heart-bg">
                         <div class="heart-icon' . $liked_class . '"></div>
                     </div>
                 </div>
@@ -117,7 +160,7 @@ require("../includes/database_connect.php");
       } else {
         echo "0 results";
       }
-
+    }
       $conn = null; // Close the connection
     } catch (PDOException $e) {
       echo 'Error: ' . $e->getMessage();
@@ -136,6 +179,11 @@ require("../includes/database_connect.php");
         if (xhr.status === 200) {
           // Handle success response
           console.log(xhr.responseText);
+          // If the like was successful, update the like button style
+          var likeButton = document.getElementById('like-button-' + likedUserId);
+          if (likeButton) {
+            likeButton.classList.add('liked');
+          }
         } else {
           // Handle error response
           console.error('Request failed: ' + xhr.status);
