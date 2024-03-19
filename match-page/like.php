@@ -21,7 +21,7 @@ $reciprocalLikeExists = $stmt2->fetch();
 
 if ($reciprocalLikeExists) {
     // If both likes exist, delete both entries from liketable
-    $stmtDelete = $conn->prepare("DELETE FROM liketable WHERE (s_id = :s_id AND r_id = :r_id) OR (s_id = :r_id AND r_id = :s_id)");
+    $stmtDelete = $conn->prepare("DELETE FROM liketable WHERE s_id IN (:s_id, :r_id)");
     $stmtDelete->bindParam(':s_id', $s_id);
     $stmtDelete->bindParam(':r_id', $r_id);
     $stmtDelete->execute();
