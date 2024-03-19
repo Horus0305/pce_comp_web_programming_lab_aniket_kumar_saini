@@ -38,7 +38,7 @@
                 <div class="nav">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
                     <?php
-                    $name = "Happy";
+                    $name = ;
                     echo '<li id="name">' . $name . '</li>';
                     ?>
                 </div>
