@@ -1,20 +1,90 @@
 <?php
 include "../includes/base.php";
-?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-sqzrP8sP6mDHBbASmAkbXbZRspMz+LcN3OoW4xXV4yZ+zKWHl4G3JvHG6V1vWlwgqZCIS1a8X5EazbcTqSr7Aw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link rel="stylesheet" href="css/reportpage2.css">
-<div id="main">
-    <div id="head">Radha <img src="img\hearticon.png" alt="hearticon" id="heart-icon"> Krishna</div>
-    <div id="childcont">
+?>
+
+
+
+
         
-    <?php
-// Your curl request to the API
+   
+<?php 
+session_start();
+require("../includes/database_connect.php");
+
+// Check if session variables are set
+if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
+  die("Missing session variables");
+}
+
+$gender = $_SESSION['gender'];
+$id = $_SESSION['id'];
+
+$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Extract birth details from the database
+$time_of_birth = $row['tob'];
+$date = $row['dob'];
+$lati = $row['latitude'];
+$long = $row['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($hours, $minutes, $seconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($year, $month, $day) = explode("-", $date);
+$name = $row['name'];
+$namepart=explode(" ", $name);
+$firstname=$namepart[0];
+// API request data
+$request_data = [
+    "female" => [
+        "year" => (int)$year,
+        "month" => (int)$month,
+        "date" => (int)$day,
+        "hours" => (int)$hours,
+        "minutes" => (int)$minutes,
+        "seconds" => (int)$seconds,
+        "latitude" => (float)$lati,
+        "longitude" => (float)$long,
+        "timezone" => 5.5
+    ],
+    "male" => [
+        "year" => 1984,
+        "month" => 4,
+        "date" => 3,
+        "hours" => 9,
+        "minutes" => 15,
+        "seconds" => 31,
+        "latitude" => 16.51667,
+        "longitude" => 80.61667,
+        "timezone" => 5.5
+    ],
+    "config" => [
+        "observation_point" => "topocentric",
+        "language" => "en",
+        "ayanamsha" => "lahiri"
+    ]
+];
+
+// Convert data to JSON
+$request_json = json_encode($request_data);
+
+// API Endpoint and Headers
+$api_url = 'https://json.freeastrologyapi.com/match-making/ashtakoot-score';
+$headers = [
+    'Content-Type: application/json',
+    'x-api-key: ip1M6dWw2k3QqCJUrntXG8PIYzSH10L24LBdJ7pk'
+];
+
+// Initialize cURL session
 $curl = curl_init();
 
+// Set cURL options
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://json.freeastrologyapi.com/match-making/ashtakoot-score',
+  CURLOPT_URL => $api_url,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -22,52 +92,31 @@ curl_setopt_array($curl, array(
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{
-    "female":{
-            "year": 1984,
-			"month": 7,
-			"date": 17,
-			"hours": 11,
-			"minutes": 45,
-			"seconds": 0,
-			"latitude": 16.16667,
-			"longitude": 81.1333,
-			"timezone": 5.5
-    },
-    "male":{
-			"year": 1984,
-			"month": 4,
-			"date": 3,
-			"hours": 9,
-			"minutes": 15,
-			"seconds": 31,
-			"latitude": 16.51667,
-			"longitude": 80.61667,
-			"timezone": 5.5
-    },
-     "config": {
-        "observation_point": "topocentric",
-        "language": "en",
-        "ayanamsha": "lahiri"
-    }
-}',
-  CURLOPT_HTTPHEADER => array(
-    'Content-Type: application/json',
-    'x-api-key: ip1M6dWw2k3QqCJUrntXG8PIYzSH10L24LBdJ7pk'
-  ),
+  CURLOPT_POSTFIELDS => $request_json,
+  CURLOPT_HTTPHEADER => $headers,
 ));
 
+// Execute cURL request
 $response = curl_exec($curl);
+
+// Close cURL session
 curl_close($curl);
 
-// Decode the JSON response
+// Decode JSON response
 $data = json_decode($response, true);
 
+
 // Check if the 'output' key exists in the response
-if (isset($data['output'])) {
+if (isset($data['output'])) 
     $output = $data['output'];
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-sqzrP8sP6mDHBbASmAkbXbZRspMz+LcN3OoW4xXV4yZ+zKWHl4G3JvHG6V1vWlwgqZCIS1a8X5EazbcTqSr7Aw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<link rel="stylesheet" href="css/reportpage2.css">
+<div id="main">
+    <div id="head"><?php echo $firstname ?><img src="img\hearticon.png" alt="hearticon" id="heart-icon"> Krishna</div>
+    <div id="childcont">
 <!-- HTML for the table -->
 <table class="rwd-table">
   <tbody>
@@ -81,8 +130,8 @@ if (isset($data['output'])) {
     </tr>
     <tr>
       <td data-th="Parameter">Varna</td>
-      <td data-th="Bride"><?php echo isset($output['varna_kootam']['bride']['moon_sign']) ? $output['varna_kootam']['bride']['moon_sign'] : ''; ?></td>
-      <td data-th="Groom"><?php echo isset($output['varna_kootam']['groom']['moon_sign']) ? $output['varna_kootam']['groom']['moon_sign'] : ''; ?></td>
+      <td data-th="Bride"><?php echo isset($output['varna_kootam']['bride']['varnam_name']) ? $output['varna_kootam']['bride']['varnam_name'] : ''; ?></td>
+      <td data-th="Groom"><?php echo isset($output['varna_kootam']['groom']['varnam_name']) ? $output['varna_kootam']['groom']['varnam_name'] : ''; ?></td>
       <td data-th="Score"><?php echo isset($output['varna_kootam']['score']) ? $output['varna_kootam']['score'] : ''; ?></td>
       <td data-th="Max Score"><?php echo isset($output['varna_kootam']['out_of']) ? $output['varna_kootam']['out_of'] : ''; ?></td>
       <td data-th="Area of Life">Work</td>
@@ -154,11 +203,7 @@ if (isset($data['output'])) {
   </tbody>
 </table>
 
-<?php
-} else {
-    echo "No data found.";
-}
-?>
 
+?>
 
 
