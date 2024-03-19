@@ -1,6 +1,7 @@
 <?php
 // error_reporting(0);
-$pdo = new PDO("sqlite:D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/database/baba.db");
+$db_path = " ../database/baba.db";
+$pdo = new PDO("sqlite:" .$db_path);
 
 $mess = $_POST["message"];
 $time = $_POST["time"];

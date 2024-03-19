@@ -46,6 +46,7 @@ if (!$row) {
 
 if ($row) {
     $_SESSION['id'] = $row['id']; // Assuming there's an 'id' column in your user tables
+    $_SESSION['name'] = $row['name'];
     $_SESSION['gender'] = $gender;
     $_SESSION['pass'] = $row['pass']; // This might not be necessary to store in the session
     $_SESSION['age'] = $row['age'];

@@ -38,7 +38,9 @@
                 <div class="nav">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
                     <?php
-                    $name = ;
+                    session_start();
+
+                    $name = $_SESSION['name'];
                     echo '<li id="name">' . $name . '</li>';
                     ?>
                 </div>
@@ -49,7 +51,9 @@
 
                     try {
 
-                        $pdo = new PDO("sqlite:D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/database/baba.db");
+                        $db_path = " ../database/baba.db";
+
+                        $pdo = new PDO("sqlite:" .$db_path);
 
                         $query2 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
                         $query2->bindValue(':username', $name, PDO::PARAM_STR);
