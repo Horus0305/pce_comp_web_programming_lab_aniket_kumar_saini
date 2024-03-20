@@ -4,25 +4,28 @@ $nameError = "";
 $phoneError = "";
 $isFormSubmitted = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = "Addy";
-    $name = isset($_POST["full_name"]) ? $_POST["full_name"] : "";
-    $date = isset($_POST["birth_date"]) ? $_POST["birth_date"] : "";
-    $phoneNumber = isset($_POST["number"]) ? $_POST["number"] : "";
-    $city = isset($_POST["city"]) ? $_POST["city"] : "";
-    $address = isset($_POST["address"]) ? $_POST["address"] : "";
-    $gender = "male";
+$db_path = "../database/baba.db";
 
-    // Check for empty fields
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+    $username = "Addy";
+    $name = $_POST["full_name"];
+    $date = 1920;
+    $phoneNumber = $_POST["number"];
+    $city = $_POST["city"];
+    $address = $_POST["address"];
+    $gender = "male";
+    
+
     if (empty($name) || empty($date) || empty($phoneNumber) || empty($city) || empty($address)) {
         $nameError = "All fields are required. Please fill them out.";
     }
 
-    // Check for existing username
-    if ($username == "Addy") {
-        $nameError = "Username already exists. Please choose a different username.";
+    if ($name == "Addy"){
+        $nameError = "Username already exists!! please enter new username";
     }
-
+    
     // Check for existing phone number
     if ($phoneNumber == "1234567890") {
         $phoneError = "Phone number already exists. Please enter a different phone number.";
@@ -41,19 +44,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section class="container">
         <header>Profile Completion</header>
         <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
+        <?php 
+            echo $nameError
+        ?>
+        <?php 
+            echo $phoneError
+        ?>
         <form class="form" action="" method="post">
             <div class="input-box">
                 <label>Full Name <span id="name_error" class="error"><?php echo $nameError; ?></span></label>
-                <input required="" id="fullName" name="full_name" placeholder="Enter full name" type="text">
+                <input id="fullName" name="full_name" placeholder="Enter full name" type="text">
             </div>
             <div class="column">
                 <div id="phone" class="input-box">
                     <label>Phone Number <span id="phone_error" class="error"><?php echo $phoneError; ?></span></label>
-                    <input required="" id="phoneNumber" name="number" placeholder="Enter phone number" type="tel">
-                </div>
-                <div class="input-box">
-                    <label>Birth Date</label>
-                    <input id="birthDate" required="" name="birth_date" placeholder="Enter birth date" type="date">
+                    <input id="phoneNumber" name="number" placeholder="Enter phone number" type="tel">
                 </div>
             </div>
             <div class="gender-box">
@@ -75,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="input-box address">
                 <label>Address</label>
-                <input name="address" id="address" required="" placeholder="Enter street address" type="text">
+                <input name="address" id="address" placeholder="Enter street address" type="text">
                 <div class="column">
                     <div class="select-box">
                         <select>
@@ -87,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option>Japan</option>
                         </select>
                     </div>
-                    <input id="city" required="" name="city" placeholder="Enter your city" type="text">
+                    <input id="city" name="city" placeholder="Enter your city" type="text">
                 </div>
             </div>
             <button name="submit" type="submit">Submit</button>
