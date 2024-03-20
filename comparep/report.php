@@ -16,6 +16,8 @@ if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
 
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
+
+
 if($gender=="male"){
 
 
@@ -26,8 +28,8 @@ $male = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $time_of_birth = $male['tob'];
 $date = $male['dob'];
-$lati = $male['latitude'];
-$long = $male['longitude'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
 
 // Split time_of_birth into hours, minutes, seconds
 list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
@@ -56,7 +58,7 @@ $femalelong = $female['longitude'];
 // Split time_of_birth into hours, minutes, seconds
 list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
-list($femaleyear, $malemonth, $femaleday) = explode("-", $date);
+list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
 
 
 
@@ -72,16 +74,64 @@ if($gender=="female"){
 
 
     $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $female = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt = $db->prepare("SELECT * FROM male WHERE id=2");
-   /*$stmt->bindParam(':id', $id, PDO::PARAM_INT);*/
-    $stmt->execute();
-    $male = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$female = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$time_of_birth = $female['tob'];
+$date = $female['dob'];
+$lati = $female['latitude'];
+$long = $female['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
+
+
+
+
+
+
+
+
+
+$stmt = $db->prepare("SELECT * FROM male WHERE id=:2");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$male = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+$time_of_birth = $male['tob'];
+$maledate = $male['dob'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
+
+
+
+
+
+
+
     }
     $request_data = [
         "female" => [
+            "year" => (int)$femaleyear,
+            "month" => (int)$femalemonth,
+            "date" => (int)$femaleday,
+            "hours" => (int)$femalehours,
+            "minutes" => (int)$femaleminutes,
+            "seconds" => (int)$femaleseconds,
+            "latitude" => (float)$femalelati,
+            "longitude" => (float)$femalelong,
+            "timezone" => 5.5
+        ],
+        "male" => [
             "year" => (int)$maleyear,
             "month" => (int)$malemonth,
             "date" => (int)$maleday,
@@ -90,17 +140,6 @@ if($gender=="female"){
             "seconds" => (int)$maleseconds,
             "latitude" => (float)$malelati,
             "longitude" => (float)$malelong,
-            "timezone" => 5.5
-        ],
-        "male" => [
-            "year" => 1984,
-            "month" => 4,
-            "date" => 3,
-            "hours" => 9,
-            "minutes" => 15,
-            "seconds" => 31,
-            "latitude" => 16.51667,
-            "longitude" => 80.61667,
             "timezone" => 5.5
         ],
         "config" => [
@@ -152,7 +191,7 @@ if($gender=="female"){
         $output = $data['output'];
 
 
-
+      $totalscore=$output["total_score"];
     
 
 
@@ -186,8 +225,8 @@ if($gender=="female"){
         <div class="match-card mid">
          <div id="mid-chart">
         <canvas id="Chart"></canvas></div>
-        <p><span class="wheat">Match Score </span>32/36</p>
-            <button>View Complete Report</button>
+        <p><span class="wheat">Match Score </span><?php echo $totalscore;?>/36</p>
+            <button onclick="window.location.href='./reportpage2.php'">View Complete Report</button>
         </div>
       
         <div class="match-card">

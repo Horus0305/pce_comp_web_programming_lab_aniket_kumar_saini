@@ -96,6 +96,8 @@ $data = json_decode($response, true);
 // Check if output key exists in response
 if (isset($data['output'])) {
     $output = $data['output'];
+
+    echo $output["total_score"];
     // Process output here
     // For example, you can print it:
     print_r($output);

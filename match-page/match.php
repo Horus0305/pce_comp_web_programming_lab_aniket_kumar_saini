@@ -82,6 +82,7 @@ require("../includes/database_connect.php");
                 </div>
             </div>
             </div>
+            <a style="text-decoration:None;" href="../comparep/report.php"><div class="compreport">Click here to see the complete Compatibility Report</div></a>
             ';
       } else {
       $currentUserAge = $_SESSION['age'];
