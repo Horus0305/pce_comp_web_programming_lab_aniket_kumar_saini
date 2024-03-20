@@ -8,7 +8,7 @@ $db_path = "../database/baba.db";
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["submit"])) {
     $username = "Addy";
     $name = $_POST["full_name"];
     $date = 1920;
@@ -16,23 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $city = $_POST["city"];
     $address = $_POST["address"];
     $gender = "male";
-    
 
-    if (empty($name) || empty($date) || empty($phoneNumber) || empty($city) || empty($address)) {
+
+    if (empty ($name) || empty ($date) || empty ($phoneNumber) || empty ($city) || empty ($address)) {
         $nameError = "All fields are required. Please fill them out.";
     }
 
-    if ($name == "Addy"){
+    if ($name == "Addy") {
         $nameError = "Username already exists!! please enter new username";
     }
-    
+
     // Check for existing phone number
     if ($phoneNumber == "1234567890") {
         $phoneError = "Phone number already exists. Please enter a different phone number.";
     }
 
     // If there are no errors, set form submitted flag to true
-    if (empty($nameError) && empty($phoneError)) {
+    if (empty ($nameError) && empty ($phoneError)) {
         $isFormSubmitted = true;
     }
 }
@@ -44,20 +44,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <section class="container">
         <header>Profile Completion</header>
         <i onclick="gaayab(this.id)" id="cross" class="fi fi-rr-cross cross"></i>
-        <?php 
-            echo $nameError
-        ?>
-        <?php 
-            echo $phoneError
-        ?>
+
+        <?php
+        if ($isFormSubmitted) {
+            echo "<p>Form submitted successfully!</p>";
+        } ?>
+
+        <?php
+        echo "<p> $nameError </p>";
+            ?>
+        <?php
+        echo "<p> $phoneError </p>";
+            ?>
         <form class="form" action="" method="post">
             <div class="input-box">
-                <label>Full Name <span id="name_error" class="error"><?php echo $nameError; ?></span></label>
+                <label>Full Name <span id="name_error" class="error">
+                        <?php echo $nameError; ?>
+                    </span></label>
                 <input id="fullName" name="full_name" placeholder="Enter full name" type="text">
             </div>
             <div class="column">
                 <div id="phone" class="input-box">
-                    <label>Phone Number <span id="phone_error" class="error"><?php echo $phoneError; ?></span></label>
+                    <label>Phone Number <span id="phone_error" class="error">
+                            <?php echo $phoneError; ?>
+                        </span></label>
                     <input id="phoneNumber" name="number" placeholder="Enter phone number" type="tel">
                 </div>
             </div>
@@ -99,9 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         </form>
     </section>
 
-    <?php
-    if ($isFormSubmitted) {
-        echo "<p>Form submitted successfully!</p>";
-    } ?>
+
 
 </div>
