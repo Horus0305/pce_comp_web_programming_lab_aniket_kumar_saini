@@ -9,6 +9,7 @@ $gender = $_SESSION['gender'];
 
 // Create a new PDO connection
 try {
+
     $conn = new PDO('sqlite:' . $db_path);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -95,9 +96,32 @@ try {
     // Check if form data is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve form data
+        if(!empty($_FILES["photo"]["name"])) {
+            // Get file info
+            $fileName = basename($_FILES["photo"]["name"]);
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+            // Allow certain file formats
+            $allowTypes = array('jpg','png','jpeg','gif');
+            if(in_array($fileType, $allowTypes)){
+                $image = $_FILES['photo']['tmp_name'];  
+                $imgContent = addslashes(file_get_contents($image)); 
+                $insert = true; // Assuming $insert is a flag indicating successful file insertion into the database
+                if($insert){
+                    $status = 'success';
+                    $statusMsg = "File uploaded successfully.";
+                } else {
+                    $statusMsg = "File upload failed, please try again.";
+                }  
+            } else {
+                $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
+            }
+        } else {
+            $statusMsg = 'Please select an image file to upload.';
+        }
+ 
         $newweight = $_POST['weight'];
         $newheight = $_POST['height'];
-        $newphoto = $_POST['photo'];
+
         $newnum = $_POST['number'];
         $newquote = $_POST['quote'];
         $newdescription = $_POST['description'];
@@ -158,7 +182,7 @@ try {
                 $stmt->bindParam(':newtob', $newtob);
                 $stmt->bindParam(':newage', $newage);
                 $stmt->bindParam(':newheight', $newheight);
-                $stmt->bindParam(':newphoto', $newphoto);
+                $stmt->bindParam(':newphoto', $imgContent);
                 $stmt->bindParam(':newnum', $newnum);
                 $stmt->bindParam(':newbmi', $newbmi);
                 $stmt->bindParam(':newquote', $newquote);
@@ -170,7 +194,7 @@ try {
                 if ($stmt->execute()) {
                     echo '<script>alert("Details updated successfully!!!");window.location.href = "../profilepage/profile.php";</script>';
                 } else {
-                    echo '<script>alert("Error updating record: ' . $conn->error . '");window.location.href = "../profilepage/profile.php";</script>';
+                    echo '<script>alert("Error updating record:");window.location.href = "../profilepage/profile.php";</script>';
                 }
             } else {
                 echo '<script>alert("Password is incorrect");window.location.href = "../profilepage/profile.php";</script>';

@@ -270,7 +270,7 @@ $db = null;
     <!-- Modal content -->
     <div class="modal-content">
       <div id="edclose">&times;</div>
-      <form id="modalForm" action="update.php" method="post">
+      <form id="modalForm" action="update.php" method="post" enctype="multipart/form-data">
         <label for="fullname"><b>Full Name:</b></label>
         <input type="text" id="fullname" name="fullname" value="<?php echo $row["name"]; ?>" <?php echo $v1 ?> required /><br />
 
@@ -299,10 +299,7 @@ $db = null;
         <input type="number" id="height" name="height" value="<?php echo $row["height"]; ?>" required /><br />
 
         <label for="photo"><b>Photo:</b></label>
-        <input type="file" id="photo" name="photo" accept="image/*" /><br />
-
-        <!-- <label for="email"><b>Email:</b></label>
-        <input type="email" id="email" name="email" value="<?php echo $row["email"]; ?>" required /><br /> -->
+        <input type="file" id="photo" name="photo"/><br />
 
         <label for="number"><b>Number:</b></label>
         <input type="tel" id="number" name="number" value="<?php echo $row["number"]; ?>" required />
