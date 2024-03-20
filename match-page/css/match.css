@@ -195,3 +195,22 @@ h1 {
   transition: all 100ms ease;
   margin-bottom: 50px;
 }
+.compreport{
+  width: auto;
+  height: auto;
+  padding: 1%;
+  cursor: pointer;
+  border: 1px white solid;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2%;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  transition: background-color 0.5s, tranform 0.5s;
+}
+
+.compreport:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(0.99);
+}
