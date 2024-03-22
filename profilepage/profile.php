@@ -3,7 +3,7 @@ session_start();
 require("../includes/database_connect.php");
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
-echo $gender;
+// echo $gender;
 
 if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
   die("Missing session variables");
@@ -35,7 +35,7 @@ if ($row['pob'] != NULL) {
 if ($row['tob'] != NULL) {
   $v5 = "readonly='readonly' style='background-color: rgb(121, 125, 136)'";
 }
-session_commit();
+
 $db = null;
 ?>
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ $db = null;
                 class="rounded-circle sign"
                 width="150"
               /> -->
-            <img src="img/male-user.png" class="rounded-circle photo" width="150" />
+              <img class="rounded-circle photo" width="150" src="data:image/png;base64,<?php echo base($row['photocontent']); ?>"/>
             <div class="mt-3">
               <h3><?php
                   echo $row["name"];
