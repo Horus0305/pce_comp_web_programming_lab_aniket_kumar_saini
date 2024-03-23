@@ -3,12 +3,10 @@ include "../includes/base.php";
 
 ?>
 
-
-
-
         
    
 <?php 
+
 session_start();
 require("../includes/database_connect.php");
 
@@ -17,58 +15,165 @@ if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
   die("Missing session variables");
 }
 
+
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
+
+
+if($gender=="male"){
+
 
 $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$male = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Extract birth details from the database
-$time_of_birth = $row['tob'];
-$date = $row['dob'];
-$lati = $row['latitude'];
-$long = $row['longitude'];
+$time_of_birth = $male['tob'];
+$date = $male['dob'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
+
+
+$name = $male['name'];
+$namepart=explode(" ", $name);
+$malefirstname=$namepart[0];
 
 // Split time_of_birth into hours, minutes, seconds
-list($hours, $minutes, $seconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
-list($year, $month, $day) = explode("-", $date);
-$name = $row['name'];
-$namepart=explode(" ", $name);
-$firstname=$namepart[0];
-// API request data
-$request_data = [
-    "female" => [
-        "year" => (int)$year,
-        "month" => (int)$month,
-        "date" => (int)$day,
-        "hours" => (int)$hours,
-        "minutes" => (int)$minutes,
-        "seconds" => (int)$seconds,
-        "latitude" => (float)$lati,
-        "longitude" => (float)$long,
-        "timezone" => 5.5
-    ],
-    "male" => [
-        "year" => 1984,
-        "month" => 4,
-        "date" => 3,
-        "hours" => 9,
-        "minutes" => 15,
-        "seconds" => 31,
-        "latitude" => 16.51667,
-        "longitude" => 80.61667,
-        "timezone" => 5.5
-    ],
-    "config" => [
-        "observation_point" => "topocentric",
-        "language" => "en",
-        "ayanamsha" => "lahiri"
-    ]
-];
+list($maleyear, $malemonth, $maleday) = explode("-", $date);
 
+
+$stmt = $db->prepare("SELECT female FROM matchtable WHERE $gender=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$matchid= $row['female'];
+
+
+
+
+
+
+$stmt = $db->prepare("SELECT * FROM female WHERE id=:id");
+$stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
+$stmt->execute();
+$female = $stmt->fetch(PDO::FETCH_ASSOC);
+$name = $female['name'];
+$namepart=explode(" ", $name);
+$femalefirstname=$namepart[0];
+
+$time_of_birth = $female['tob'];
+$femaledate = $female['dob'];
+$femalelati = $female['latitude'];
+$femalelong = $female['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
+
+
+
+
+
+
+
+
+}
+
+
+if($gender=="female"){
+
+
+    $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$female = $stmt->fetch(PDO::FETCH_ASSOC);
+$name = $female['name'];
+$namepart=explode(" ", $name);
+$femalefirstname=$namepart[0];
+$time_of_birth = $female['tob'];
+$date = $female['dob'];
+$lati = $female['latitude'];
+$long = $female['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
+
+
+
+
+$stmt = $db->prepare("SELECT male FROM matchtable WHERE $gender=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$matchid= $row['male'];
+
+
+
+
+
+$stmt = $db->prepare("SELECT * FROM male WHERE id=:id");
+$stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
+$stmt->execute();
+$male = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$name = $male['name'];
+$namepart=explode(" ", $name);
+$malefirstname=$namepart[0];
+
+
+$time_of_birth = $male['tob'];
+$maledate = $male['dob'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
+
+
+
+
+
+
+
+    }
+    $request_data = [
+        "female" => [
+            "year" => (int)$femaleyear,
+            "month" => (int)$femalemonth,
+            "date" => (int)$femaleday,
+            "hours" => (int)$femalehours,
+            "minutes" => (int)$femaleminutes,
+            "seconds" => (int)$femaleseconds,
+            "latitude" => (float)$femalelati,
+            "longitude" => (float)$femalelong,
+            "timezone" => 5.5
+        ],
+        "male" => [
+            "year" => (int)$maleyear,
+            "month" => (int)$malemonth,
+            "date" => (int)$maleday,
+            "hours" => (int)$malehours,
+            "minutes" => (int)$maleminutes,
+            "seconds" => (int)$maleseconds,
+            "latitude" => (float)$malelati,
+            "longitude" => (float)$malelong,
+            "timezone" => 5.5
+        ],
+        "config" => [
+            "observation_point" => "topocentric",
+            "language" => "en",
+            "ayanamsha" => "lahiri"
+        ]
+    ];
 // Convert data to JSON
 $request_json = json_encode($request_data);
 
@@ -109,15 +214,17 @@ $data = json_decode($response, true);
 // Check if the 'output' key exists in the response
 if (isset($data['output'])) 
     $output = $data['output'];
+
+   
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-sqzrP8sP6mDHBbASmAkbXbZRspMz+LcN3OoW4xXV4yZ+zKWHl4G3JvHG6V1vWlwgqZCIS1a8X5EazbcTqSr7Aw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <link rel="stylesheet" href="css/reportpage2.css">
 <div id="main">
-    <div id="head"><?php echo $firstname ?><img src="img\hearticon.png" alt="hearticon" id="heart-icon"> Krishna</div>
+    <div id="head"><?php echo ucfirst($femalefirstname) ?><img src="img\hearticon.png" alt="hearticon" id="heart-icon"> <?php echo ucfirst($malefirstname) ?></div>
     <div id="childcont">
-<!-- HTML for the table -->
+<!-- HTML for the table --> 
 <table class="rwd-table">
   <tbody>
     <tr>
@@ -204,6 +311,6 @@ if (isset($data['output']))
 </table>
 
 
-?>
+
 
 

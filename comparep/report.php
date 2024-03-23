@@ -37,7 +37,12 @@ list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_b
 list($maleyear, $malemonth, $maleday) = explode("-", $date);
 
 
+$stmt = $db->prepare("SELECT female FROM matchtable WHERE $gender=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$matchid= $row['female'];
 
 
 
@@ -45,7 +50,7 @@ list($maleyear, $malemonth, $maleday) = explode("-", $date);
 
 
 $stmt = $db->prepare("SELECT * FROM female WHERE id=:id");
-$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
 $stmt->execute();
 $female = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -91,15 +96,23 @@ list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
 
 
 
-
-
-
-
-
-$stmt = $db->prepare("SELECT * FROM male WHERE id=:2");
+$stmt = $db->prepare("SELECT male FROM matchtable WHERE $gender=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$matchid= $row['male'];
+
+
+
+
+
+$stmt = $db->prepare("SELECT * FROM male WHERE id=:id");
+$stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
+$stmt->execute();
 $male = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
 
 
 $time_of_birth = $male['tob'];
@@ -192,7 +205,9 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
 
 
       $totalscore=$output["total_score"];
-    
+      
+      $obper=($totalscore/36)*100;
+      $rem=100-$obper;
 
 
 ?>
@@ -208,9 +223,9 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
             <div class="outercircle">
                 <img src="img/male.jpg" class="innercircle">
             </div>
-            <div class="name"><span class="wheat"><?php echo $male["name"] ;?></span></div>   
+            <div class="name"><span class="wheat"><?php echo ucwords($male["name"]) ;?></span></div>   
             <div class="details">
-                <p><span class="wheat">Bio:</span> <?php echo $male["name"] ;?></p>
+                <p><span class="wheat">Bio:</span> <?php echo $male["quote"] ;?></p>
                 <p><i class="fa-regular fa-calendar-days"></i><span class="wheat">Date of Birth:</span> <?php echo $male["dob"] ;?></p>
                 <p><span class="wheat">Age:</span> <?php echo $male["age"] ;?> </p>
                 <p><span class="wheat">Sign:</span>  <?php echo $male["sign"] ;?></p>
@@ -233,9 +248,9 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
             <div class="outercircle">
                 <img src="img/female.jpg" class="innercircle">
             </div>
-            <div class="name"><span class="wheat">Radha</span></div>   
+            <div class="name"><span class="wheat"><?php echo ucwords($female["name"]) ;?></span></div>   
             <div class="details">
-            <p><span class="wheat">Bio:</span> <?php echo $female["name"] ;?></p>
+            <p><span class="wheat">Bio:</span><?php echo $female["quote"] ;?> </p>
                 <p><i class="fa-regular fa-calendar-days"></i><span class="wheat">Date of Birth:</span> <?php echo $female["dob"] ;?></p>
                 <p><span class="wheat">Age:</span> <?php echo $female["age"] ;?> </p>
                 <p><span class="wheat">Sign:</span>  <?php echo $female["sign"] ;?></p>
@@ -253,7 +268,7 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
     var data = {
    
         datasets: [{
-            data: [85, 15],
+            data: [<?php echo $obper;?>, <?php echo $rem;?>],
             backgroundColor: ['wheat', 'white']
         }]
     };
@@ -276,6 +291,3 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
 </script>
 
 
-<?php
-
-?>
