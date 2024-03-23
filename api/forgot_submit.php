@@ -1,4 +1,5 @@
 <?php
+session_start();
 try {
     require("../includes/database_connect.php");
 } catch(PDOException $e) {
@@ -12,6 +13,7 @@ require "./PHPMailer-master/src/SMTP.php";
 require "./PHPMailer-master/src/Exception.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+
 $send_to_email = $_POST["email"];
 $verification_otp = random_int(100000, 999999);
 
@@ -48,7 +50,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_female = $stmt_female->fetch(PDO::FETCH_ASSOC);
 
     // Check if the user exists in either table
-    if ($user_male || $user_female) {
+    if ($user_male) {
+        $_SESSION['reset_email'] = $email;
+        $_SESSION['gender'] = 'male';
+        sendMail($send_to_email, $verification_otp);
+?>
+        <script>
+            var otp = prompt("Please enter the 6-digit OTP sent to your email:");
+            if (otp === "<?php echo $verification_otp ?>") {
+                alert("OTP is verified. You can proceed to reset your password.");
+                window.location.href = "../landingpage/chngpass.html";
+                
+            } else {
+                alert("OTP is incorrect. Please try again.");
+            }
+        </script>
+<?php
+        exit;
+    } elseif ($user_female) {
+        $_SESSION['reset_email'] = $email;
+        $_SESSION['gender'] = 'female';
         sendMail($send_to_email, $verification_otp);
 ?>
         <script>
