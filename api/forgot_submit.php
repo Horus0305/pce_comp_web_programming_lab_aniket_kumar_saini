@@ -32,34 +32,40 @@ function sendMail($send_to, $otp) {
     $mail->send();
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
-    $stmt = $db->prepare("SELECT * FROM male WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($user) {
+    
+    // Check in the 'male' table
+    $stmt_male = $db->prepare("SELECT * FROM male WHERE email = :email");
+    $stmt_male->bindParam(':email', $email);
+    $stmt_male->execute();
+    $user_male = $stmt_male->fetch(PDO::FETCH_ASSOC);
+
+    // Check in the 'female' table
+    $stmt_female = $db->prepare("SELECT * FROM female WHERE email = :email");
+    $stmt_female->bindParam(':email', $email);
+    $stmt_female->execute();
+    $user_female = $stmt_female->fetch(PDO::FETCH_ASSOC);
+
+    // Check if the user exists in either table
+    if ($user_male || $user_female) {
         sendMail($send_to_email, $verification_otp);
-        echo '<script>alert("OTP is sent to ' . $email . ', Click OK to enter OTP.");</script>';
+?>
+        <script>
+            var otp = prompt("Please enter the 6-digit OTP sent to your email:");
+            if (otp === "<?php echo $verification_otp ?>") {
+                alert("OTP is verified. You can proceed to reset your password.");
+                window.location.href = "../landingpage/chngpass.html";
+                
+            } else {
+                alert("OTP is incorrect. Please try again.");
+            }
+        </script>
+<?php
         exit;
     } else {
-        echo '<script>alert("User not found. Please check your email and try again."); window.location.href = "../profilepage/profile.php";</script>';
+        echo '<script>alert("User not found. Please check your email and try again."); window.location.href = "../landingpage/forgot.html";</script>';
         exit;
     }
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
