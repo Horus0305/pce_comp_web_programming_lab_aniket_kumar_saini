@@ -68,7 +68,8 @@ $db = null;
                 class="rounded-circle sign"
                 width="150"
               /> -->
-              <img class="rounded-circle photo" width="150" src="data:image/png;base64,<?php echo base($row['photocontent']); ?>"/>
+              <img class="rounded-circle photo" width="150" src="./img/male-user.png"/>
+
             <div class="mt-3">
               <h3><?php
                   echo $row["name"];
