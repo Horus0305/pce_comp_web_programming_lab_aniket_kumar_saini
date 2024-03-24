@@ -36,12 +36,16 @@
     <div id="modal">
       <div id="overlay">
         <img src="../img/cross.svg" alt="cancel" id="modalinactive" />
+        <div class="notification_con">
+        <i class="fi fi-rr-envelope-dot mess"></i>
+        <p class="noti">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, assumenda?</p>
+        </div>
       </div>
     </div>
     <script>
       function opcl() {
         let x = document.getElementById("modal");
-        if (x.style.display === "none") {
+        if (x.style.display === "none" || x.style.display === "") {
           x.style.display = "block";
           // let button = document.getElementById("modalactive");
           // button.addEventListener("click", openModal);

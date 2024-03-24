@@ -39,27 +39,33 @@ function completion_status() {
 
     if (completion.innerHTML != '100%') {
 
-        if (completion.innerHTML == "0%" && scale == 123) {
+        if (scale === 123 || scale === "123") {
             bar.value = 25;
             c1.style.backgroundColor = "lightgreen";
             completion.innerHTML = "25%";
         }
 
-        if (completion.innerHTML == "25%"  && scale == 23) {
+        else if (scale === 23 || scale === "23") {
             bar.value = 50;
             c2.style.backgroundColor = "lightgreen";
+            c1.style.backgroundColor = "lightgreen";
             completion.innerHTML = "50%";
         }
 
-        if (completion.innerHTML == "50%" && scale == 3) {
+        else if (scale === 3 || scale === "3") {
             bar.value = 75;
             c3.style.backgroundColor = "lightgreen";
+            c2.style.backgroundColor = "lightgreen";
+            c1.style.backgroundColor = "lightgreen";
             completion.innerHTML = "75%";
         }
 
-        if (completion.innerHTML == "75%" && scale == 4){
+        else if (scale === 4 || scale === "4"){
             bar.value = 100;
             c4.style.backgroundColor = "lightgreen";
+            c3.style.backgroundColor = "lightgreen";
+            c2.style.backgroundColor = "lightgreen";
+            c1.style.backgroundColor = "lightgreen";
             completion.innerHTML = "100%";
             window.location.href = "../Page3/birthchart.php";
         }
@@ -69,7 +75,7 @@ function completion_status() {
 }
 
 completion_status();
-setInterval(completion_status, 1000);
+setInterval(completion_status, 3000);
 
 
 function show_burger() {

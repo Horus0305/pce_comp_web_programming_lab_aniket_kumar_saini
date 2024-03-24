@@ -1,3 +1,5 @@
+@import url('https://cdn-uicons.flaticon.com/2.2.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
 * {
   margin: 0;
   padding: 0;
@@ -113,4 +115,20 @@ body {
 #modalinactive {
   margin-left: 90%;
   margin-top: 7px;
+}
+
+.notification_con{
+  background-color: white;
+  width: 90%;
+  margin: auto;
+  padding: 5px 15px;
+  padding-top: 20px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.mess{
+  font-size: 2rem;
 }
