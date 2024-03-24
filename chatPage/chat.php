@@ -11,8 +11,17 @@
 <body style="background:url('img/bg.jpg');">
 
     <div class="main-con">
-        <div class="side-bar">
-            <div class="logo-con">
+        
+        
+
+        <?php
+        session_start();
+        include '../includes/base.php';
+        include '../includes/head_links.php';
+        ?>
+
+<!-- <div class="side-bar">
+            <!-- <div class="logo-con">
                 <img class="logo" src="img/logo.png" alt="logo">
             </div>
 
@@ -29,16 +38,16 @@
             <div class="profile-con">
                 <a class="anchor ele" href="#"><i class="fi fi-rr-bell ele noti"></i></a>
                 <a class="anchor" href="#"><img class="profile_img" src="img/profile.jpg" alt="profile-img"></a>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
 
         <div class="all-con">
 
             <div id="message-con">
-                <div class="nav">
+                <div class="nav2">
                     <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
                     <?php
-                    session_start();
+                    
 
                     $name = $_SESSION['name'];
                     echo '<li id="name">' . $name . '</li>';
