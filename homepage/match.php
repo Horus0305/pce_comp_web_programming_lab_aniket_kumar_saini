@@ -56,7 +56,9 @@ $horoscope = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="head">
                 Birth Chart
             </div>
-            <button class="downloadButton" style="background: #5E5DF0;
+
+
+        <a href="../Page3/birthchart.php" ><button class="downloadButton" style="background: #5E5DF0;
   border-radius: 999px;
   box-shadow: #a2a2d6 0 10px 20px -10px;
   box-sizing: border-box;
@@ -74,7 +76,7 @@ $horoscope = $stmt->fetch(PDO::FETCH_ASSOC);
   touch-action: manipulation;
   width: fit-content;
   word-break: break-word;
-  border: 0;">Download Birth Chart</button>
+  border: 0;">View Birth Chart</button>></a>
         </div>
     </div>
 </div>
