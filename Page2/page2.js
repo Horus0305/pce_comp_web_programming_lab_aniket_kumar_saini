@@ -3,6 +3,7 @@ var c2 = document.getElementById('c2');
 var c3 = document.getElementById('c3');
 var c4 = document.getElementById('c4');
 
+var scale;
 
 var FullName = document.getElementById('fullName');
 var PhoneNumber = document.getElementById('phoneNumber');
@@ -22,86 +23,54 @@ var interval = 50;
 
 
 
-function completion_status(status) {
+function completion_status() {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'datasend.php', true);
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            scale = xhr.responseText;
+            console.log(scale);
+        } else {
+            console.error('Request failed with status:', xhr.status);
+        }
+    };
+    xhr.send();
+
     if (completion.innerHTML != '100%') {
 
-        if (status == "c1" && completion.innerHTML == "0%") {
-            proCompCon.style.display = "block";
-            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/profilepage/profile.php';
+        if (completion.innerHTML == "0%" && scale == 123) {
+            bar.value = 25;
+            c1.style.backgroundColor = "lightgreen";
+            completion.innerHTML = "25%";
         }
 
-        if (status == "c2" && completion.innerHTML == "25%") {
-            pro_pic_con.style.display = "block";
+        if (completion.innerHTML == "25%"  && scale == 23) {
             bar.value = 50;
             c2.style.backgroundColor = "lightgreen";
             completion.innerHTML = "50%";
-            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/profilepage/profile.php';
         }
 
-        if (status == "c3" && completion.innerHTML == "50%") {
+        if (completion.innerHTML == "50%" && scale == 3) {
             bar.value = 75;
             c3.style.backgroundColor = "lightgreen";
             completion.innerHTML = "75%";
-            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/profilepage/profile.php';
         }
 
-        if (status == "c4" && completion.innerHTML == "75%") {
+        if (completion.innerHTML == "75%" && scale == 4){
             bar.value = 100;
             c4.style.backgroundColor = "lightgreen";
             completion.innerHTML = "100%";
-            // window.location.href = 'D:/xampp/htdocs/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/Page3/birthchart.php';
+            window.location.href = "../Page3/birthchart.php";
         }
     } else {
         return;
     }
 }
 
-function pro_img_sub(){
-    var fileInput = document.getElementById('image');
-    var imageFile ;
-    var file = fileInput.files[0];
-    var formData = new FormData();
-    formData.append('file', file);
+completion_status();
+setInterval(completion_status, 1000);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'pics.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            console.log('File uploaded successfully.');
-            imageFile = xhr.responseText;
-            var img_con = document.getElementById('img_con');
-            img_con.innerHTML = imageFile;
-            img_con.style.borderRadius = '10px';
-        } else {
-            console.log('Error uploading file.');
-        }
-    };
-    xhr.send(formData);
-}
-
-function profile_sub() {
-
-    var nameError = document.getElementById('name_error');
-    var phoneError = document.getElementById('phone_error');
-    var nameRegex = /^[a-zA-Z\s]+$/;
-    var phoneRegex = /^\d{10}$/;
-
-    if (!nameRegex.test(FullName.value)) {
-        nameError.style.display = 'block';
-    }
-
-    else if (!phoneRegex.test(PhoneNumber.value)) {
-        phoneError.style.display = 'block';
-    }
-
-    else {
-        var con = document.getElementById("profile_completion_popup"); 
-        con.style.display = "none";
-        bar.value = 25;
-        c1.style.backgroundColor = "lightgreen";
-        completion.innerHTML = "25%";
-    }
-}
 
 function show_burger() {
     let sideBar = document.querySelector(".side-bar");
@@ -168,12 +137,3 @@ function showNextCard() {
 }
 
 incrementProgress(0);
-
-function gaayab(ham) {
-    if (ham === "cross") {
-        var proCon = document.getElementById("profile_completion_popup");
-        var pro_pic = document.getElementById("profile_picture_con");
-        proCon.style.display = "none";
-        pro_pic.style.display = "none";
-    }
-}

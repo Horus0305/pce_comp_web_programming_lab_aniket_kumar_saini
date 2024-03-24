@@ -96,11 +96,101 @@ body {
 
 .profile-progress-con h6 {
     margin: 0px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: white;
     margin-left: 25px;
     margin-top: 10px;
     font-family: "Poppins", sans-serif;
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    font-family: sans-serif;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    color: white;
+    padding: 0;
+    font-size: inherit;
+    margin-left: 28px;
+}
+
+button.learn-more {
+    width: 15rem;
+    height: auto;
+}
+
+button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: cornflowerblue;
+    border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: white;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+button:hover .circle {
+    width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+    background: #fff;
+    transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+    color: #fff;
 }
 
 .profile-progress-con h2 {
@@ -255,25 +345,25 @@ body {
     cursor: pointer;
 }
 
-.notify{
+.notify {
     width: 90%;
     margin: auto;
     background-color: #000000;
     border-radius: 10px;
 }
 
-.progress-con{
+.progress-con {
     padding-top: 30px;
 }
 
-.title{
+.title {
     color: white;
     font-family: sans-serif;
     text-align: center;
     font-size: 2rem;
 }
 
-.all-pro-con{
+.all-pro-con {
     background-color: black;
     margin-top: 50px;
     border: 2px solid white;
@@ -281,12 +371,12 @@ body {
     border-radius: 10px;
 }
 
-.sign-con{
+.sign-con {
     width: 100%;
     margin-top: 50px;
 }
 
-.notify h4{
+.notify h4 {
     margin-bottom: 50px;
     background-color: white;
     padding: 20px;
@@ -294,7 +384,7 @@ body {
     border-radius: 20px;
 }
 
-.sign-con h5{
+.sign-con h5 {
     /* font-family: ; */
     font-size: 1.5rem;
     color: white;
@@ -303,7 +393,10 @@ body {
 }
 
 
-.sign-row-1, .sign-row-2, .sign-row-3, .sign-row-4{
+.sign-row-1,
+.sign-row-2,
+.sign-row-3,
+.sign-row-4 {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -311,37 +404,40 @@ body {
     left: 0px;
 }
 
-.sign-row-1 img, .sign-row-2 img, .sign-row-3 img, .sign-row-4 img{
+.sign-row-1 img,
+.sign-row-2 img,
+.sign-row-3 img,
+.sign-row-4 img {
     width: 250px;
 }
 
-.sign{
+.sign {
     width: 100%;
 }
 
-.sign img:hover{
+.sign img:hover {
     background-color: white;
     border-radius: 40px;
     cursor: pointer;
 }
 
 
-#pro{
+#pro {
     margin-left: 10px;
     width: 23.32%;
 }
 
-#card1{
+#card1 {
     margin: 30px;
     padding-bottom: 40px;
 }
 
-#card2{
+#card2 {
     margin: 30px;
     padding-bottom: 40px;
 }
 
-#card3{
+#card3 {
     margin: 30px;
     padding-bottom: 40px;
 }
@@ -354,14 +450,14 @@ body {
     display: block;
 }
 
-.header{
+.header {
     font-size: 1.5rem;
     color: black;
     font-family: sans-serif;
     text-align: center;
 }
 
-.para{
+.para {
     font-size: 1rem;
     font-family: sans-serif;
     text-align: center;
@@ -371,20 +467,20 @@ body {
 }
 
 
-.vid-con{
+.vid-con {
     width: 93%;
     margin-top: 50px;
 }
 
-.video-all-con{
+.video-all-con {
     padding-top: 50px;
 }
 
-video{
+video {
     border-radius: 10px;
 }
 
-footer{
+footer {
     background-color: rgba(255, 255, 255, 0.3);
     margin-top: 50px;
     margin-bottom: 20px;
@@ -394,16 +490,16 @@ footer{
     align-items: center;
 }
 
-footer img{
+footer img {
     width: 5%;
 }
 
-.nav{
+.nav {
     margin-left: auto;
     margin-right: 30px;
 }
 
-.nav a{
+.nav a {
     text-decoration: none;
     color: white;
     font-family: sans-serif;
@@ -448,8 +544,8 @@ footer img{
         border-radius: 10px;
         padding-bottom: 0px;
     }
-    
-    .btn{
+
+    .btn {
         font-size: 1.3rem;
     }
 }
@@ -466,15 +562,15 @@ footer img{
         font-size: 1.8rem;
     }
 
-    .notification{
+    .notification {
         display: block;
     }
 
-    .daily_img_con{
+    .daily_img_con {
         width: 100%;
     }
 
-    .birth_chart_con{
+    .birth_chart_con {
         width: 100%;
     }
 
@@ -508,15 +604,15 @@ footer img{
         margin: auto;
     }
 
-    footer img{
+    footer img {
         width: 10%;
     }
 
-    .btn{
+    .btn {
         font-size: 1rem;
     }
 
-    .notification{
+    .notification {
         margin-top: 50px;
     }
 }

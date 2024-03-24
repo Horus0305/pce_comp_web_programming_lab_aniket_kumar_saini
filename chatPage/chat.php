@@ -60,6 +60,27 @@
                         $query2->execute();
                         $messages = $query2->fetchAll(PDO::FETCH_ASSOC);
 
+                        $query3 = $pdo->prepare('SELECT male.name AS male_name, female.name AS female_name
+                        FROM matchtable
+                        JOIN male_data ON matchtable.male = male_data.id
+                        JOIN female_data ON matchtable.female = female_data.id;
+                        ');
+
+                        $stmt = $query3->execute();
+
+                        if ($stmt){
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                $maleName = $row['male_name'];
+                                $femaleName = $row['female_name'];
+                                echo "Male Name: $maleName, Female Name: $femaleName <br>";
+                            }
+                        }
+
+                        else {
+                            echo "Error: " . $pdo->errorInfo()[2];
+                        }
+
+
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
                     }

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/proCom.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
   <div class="main-con">
 
@@ -50,14 +51,21 @@
         </div>
 
         <div class="completion-con2">
-          <div class="stage">Profile_comp</div>
+          <div class="stage">Basic_info</div>
+          <div class="stage">Work_info</div>
+          <div class="stage">BMI_info</div>
           <div class="stage">Profile_pic</div>
-          <div class="stage">Zodiac_info</div>
-          <div class="stage">Partner_req</div>
         </div>
 
         <center>
           <h6>Completed <span id="completion_val">0%</span></h6>
+          <a href="../profilepage/profile.php"><button class="learn-more">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text">Complete Profile</span>
+            </button>
+          </a>
         </center>
       </div>
 
@@ -218,8 +226,6 @@
 
         <div class="nav">
           <a href="">Home</a>
-          <a href="/WP_miniPro/pce_comp_web_programming_lab_aniket_kumar_saini/chatPage/chat.php">Chat</a>
-          <a href="">Matching</a>
         </div>
       </footer>
     </div>
