@@ -1,26 +1,145 @@
 <?php
 include "../includes/base.php"
+<<<<<<< HEAD
+?>
+ <?php
+
+
+
+
+
+=======
     ?>
 <?php
+>>>>>>> bc671874836b3173f07c22ca7e77947cfb502ff5
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cosmicdestiny";
+require("../includes/database_connect.php");
 
+<<<<<<< HEAD
+// Check if session variables are set
+if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
+  die("Missing session variables");
+=======
 $conn = new mysqli($servername, $username, $password, $dbname, 8111);
 
 if ($conn->connect_error) {
     die ("Connection failed: " . $conn->connect_error);
+>>>>>>> bc671874836b3173f07c22ca7e77947cfb502ff5
 }
+
 
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
 
-$sql = "SELECT * FROM $gender WHERE id='$id'";
 
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+if($gender=="male"){
+
+
+$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$male = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$time_of_birth = $male['tob'];
+$date = $male['dob'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($maleyear, $malemonth, $maleday) = explode("-", $date);
+
+
+$postDataBirthChart = '{
+ 
+        "year" : (int)$maleyear,
+        "month" : (int)$malemonth,
+        "date" : (int)$maleday,
+        "hours" : (int)$malehours,
+        "minutes" : (int)$maleminutes,
+        "seconds": (int)$maleseconds,
+        "latitude" : (float)$malelati,
+        "longitude" : (float)$malelong,
+        "timezone" : 5.5,
+        "config": {
+            "observation_point": "topocentric",
+            "ayanamsha": "lahiri"
+        }}'
+;
+
+
+
+
+
+
+
+
+}
+
+
+if($gender=="female"){
+
+
+    $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$female = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$time_of_birth = $female['tob'];
+$date = $female['dob'];
+$lati = $female['latitude'];
+$long = $female['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
+
+
+
+
+$stmt = $db->prepare("SELECT male FROM matchtable WHERE $gender=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$matchid= $row['male'];
+
+
+
+
+
+$stmt = $db->prepare("SELECT * FROM male WHERE id=:id");
+$stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
+$stmt->execute();
+$male = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
+
+$time_of_birth = $male['tob'];
+$maledate = $male['dob'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
+
+// Split time_of_birth into hours, minutes, seconds
+list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
+
+
+
+
+
+
+
+    }
+    
+   
+$gender = $_SESSION['gender'];
+$id = $_SESSION['id'];
+
 $postDataBirthChart = '{
     "year": 2022,
     "month": 8,
