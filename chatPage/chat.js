@@ -20,8 +20,9 @@ function clock() {
 
     let hours = time.getHours();
     let min = time.getMinutes();
+    let sec = time.getSeconds();
 
-    currentTime = padZero(hours) + ":" + padZero(min);
+    currentTime = padZero(hours) + ":" + padZero(min) + ":" + padZero(sec);
 
     return currentTime;
 }
