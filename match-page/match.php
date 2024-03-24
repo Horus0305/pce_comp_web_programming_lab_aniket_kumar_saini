@@ -37,16 +37,13 @@ require("../includes/database_connect.php");
     }
 
     try {
-      $ismatched_sql = "SELECT matched FROM matchtable WHERE $gender = $id";
+      $ismatched_sql = "SELECT matched FROM matchtable WHERE $gender = $id AND matched = 1";
       $ismatched_result = $conn->query($ismatched_sql);
       $ismatched_row = $ismatched_result->fetch(PDO::FETCH_ASSOC);
       $isMatched = $ismatched_row;
-
-      if ($isMatched) {
+      if ($isMatched){
         // If matched, display the matched user's card
-        $match_sql = "SELECT * FROM $matchgender WHERE id = (
-          SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1
-        )";
+        $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1)";
         $match_result = $conn->query($match_sql);
         $row = $match_result->fetch(PDO::FETCH_ASSOC);
 
@@ -75,9 +72,9 @@ require("../includes/database_connect.php");
               </div>
               <div class="decision">
                 <p>Send a Like !!</p>
-                <div class="like-button" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
+                <div class="like-button liked dislike" >
                     <div class="heart-bg">
-                        <div class="heart-icon liked"></div>
+                    <div class="heart-icon liked" onclick="sendDislike(' . $_SESSION['id'] . ', ' . $row["id"] . ')"></div>
                     </div>
                 </div>
             </div>
@@ -109,21 +106,35 @@ require("../includes/database_connect.php");
       $maxAge = $currentUserAge + 5;
 
       // Construct SQL query
-      $sql = "SELECT * FROM $matchgender WHERE sign IN ('" . implode("', '", $compatibleSigns) . "') AND age BETWEEN $minAge AND $maxAge";
+      $sql = "SELECT *
+        FROM $matchgender
+        WHERE sign IN ('" . implode("', '", $compatibleSigns) . "')
+        AND age BETWEEN $minAge AND $maxAge
+        AND NOT EXISTS (
+            SELECT 1
+            FROM matchtable
+            WHERE ($gender = $id AND $matchgender = $matchgender.id)
+            AND matched = 0
+        )";
 
       $result = $conn->query($sql);
-
+      $rows = array();
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          $rows[] = $row;
+      }
+      if (count($rows)==0) {
+        echo "Currently there are no Users compatible with you, Please be patient.";
+    }
       if ($result !== false) {
         // Output data of each row
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
           // Check if there exists a like record for this pair of users
           $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = {$_SESSION['id']} AND r_id = {$row['id']})";
-          $match_sql = "SELECT COUNT(*) AS match_count FROM matchtable WHERE ($gender = {$_SESSION['id']} AND $matchgender = {$row['id']})";
           $like_result = $conn->query($like_sql);
-          $match_result = $conn->query($match_sql);
+
           $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
-          $match_row = $match_result->fetch(PDO::FETCH_ASSOC);
-          $liked_class = ($like_row['like_count'] > 0 || $match_row['match_count'] > 0) ? ' liked' : ''; // Add 'liked' class if there's a like or match record
+
+          $liked_class = $like_row['like_count'] > 0  ? ' liked' : ''; // Add 'liked' class if there's a like or match record
           echo '
             <div class="match-card">
               <div class="image">
@@ -181,7 +192,7 @@ require("../includes/database_connect.php");
           // Handle success response
           console.log(xhr.responseText);
           // If the like was successful, update the like button style
-          var likeButton = document.getElementById('like-button-' + likedUserId);
+          var likeButton = document.querySelector('.like-button');
           if (likeButton) {
             likeButton.classList.add('liked');
           }
@@ -193,4 +204,30 @@ require("../includes/database_connect.php");
     };
     xhr.send("likesender=" + likerUserId + "&likereceiver=" + likedUserId);
   }
+
+  function sendDislike(likerUserId, dislikedUserId) {
+    var isConfirmed = confirm("Are you sure you want to break the Match ?");
+      if (isConfirmed) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "dislike.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // Handle success response
+            console.log(xhr.responseText);
+            // If the dislike was successful, remove the like button style
+            var likeButton = document.querySelector('.like-button');
+            if (likeButton) {
+              likeButton.classList.remove('liked');
+            }
+          } else {
+            // Handle error response
+            console.error('Request failed: ' + xhr.status);
+          }
+        }
+      };
+      xhr.send("disliker=" + likerUserId + "&disliked=" + dislikedUserId);
+    }
+    }
 </script>
