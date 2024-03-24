@@ -12,6 +12,7 @@ require("../includes/database_connect.php");
     $gender = $_SESSION['gender'];
     $id = $_SESSION['id'];
     $matchgender = ($gender == 'male') ? 'female' : 'male';
+    echo "matchgender: " . $matchgender;
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -42,6 +43,7 @@ require("../includes/database_connect.php");
       $ismatched_row = $ismatched_result->fetch(PDO::FETCH_ASSOC);
       $isMatched = $ismatched_row;
       if ($isMatched){
+        echo "if block";
         // If matched, display the matched user's card
         $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1)";
         $match_result = $conn->query($match_sql);
@@ -82,6 +84,7 @@ require("../includes/database_connect.php");
             <a style="text-decoration:None;" href="../comparep/report.php"><div class="compreport">Click here to see the complete Compatibility Report</div></a>
             ';
       } else {
+        echo "else block";
       $currentUserAge = $_SESSION['age'];
 
       $compatibility = array(
@@ -107,15 +110,15 @@ require("../includes/database_connect.php");
 
       // Construct SQL query
       $sql = "SELECT *
-        FROM $matchgender
-        WHERE sign IN ('" . implode("', '", $compatibleSigns) . "')
-        AND age BETWEEN $minAge AND $maxAge
-        AND NOT EXISTS (
-            SELECT 1
-            FROM matchtable
-            WHERE ($gender = $id AND $matchgender = $matchgender.id)
-            AND matched = 0
-        )";
+      FROM $matchgender
+      WHERE sign IN (" . rtrim(str_repeat('?, ', count($compatibleSigns)), ', ') . ")
+      AND age BETWEEN ? AND ?
+      AND NOT EXISTS (
+          SELECT 1
+          FROM matchtable
+          WHERE ($gender = ? AND $matchgender.id = matchtable.id)
+          AND matched = 0
+      )";
 
       $result = $conn->query($sql);
       $rows = array();

@@ -1,6 +1,8 @@
 <?php
     include "head_links.php";
     ?>
+<link rel="website icon" type="png" href="../img/favicon.png" />
+
 <div class="nav">
       <div class="emblem">
         <a href="../landingpage/main.html">
@@ -9,7 +11,7 @@
       </div>
       <div class="widgets">
         <div class="home">
-          <a href="../Page2/page2.html">
+          <a href="../homepage/match.php">
             <img src="../img/home.svg" alt="" />
           </a>
         </div>

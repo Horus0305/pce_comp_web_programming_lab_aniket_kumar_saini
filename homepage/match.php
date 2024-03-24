@@ -1,31 +1,14 @@
 <?php
-include "../includes/base.php"
-<<<<<<< HEAD
-?>
- <?php
-
-
-
-
-
-=======
-    ?>
-<?php
->>>>>>> bc671874836b3173f07c22ca7e77947cfb502ff5
+include "../includes/base.php";
 session_start();
 require("../includes/database_connect.php");
-
-<<<<<<< HEAD
 // Check if session variables are set
-if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
-  die("Missing session variables");
-=======
-$conn = new mysqli($servername, $username, $password, $dbname, 8111);
+// if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
+//   die("Missing session variables");
 
-if ($conn->connect_error) {
-    die ("Connection failed: " . $conn->connect_error);
->>>>>>> bc671874836b3173f07c22ca7e77947cfb502ff5
-}
+// if ($conn->connect_error) {
+//     die ("Connection failed: " . $conn->connect_error);
+// }
 
 
 $gender = $_SESSION['gender'];
@@ -213,8 +196,11 @@ $horoscopeData = json_decode($responseBirthChart, true); // Decode JSON response
 
 
 ?>
-
-<link rel="stylesheet" href="css/match.css" />
+<html>
+    <head>
+        <link rel="stylesheet" href="css/match.css" />
+        <link rel="website icon" type="png" href="../img/favicon.png" />
+    </head>
 <div class="content">
 
     <div class="matches">
@@ -242,7 +228,7 @@ $horoscopeData = json_decode($responseBirthChart, true); // Decode JSON response
                 Birth Chart
 
             </div>
-
+<a href="../Page3/birthchart.php">
             <button class="downloadButton" style="background: #5E5DF0;
   border-radius: 999px;
   box-shadow: #a2a2d6 0 10px 20px -10px;
@@ -261,10 +247,11 @@ $horoscopeData = json_decode($responseBirthChart, true); // Decode JSON response
   touch-action: manipulation;
   width: fit-content;
   word-break: break-word;
-  border: 0;">Download Birth Chart</button>
+  border: 0;">View your Birth Chart</button></a>
         </div>
     </div>
 </div>
+</html>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         function downloadSVG() {

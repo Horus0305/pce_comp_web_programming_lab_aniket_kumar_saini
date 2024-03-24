@@ -48,6 +48,7 @@ $date = $male['dob'];
 $malelati = $male['latitude'];
 $malelong = $male['longitude'];
 $name=$male['name'];
+$location = $male['pob'];
 // Split time_of_birth into hours, minutes, seconds
 list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
@@ -93,6 +94,7 @@ $date = $female['dob'];
 $lati = $female['latitude'];
 $long = $female['longitude'];
 $name=$female['name'];
+$location = $female['pob'];
 // Split time_of_birth into hours, minutes, seconds
 list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
@@ -187,7 +189,7 @@ $postDataBirthChart = array(
 
                     <div class="about2">
                         <h3>Name: <?php echo $name ?></h3>
-                        <p>Birth Location: Seawoods</p>
+                        <p>Birth Location: <?php echo $location; ?></p>
                         <p>Date of Birth: <?php echo $date ;?></p>
                         <p>Time of Birth: <?php echo $time_of_birth;  ?></p>
                                            

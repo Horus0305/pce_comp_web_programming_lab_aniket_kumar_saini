@@ -1,618 +1,606 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css');
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
+@import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css");
+@import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css");
+@import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
+@import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
 
 body {
-    background-image: url("images/bg.jpg");
-    color: white;
-    margin: 0px;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-image: url("../img/bg.png");
+  color: white;
+  margin: 0px;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hamburger {
-    display: none;
+  display: none;
 }
 
 .main-con {
-    display: flex;
+  display: flex;
 }
 
 .side-bar {
-    width: 5%;
-    background-color: rgba(255, 255, 255, 0.3);
-    height: 95vh;
-    margin-top: 13px;
-    border-radius: 10px;
-    margin-left: 12px;
-    position: sticky;
-    top: 0;
+  width: 5%;
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 95vh;
+  margin-top: 13px;
+  border-radius: 10px;
+  margin-left: 12px;
+  position: sticky;
+  top: 0;
 }
 
 .logo-con {
-    height: 30vh;
+  height: 30vh;
 }
 
 .logo {
-    width: 100%;
-    margin-top: 10px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .elements {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .ele {
-    font-size: 1.5rem;
-    height: 55px;
-    width: 50%;
-    margin-top: 20px;
+  font-size: 1.5rem;
+  height: 55px;
+  width: 50%;
+  margin-top: 20px;
 }
 
 .noti {
-    margin-left: 17px;
+  margin-left: 17px;
 }
 
 .anchor {
-    text-decoration: none;
-    color: white;
-    margin: auto;
+  text-decoration: none;
+  color: white;
+  margin: auto;
 }
 
 .profile-con {
-    margin-top: 95px;
-    width: 100%;
+  margin-top: 95px;
+  width: 100%;
 }
 
 .profile_img {
-    margin-top: 20px;
-    width: 70%;
-    margin-left: 8.5px;
-    border-radius: 50px;
+  margin-top: 20px;
+  width: 70%;
+  margin-left: 8.5px;
+  border-radius: 50px;
 }
 
 .all-container {
-    width: 100%;
-    margin-left: 17px;
+  width: 100%;
+  margin-left: 17px;
 }
 
 #file {
-    font-size: 4rem;
-    width: 50%;
+  font-size: 4rem;
+  width: 50%;
 }
 
 .profile-progress-con {
-    margin-top: 17px;
-    background: rgba(255, 255, 255, 0.3);
-    padding: 20px 10px;
-    border-radius: 20px;
-    margin-right: 20px;
+  margin-top: 17px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px 10px;
+  border-radius: 20px;
+  margin-right: 20px;
 }
 
 .profile-progress-con h6 {
-    margin: 0px;
-    font-size: 1.5rem;
-    color: white;
-    margin-left: 25px;
-    margin-top: 10px;
-    font-family: "Poppins", sans-serif;
+  margin: 0px;
+  font-size: 1.5rem;
+  color: white;
+  margin-left: 25px;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
 }
 
 button {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
-    font-family: sans-serif;
-    border: 0;
-    vertical-align: middle;
-    text-decoration: none;
-    background: transparent;
-    color: white;
-    padding: 0;
-    font-size: inherit;
-    margin-left: 28px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  font-family: sans-serif;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  padding: 0;
+  font-size: inherit;
+  margin-left: 28px;
 }
 
 button.learn-more {
-    width: 15rem;
-    height: auto;
+  width: 15rem;
+  height: auto;
 }
 
 button.learn-more .circle {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: relative;
-    display: block;
-    margin: 0;
-    width: 3rem;
-    height: 3rem;
-    background: cornflowerblue;
-    border-radius: 1.625rem;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: cornflowerblue;
+  border-radius: 1.625rem;
 }
 
 button.learn-more .circle .icon {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    background: #fff;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
 }
 
 button.learn-more .circle .icon.arrow {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    left: 0.625rem;
-    width: 1.125rem;
-    height: 0.125rem;
-    background: none;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
 }
 
 button.learn-more .circle .icon.arrow::before {
-    position: absolute;
-    content: "";
-    top: -0.29rem;
-    right: 0.0625rem;
-    width: 0.625rem;
-    height: 0.625rem;
-    border-top: 0.125rem solid #fff;
-    border-right: 0.125rem solid #fff;
-    transform: rotate(45deg);
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
 }
 
 button.learn-more .button-text {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
-    color: white;
-    font-weight: 700;
-    line-height: 1.6;
-    text-align: center;
-    text-transform: uppercase;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: white;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 button:hover .circle {
-    width: 100%;
+  width: 100%;
 }
 
 button:hover .circle .icon.arrow {
-    background: #fff;
-    transform: translate(1rem, 0);
+  background: #fff;
+  transform: translate(1rem, 0);
 }
 
 button:hover .button-text {
-    color: #fff;
+  color: #fff;
 }
 
 .profile-progress-con h2 {
-    font-size: 3rem;
-    font-family: "Poppins", sans-serif;
-    width: 50%;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
+  font-size: 3rem;
+  font-family: "Poppins", sans-serif;
+  width: 50%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
 }
 
 .down_arrow {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .down_arrow_img {
-    font-size: 3rem;
-    height: 4vh;
+  font-size: 3rem;
+  height: 4vh;
 }
 
 #arr2 {
-    animation: arrow1 1s infinite;
+  animation: arrow1 1s infinite;
 }
 
 #arr1 {
-    animation: arrow2 1s infinite;
+  animation: arrow2 1s infinite;
 }
 
-
 @keyframes arrow1 {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
 
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(20px);
-    }
+  50% {
+    transform: translateY(20px);
+  }
 }
 
 @keyframes arrow2 {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
 
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(30px);
-    }
+  50% {
+    transform: translateY(30px);
+  }
 }
 
-
 .completion-con {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
 }
 
 .completion-con2 {
-    user-select: none;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
+  user-select: none;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .com {
-    background-color: rgba(255, 255, 255, 0.3);
-    margin-left: 30px;
-    border: 2px solid white;
-    border-radius: 30px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-left: 30px;
+  border: 2px solid white;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .notify-info {
-    margin-top: 70px;
-    font-size: 1.3rem;
-    font-family: "Poppins", sans-serif;
+  margin-top: 70px;
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .notify-info h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .stage {
-    font-size: 0.7rem;
-    margin-left: 15px;
-    font-family: sans-serif;
+  font-size: 0.7rem;
+  margin-left: 15px;
+  font-family: sans-serif;
 }
 
 .daily-horoscope-con {
-    width: 70%;
-    margin: auto;
-    padding: 20px 10px;
+  width: 70%;
+  margin: auto;
+  padding: 20px 10px;
 }
 
 .horo-img {
-    width: 50%;
+  width: 50%;
 }
 
 .horo2 {
-    margin-left: 59.5%;
+  margin-left: 59.5%;
 }
 
 .img-con {
-    height: 0px;
+  height: 0px;
 }
 
 .horo-img {
-    width: 20%;
-    height: 250px;
-    position: relative;
-    top: -150px;
-    background-color: black;
-    border-radius: 150px;
-    animation: bounce 3s infinite;
+  width: 20%;
+  height: 250px;
+  position: relative;
+  top: -150px;
+  background-color: black;
+  border-radius: 150px;
+  animation: bounce 3s infinite;
 }
 
 .notification {
-    margin-top: 110px;
+  margin-top: 110px;
 }
 
 @keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-30px);
-    }
+  50% {
+    transform: translateY(-30px);
+  }
 }
 
 .btn {
-    font-size: 1.5rem;
-    font-family: sans-serif;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #22092C;
-    border: 0px;
-    border-radius: 10px;
-    padding: 10px 15px;
-    margin: 10px 20px;
-    cursor: pointer;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #22092c;
+  border: 0px;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 10px 20px;
+  cursor: pointer;
 }
 
 .notify {
-    width: 90%;
-    margin: auto;
-    background-color: #000000;
-    border-radius: 10px;
+  width: 90%;
+  margin: auto;
+  background-color: #000000;
+  border-radius: 10px;
 }
 
 .progress-con {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 
 .title {
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-    font-size: 2rem;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .all-pro-con {
-    background-color: black;
-    margin-top: 50px;
-    border: 2px solid white;
-    padding-top: 20px;
-    border-radius: 10px;
+  background-color: black;
+  margin-top: 50px;
+  border: 2px solid white;
+  padding-top: 20px;
+  border-radius: 10px;
 }
 
 .sign-con {
-    width: 100%;
-    margin-top: 50px;
+  width: 100%;
+  margin-top: 50px;
 }
 
 .notify h4 {
-    margin-bottom: 50px;
-    background-color: white;
-    padding: 20px;
-    color: #000000;
-    border-radius: 20px;
+  margin-bottom: 50px;
+  background-color: white;
+  padding: 20px;
+  color: #000000;
+  border-radius: 20px;
 }
 
 .sign-con h5 {
-    /* font-family: ; */
-    font-size: 1.5rem;
-    color: white;
-    margin: 0px;
-    padding-left: 90px;
+  /* font-family: ; */
+  font-size: 1.5rem;
+  color: white;
+  margin: 0px;
+  padding-left: 90px;
 }
-
 
 .sign-row-1,
 .sign-row-2,
 .sign-row-3,
 .sign-row-4 {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    position: relative;
-    left: 0px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  left: 0px;
 }
 
 .sign-row-1 img,
 .sign-row-2 img,
 .sign-row-3 img,
 .sign-row-4 img {
-    width: 250px;
+  width: 250px;
 }
 
 .sign {
-    width: 100%;
+  width: 100%;
 }
 
 .sign img:hover {
-    background-color: white;
-    border-radius: 40px;
-    cursor: pointer;
+  background-color: white;
+  border-radius: 40px;
+  cursor: pointer;
 }
 
-
 #pro {
-    margin-left: 10px;
-    width: 23.32%;
+  margin-left: 10px;
+  width: 23.32%;
 }
 
 #card1 {
-    margin: 30px;
-    padding-bottom: 40px;
+  margin: 30px;
+  padding-bottom: 40px;
 }
 
 #card2 {
-    margin: 30px;
-    padding-bottom: 40px;
+  margin: 30px;
+  padding-bottom: 40px;
 }
 
 #card3 {
-    margin: 30px;
-    padding-bottom: 40px;
+  margin: 30px;
+  padding-bottom: 40px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .visible {
-    display: block;
+  display: block;
 }
 
 .header {
-    font-size: 1.5rem;
-    color: black;
-    font-family: sans-serif;
-    text-align: center;
+  font-size: 1.5rem;
+  color: black;
+  font-family: sans-serif;
+  text-align: center;
 }
 
 .para {
-    font-size: 1rem;
-    font-family: sans-serif;
-    text-align: center;
-    color: white;
-    width: 90%;
-    margin: auto;
+  font-size: 1rem;
+  font-family: sans-serif;
+  text-align: center;
+  color: white;
+  width: 90%;
+  margin: auto;
 }
 
-
 .vid-con {
-    width: 93%;
-    margin-top: 50px;
+  width: 93%;
+  margin-top: 50px;
 }
 
 .video-all-con {
-    padding-top: 50px;
+  padding-top: 50px;
 }
 
 video {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 footer {
-    background-color: rgba(255, 255, 255, 0.3);
-    margin-top: 50px;
-    margin-bottom: 20px;
-    width: 98%;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 98%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
 }
 
 footer img {
-    width: 5%;
+  width: 5%;
 }
 
 .nav {
-    margin-left: auto;
-    margin-right: 30px;
+  margin-left: auto;
+  margin-right: 30px;
 }
 
 .nav a {
-    text-decoration: none;
-    color: white;
-    font-family: sans-serif;
-    font-size: 1.2rem;
-    padding-left: 15px;
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  padding-left: 15px;
 }
 
 .btn:hover {
-    background-color: white;
-    color: gold;
+  background-color: white;
+  color: gold;
 }
 
-
-
-
 @media (max-width: 1020px) {
+  .profile-progress-con h2 {
+    width: 80%;
+  }
 
-    .profile-progress-con h2 {
-        width: 80%;
-    }
+  .all-container {
+    width: 100%;
+    margin-left: 0px;
+  }
 
-    .all-container {
-        width: 100%;
-        margin-left: 0px;
-    }
+  .side-bar {
+    display: none;
+  }
 
-    .side-bar {
-        display: none;
-    }
+  .hamburger {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    color: black;
+    font-size: 2.6rem;
+    background-color: white;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    padding-bottom: 0px;
+  }
 
-    .hamburger {
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 20px;
-        color: black;
-        font-size: 2.6rem;
-        background-color: white;
-        padding-top: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 10px;
-        padding-bottom: 0px;
-    }
-
-    .btn {
-        font-size: 1.3rem;
-    }
+  .btn {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 800px) {
-    .horo-img {
-        display: none;
-    }
+  .horo-img {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
-    .profile-progress-con h2 {
-        width: 100%;
-        font-size: 1.8rem;
-    }
+  .profile-progress-con h2 {
+    width: 100%;
+    font-size: 1.8rem;
+  }
 
-    .notification {
-        display: block;
-    }
+  .notification {
+    display: block;
+  }
 
-    .daily_img_con {
-        width: 100%;
-    }
+  .daily_img_con {
+    width: 100%;
+  }
 
-    .birth_chart_con {
-        width: 100%;
-    }
+  .birth_chart_con {
+    width: 100%;
+  }
 
-    .profile-progress-con {
-        padding-top: 50px;
-    }
+  .profile-progress-con {
+    padding-top: 50px;
+  }
 
-    .hamburger {
-        font-size: 1.5rem;
-    }
+  .hamburger {
+    font-size: 1.5rem;
+  }
 
-    #file {
-        width: 100%;
-    }
+  #file {
+    width: 100%;
+  }
 
-    .notify-info h2 {
-        font-size: 1.2rem;
-    }
+  .notify-info h2 {
+    font-size: 1.2rem;
+  }
 
-    .header {
-        font-size: 0.8rem;
-        width: 90%;
-        margin-left: 0px;
-    }
+  .header {
+    font-size: 0.8rem;
+    width: 90%;
+    margin-left: 0px;
+  }
 
-    .info p {
-        padding: 0px;
-    }
+  .info p {
+    padding: 0px;
+  }
 
-    .info {
-        margin: auto;
-    }
+  .info {
+    margin: auto;
+  }
 
-    footer img {
-        width: 10%;
-    }
+  footer img {
+    width: 10%;
+  }
 
-    .btn {
-        font-size: 1rem;
-    }
+  .btn {
+    font-size: 1rem;
+  }
 
-    .notification {
-        margin-top: 50px;
-    }
+  .notification {
+    margin-top: 50px;
+  }
 }
