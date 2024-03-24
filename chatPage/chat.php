@@ -69,12 +69,10 @@
                         $query2->execute();
                         $messages = $query2->fetchAll(PDO::FETCH_ASSOC);
 
-                        $query3 = $pdo->prepare('SELECT male.name AS male_name, female.name AS female_name
+                        $query3 = $pdo->prepare('SELECT male.name as male_name, female.name as female_name
                         FROM matchtable
-                        JOIN male_data ON matchtable.male = male_data.id
-                        JOIN female_data ON matchtable.female = female_data.id;
-                        ');
-
+                        JOIN male ON matchtable.male = male.id
+                        JOIN female ON matchtable.female = female.id;');
                         $stmt = $query3->execute();
 
                         if ($stmt){

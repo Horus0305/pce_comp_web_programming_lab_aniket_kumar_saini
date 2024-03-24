@@ -1,17 +1,17 @@
 <?php
 include "../includes/base.php"
-?>
- <?php
+    ?>
+<?php
 session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "cosmicdestiny";
 
-$conn = new mysqli($servername, $username, $password, $dbname,8111);
+$conn = new mysqli($servername, $username, $password, $dbname, 8111);
 
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die ("Connection failed: " . $conn->connect_error);
 }
 
 $gender = $_SESSION['gender'];
@@ -38,7 +38,8 @@ $postDataBirthChart = '{
 }';
 
 
-function getLatLongFromAddress($address) {
+function getLatLongFromAddress($address)
+{
     $api_url = "https://geocode.maps.co/search";
     $api_key = "65b1303f9d4df715521005atg495293";
 
@@ -52,7 +53,7 @@ function getLatLongFromAddress($address) {
 
     if ($response !== false) {
         $data = json_decode($response, true);
-        if (!empty($data) && is_array($data) && isset($data[0]['lat']) && isset($data[0]['lon'])) {
+        if (!empty ($data) && is_array($data) && isset ($data[0]['lat']) && isset ($data[0]['lon'])) {
             return [
                 'latitude' => $data[0]['lat'],
                 'longitude' => $data[0]['lon']
@@ -82,7 +83,8 @@ curl_setopt_array($curlBirthChart, array(
         'Content-Type: application/json',
         'x-api-key: ip1M6dWw2k3QqCJUrntXG8PIYzSH10L24LBdJ7pk'
     ),
-));
+)
+);
 
 $responseBirthChart = curl_exec($curlBirthChart);
 
@@ -92,36 +94,37 @@ $horoscopeData = json_decode($responseBirthChart, true); // Decode JSON response
 
 
 ?>
-    
+
 <link rel="stylesheet" href="css/match.css" />
 <div class="content">
 
-  <div class="matches">
-    <div class="match-card" id="card1">
-       <div class="head">
-        Daily Horoscope
-       </div>
-       <img src="img\horo1.png" alt="horologo" id="horoimg">
+    <div class="matches">
+        <div class="match-card" id="card1">
+            <div class="head">
+                Daily Horoscope
+            </div>
+            <img src="img\horo1.png" alt="horologo" id="horoimg">
 
-       <div class="card-content">
-       <?php
+            <div class="card-content">
+                <?php
                 $sign = 'leo';
                 $url = "https://ohmanda.com/api/horoscope/$sign";
                 $response = file_get_contents($url);
                 $horoscopeData = json_decode($response, true);
                 ?>
-                <p id='ptext' ><?php echo $horoscopeData['horoscope']; ?>
-                  </p>
-       </div>
+                <p id='ptext'>
+                    <?php echo $horoscopeData['horoscope']; ?>
+                </p>
+            </div>
 
-    </div>
-    <div class="match-card">
-      <div class="head">
-        Birth Chart
-        
-       </div>
-       
-       <button class="downloadButton" style="background: #5E5DF0;
+        </div>
+        <div class="match-card">
+            <div class="head">
+                Birth Chart
+
+            </div>
+
+            <button class="downloadButton" style="background: #5E5DF0;
   border-radius: 999px;
   box-shadow: #a2a2d6 0 10px 20px -10px;
   box-sizing: border-box;
@@ -140,46 +143,45 @@ $horoscopeData = json_decode($responseBirthChart, true); // Decode JSON response
   width: fit-content;
   word-break: break-word;
   border: 0;">Download Birth Chart</button>
+        </div>
     </div>
-  </div>
 </div>
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function downloadSVG() {
-           
-                var svg = document.getElementById("birthchart");
+    document.addEventListener('DOMContentLoaded', function () {
+        function downloadSVG() {
 
-      
-                var serializer = new XMLSerializer();
-                var source = serializer.serializeToString(svg);
+            var svg = document.getElementById("birthchart");
 
-               
-                if (!source.match(/^<svg[^>]+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)) {
-                    source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
-                }
-                if (!source.match(/^<svg[^>]+"http:\/\/www\.w3\.org\/1999\/xlink"/)) {
-                    source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
-                }
 
-                var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
+            var serializer = new XMLSerializer();
+            var source = serializer.serializeToString(svg);
 
-                // Create a hidden link element for download
-                var downloadLink = document.createElement('a');
-                downloadLink.href = url;
-                downloadLink.download = '<?php echo $row["name"]?>birthchart.svg';
 
-                // Trigger the click event on the link to start the download
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
+            if (!source.match(/^<svg[^>]+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)) {
+                source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+            }
+            if (!source.match(/^<svg[^>]+"http:\/\/www\.w3\.org\/1999\/xlink"/)) {
+                source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
             }
 
-            // Assuming you have a button with the id "downloadButton"
-            var button = document.getElementById("downloadButton");
+            var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
 
-            // Attach the downloadSVG function to the button click event
-            button.addEventListener('click', downloadSVG);
+            // Create a hidden link element for download
+            var downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = '<?php echo $row["name"] ?>birthchart.svg';
 
-        });
-    </script>
+            // Trigger the click event on the link to start the download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
 
+        // Assuming you have a button with the id "downloadButton"
+        var button = document.getElementById("downloadButton");
+
+        // Attach the downloadSVG function to the button click event
+        button.addEventListener('click', downloadSVG);
+
+    });
+</script>

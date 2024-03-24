@@ -67,7 +67,7 @@ function completion_status() {
             c2.style.backgroundColor = "lightgreen";
             c1.style.backgroundColor = "lightgreen";
             completion.innerHTML = "100%";
-            window.location.href = "../Page3/birthchart.php";
+            window.location.href = "../homepage/match.php";
         }
     } else {
         return;
