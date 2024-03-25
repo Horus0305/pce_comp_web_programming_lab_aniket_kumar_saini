@@ -54,13 +54,13 @@
                         FROM matchtable
                         JOIN male ON matchtable.male = male.id
                         JOIN female ON matchtable.female = female.id
-                        WHERE male.name = :male_name OR female.name = :female_name');
+                        WHERE male.name = :male_name OR female.name = :female_name AND matchtable.matched = 1');
                         $query3->bindValue(':male_name', $name, PDO::PARAM_STR);
                         $query3->bindValue(':female_name', $name, PDO::PARAM_STR);
                         $query3->execute();
                         $matchData = $query3->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($matchData) {
+                        if ($matchData) { 
                             foreach ($matchData as $data) {
                                 if ($data['male_name'] === $name) {
                                     $name2 = $data['female_name'];
@@ -69,9 +69,7 @@
                                 }
                             }
                         } else {
-                            echo '<div class="message" id="message">';
-                            echo "<p> Hello error</p>";
-                            echo '</div>';
+                            //no
                         }
 
 
@@ -80,7 +78,7 @@
                     }
 
                     $messages1 = [];
-                    if ($messages) {
+                    if ($messages && $matchData) {
                         foreach ($messages as $message) {
                             $messages1[] = array(
                                 'message' => htmlspecialchars($message['message']),
