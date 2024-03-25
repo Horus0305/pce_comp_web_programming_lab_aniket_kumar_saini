@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body style="background:url('img/bg.jpg');">
+<body style="background:url('../img/bg.png');">
 
     <div class="main-con">
 

@@ -47,7 +47,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border: 1px white solid;
+  border: 2px wheat solid;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   margin-bottom: 2%;
@@ -197,29 +197,26 @@ h1 {
   margin-bottom: 50px;
 }
 
-
-.head{
+.head {
   font-size: 2rem;
   margin: 10px;
 }
 
-
-#card1{
+#card1 {
   height: 60vh;
-
 }
 
-#horoimg{
+#horoimg {
   height: 40%;
   width: auto;
 }
 
-.downloadButton{
-  background: #5E5DF0;
+.downloadButton {
+  background: #5e5df0;
   border-radius: 999px;
   box-shadow: #a2a2d6 0 10px 20px -10px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   margin-left: 5px;
   font-size: 10px;
@@ -235,7 +232,6 @@ h1 {
   word-break: break-word;
   border: 0;
 }
-
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .content {

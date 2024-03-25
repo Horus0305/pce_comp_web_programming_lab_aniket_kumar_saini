@@ -42,30 +42,33 @@ $horoscope = $stmt->fetch(PDO::FETCH_ASSOC);
 <div class="content">
     <div class="matches">
         <div class="match-card" id="card1">
-            <div class="head">
+            <div class="head" style = "font-weight:bold">
                 Daily Horoscope
             </div>
             <img src="img\horo1.png" alt="horologo" id="horoimg">
             <div class="card-content">
-                <p id='ptext'>
+                <p id='ptext' style = "text-align:center">
                     <?php echo $horoscope['horoscope']; ?>
                 </p>
             </div>
         </div>
         <div class="match-card">
-            <div class="head">
-                Birth Chart
+            <div class="head" style = "font-size:1.5rem">
+                
+
+            "Unlock cosmic insights with our dynamic matchmaking birth chart tool."        
             </div>
 
 
-        <a href="../Page3/birthchart.php" ><button class="downloadButton" style="background: #5E5DF0;
+        <a href="../Page3/birthchart.php" ><button class="downloadButton" style="background: #9239e6;width:100%;height:100px
   border-radius: 999px;
-  box-shadow: #a2a2d6 0 10px 20px -10px;
+  box-shadow: #a2a2d640 0 15px 15px -10px;
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
   margin-left: 5px;
-  font-size: 10px;
+  margin-top:10px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 15px;
   opacity: 1;
