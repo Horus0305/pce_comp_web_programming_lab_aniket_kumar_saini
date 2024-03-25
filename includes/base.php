@@ -40,7 +40,6 @@ include "head_links.php";
         <img src="../img/cross.svg" alt="cancel" id="modalinactive" />
         <div class="container" id="notification-container">
             <h1>Push Notification</h1>
-            <!-- Notifications will be fetched and displayed here via AJAX -->
         </div>
     </div>
 </div>
@@ -71,32 +70,8 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-// AJAX request to delete notification
-function deleteNotification(id) {
-    console.log("Deleting notification with ID:", id); // Log ID to console for debugging
-    $.ajax({
-        url: "delete_notification.php?id=" + id, // Pass ID as a query parameter
-        type: "GET", // Use GET method
-        success: function(response) {
-            console.log("Notification deleted successfully");
-            // Reload the page to fetch and display updated notifications
-            location.reload();
-        },
-        error: function(xhr, status, error) {
-            console.error("Error deleting notification: " + error);
-        }
-    });
-}
-
-$(document).ready(function(){
-    // Click event handler for cancel button
-    $(".cancel-btn").click(function() {
-        let id = $(this).data("id");
-        deleteNotification(id);
-    });
-});
-
     // Function to fetch notifications via AJAX
+    // Call fetchNotifications function on page load
     function fetchNotifications() {
         $.ajax({
             url: "fetch_notification.php",
@@ -114,7 +89,7 @@ $(document).ready(function(){
                         let notificationHTML = '<div class="notification_con">';
                         notificationHTML += '<i class="fi fi-rr-envelope-dot mess" style="color: black;"></i>';
                         notificationHTML += '<p class="noti" style="color: black;">' + notification.message + '</p>';
-                        notificationHTML += '<button class="cancel-btn" data-id="' + notification.id + '">Cancel</button>';
+                        notificationHTML += '<button class="cancel-btn" id="' + notification.id + '">Cancel</button>';
                         notificationHTML += '</div>';
                         notificationsContainer.append(notificationHTML);
                     });
@@ -130,7 +105,32 @@ $(document).ready(function(){
     fetchNotifications();
     setInterval(fetchNotifications, 1000);
 
-;
+    // Click event handler for cancel button (using event delegation)
+    $(document).on("click", ".cancel-btn", function() {
+        console.log("Cancelling notification ");
+        let id = $(this).attr("id"); // Use attr("id") to get the ID of the clicked button
+        deleteNotification(id);
+    });
+
+    // AJAX request to delete notification
+    function deleteNotification(id) {
+        console.log("Deleting notification with ID:", id); // Log ID to console for debugging
+        $.ajax({
+            url: "delete_notification.php",
+            type: "POST", // Change the method to POST
+            data: { id: id }, // Pass ID in the request body
+            success: function(response) {
+                console.log("Notification deleted successfully");
+                // Reload the page to fetch and display updated notifications
+       
+            },
+            error: function(xhr, status, error) {
+                console.error("Error deleting notification: " + error);
+            }
+        });
+    }
+</script>
+
 
 </script>
 
