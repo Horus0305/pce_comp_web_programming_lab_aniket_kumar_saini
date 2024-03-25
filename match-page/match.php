@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../includes/base.php";
 require("../includes/database_connect.php");
 ?>
@@ -7,7 +8,6 @@ require("../includes/database_connect.php");
   <div class="heading">MATCHES</div>
   <div class="matches">
     <?php
-    session_start();
     $matchgender = '';
     $gender = $_SESSION['gender'];
     $id = $_SESSION['id'];
@@ -40,9 +40,8 @@ require("../includes/database_connect.php");
     try {
       $ismatched_sql = "SELECT matched FROM matchtable WHERE $gender = $id AND matched = 1";
       $ismatched_result = $conn->query($ismatched_sql);
-      $ismatched_row = $ismatched_result->fetch(PDO::FETCH_ASSOC);
-      $isMatched = $ismatched_row;
-      if ($isMatched){
+      $isMatched = $ismatched_result->fetch(PDO::FETCH_ASSOC);
+      if ($isMatched) {
         echo "if block";
         // If matched, display the matched user's card
         $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1)";
@@ -85,97 +84,97 @@ require("../includes/database_connect.php");
             ';
       } else {
         echo "else block";
-      $currentUserAge = $_SESSION['age'];
+        $currentUserAge = $_SESSION['age'];
 
-      $compatibility = array(
-        "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius"),
-        "Taurus" => array("Virgo", "Capricorn", "Pisces", "Cancer"),
-        "Gemini" => array("Libra", "Aquarius", "Aries", "Leo"),
-        "Cancer" => array("Scorpio", "Pisces", "Taurus", "Virgo"),
-        "Leo" => array("Sagittarius", "Aries", "Gemini", "Libra"),
-        "Virgo" => array("Capricorn", "Taurus", "Cancer", "Scorpio"),
-        "Libra" => array("Aquarius", "Gemini", "Leo", "Sagittarius"),
-        "Scorpio" => array("Pisces", "Cancer", "Virgo", "Capricorn"),
-        "Sagittarius" => array("Aries", "Leo", "Libra", "Aquarius"),
-        "Capricorn" => array("Taurus", "Virgo", "Scorpio", "Pisces"),
-        "Aquarius" => array("Gemini", "Libra", "Sagittarius", "Aries"),
-        "Pisces" => array("Cancer", "Scorpio", "Capricorn", "Taurus")
-      );
+        $compatibility = array(
+          "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius"),
+          "Taurus" => array("Virgo", "Capricorn", "Pisces", "Cancer"),
+          "Gemini" => array("Libra", "Aquarius", "Aries", "Leo"),
+          "Cancer" => array("Scorpio", "Pisces", "Taurus", "Virgo"),
+          "Leo" => array("Sagittarius", "Aries", "Gemini", "Libra"),
+          "Virgo" => array("Capricorn", "Taurus", "Cancer", "Scorpio"),
+          "Libra" => array("Aquarius", "Gemini", "Leo", "Sagittarius"),
+          "Scorpio" => array("Pisces", "Cancer", "Virgo", "Capricorn"),
+          "Sagittarius" => array("Aries", "Leo", "Libra", "Aquarius"),
+          "Capricorn" => array("Taurus", "Virgo", "Scorpio", "Pisces"),
+          "Aquarius" => array("Gemini", "Libra", "Sagittarius", "Aries"),
+          "Pisces" => array("Cancer", "Scorpio", "Capricorn", "Taurus")
+        );
 
-      $currentSunSign = $_SESSION['sign'];
-      $compatibleSigns = isset($compatibility[$currentSunSign]) ? $compatibility[$currentSunSign] : array();
+        $currentSunSign = $_SESSION['sign'];
+        $compatibleSigns = isset($compatibility[$currentSunSign]) ? $compatibility[$currentSunSign] : array();
 
-      $minAge = $currentUserAge - 5;
-      $maxAge = $currentUserAge + 5;
+        $minAge = $currentUserAge - 5;
+        $maxAge = $currentUserAge + 5;
 
-      // Construct SQL query
-      $sql = "SELECT *
-      FROM $matchgender
-      WHERE sign IN (" . rtrim(str_repeat('?, ', count($compatibleSigns)), ', ') . ")
-      AND age BETWEEN ? AND ?
-      AND NOT EXISTS (
-          SELECT 1
-          FROM matchtable
-          WHERE ($gender = ? AND $matchgender.id = matchtable.id)
-          AND matched = 0
-      )";
+        // Construct SQL query
+        $sql = "SELECT *
+        FROM $matchgender
+        WHERE sign IN (" . rtrim(str_repeat('?, ', count($compatibleSigns)), ', ') . ")
+        AND age BETWEEN ? AND ?
+        AND NOT EXISTS (
+            SELECT 1
+            FROM matchtable
+            WHERE ($gender = ? AND $matchgender.id = matchtable.id)
+            AND matched = 0
+        )";
 
-      $result = $conn->query($sql);
-      $rows = array();
-      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          $rows[] = $row;
-      }
-      if (count($rows)==0) {
-        echo "Currently there are no Users compatible with you, Please be patient.";
-    }
-      if ($result !== false) {
-        // Output data of each row
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          // Check if there exists a like record for this pair of users
-          $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = {$_SESSION['id']} AND r_id = {$row['id']})";
-          $like_result = $conn->query($like_sql);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $compatibleSigns, PDO::PARAM_STR);
+        $stmt->bindValue(2, $minAge, PDO::PARAM_INT);
+        $stmt->bindValue(3, $maxAge, PDO::PARAM_INT);
+        $stmt->bindValue(4, $gender, PDO::PARAM_STR);
+        $stmt->execute();
 
-          $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-          $liked_class = $like_row['like_count'] > 0  ? ' liked' : ''; // Add 'liked' class if there's a like or match record
-          echo '
-            <div class="match-card">
-              <div class="image">
-                <img class="sign" src="img/pisces.png" alt="sign" />
-                <img class="photo" src="img/male-user.png" alt="photo" />
-              </div>
-              <div class="overview">
-                <div class="basic-info">
-                  <div class="basic1">
-                    <h1 id="name">' . $row["name"] . '</h1>
-                    <p id="age">Age : ' . $row["age"] . '</p>
-                    <p id="sunsign">SunSign : ' . $row["sign"] . '</p>
-                    <p id="city">City : ' . $row["city"] . '</p>
-                    <p id="work">Physique :' . interpretBMI($row['bmi']) . '</p>
-                    <p id="work">' . $row["work"] . '</p>
-                  </div>
-                  <div class="basic2">
-                    <h3>More about me</h3>
-                    <p>' . $row["description"] . '</p>    
-                  </div>
+        if (count($rows) == 0) {
+          echo "Currently there are no Users compatible with you, Please be patient.";
+        } else {
+          foreach ($rows as $row) {
+            // Check if there exists a like record for this pair of
+            // Check if there exists a like record for this pair of users
+            $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = ? AND r_id = ?)";
+            $like_stmt = $conn->prepare($like_sql);
+            $like_stmt->execute([$id, $row['id']]);
+            $like_row = $like_stmt->fetch(PDO::FETCH_ASSOC);
+            $liked_class = $like_row['like_count'] > 0  ? ' liked' : '';
+
+            echo '
+              <div class="match-card">
+                <div class="image">
+                  <img class="sign" src="img/pisces.png" alt="sign" />
+                  <img class="photo" src="img/male-user.png" alt="photo" />
                 </div>
-                <div class="openline">"' . $row["quote"] . '"</div>
-              </div>
-              <div class="decision">
-                <p>Send a Like !!</p>
-                <div class="like-button" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
-                <div class="heart-bg">
-                        <div class="heart-icon' . $liked_class . '"></div>
+                <div class="overview">
+                  <div class="basic-info">
+                    <div class="basic1">
+                      <h1 id="name">' . $row["name"] . '</h1>
+                      <p id="age">Age : ' . $row["age"] . '</p>
+                      <p id="sunsign">SunSign : ' . $row["sign"] . '</p>
+                      <p id="city">City : ' . $row["city"] . '</p>
+                      <p id="work">Physique :' . interpretBMI($row['bmi']) . '</p>
+                      <p id="work">' . $row["work"] . '</p>
                     </div>
+                    <div class="basic2">
+                      <h3>More about me</h3>
+                      <p>' . $row["description"] . '</p>    
+                    </div>
+                  </div>
+                  <div class="openline">"' . $row["quote"] . '"</div>
                 </div>
-            </div>
-            </div>
-            ';
+                <div class="decision">
+                  <p>Send a Like !!</p>
+                  <div class="like-button' . $liked_class . '" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
+                    <div class="heart-bg">
+                      <div class="heart-icon"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>';
+          }
         }
-      } else {
-        echo "0 results";
       }
-    }
       $conn = null; // Close the connection
     } catch (PDOException $e) {
       echo 'Error: ' . $e->getMessage();
@@ -210,7 +209,7 @@ require("../includes/database_connect.php");
 
   function sendDislike(likerUserId, dislikedUserId) {
     var isConfirmed = confirm("Are you sure you want to break the Match ?");
-      if (isConfirmed) {
+    if (isConfirmed) {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "dislike.php", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -232,5 +231,5 @@ require("../includes/database_connect.php");
       };
       xhr.send("disliker=" + likerUserId + "&disliked=" + dislikedUserId);
     }
-    }
+  }
 </script>
