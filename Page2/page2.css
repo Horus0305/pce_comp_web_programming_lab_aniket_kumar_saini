@@ -4,7 +4,17 @@
 @import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css");
 @import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
 @import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
-
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
 body {
   background-image: url("../img/bg.png");
   color: white;
@@ -13,7 +23,15 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+.logo {
+  width: 7rem;
+  height: 7rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-right: 200px;
+  z-index: 500;
+}
 .hamburger {
   display: none;
 }
@@ -84,11 +102,12 @@ body {
 #file {
   font-size: 4rem;
   width: 50%;
+  margin-bottom: 20px;
 }
-
 .profile-progress-con {
   margin-top: 17px;
   background: rgba(255, 255, 255, 0.3);
+  border: 2px solid wheat;
   padding: 20px 10px;
   border-radius: 20px;
   margin-right: 20px;
@@ -131,7 +150,8 @@ button.learn-more .circle {
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: cornflowerblue;
+  margin-top: 20px;
+  background: #9239e6;
   border-radius: 1.625rem;
 }
 
@@ -174,6 +194,7 @@ button.learn-more .button-text {
   padding: 0.75rem 0;
   margin: 0 0 0 1.85rem;
   color: white;
+  margin-top: 20px;
   font-weight: 700;
   line-height: 1.6;
   text-align: center;
@@ -190,7 +211,7 @@ button:hover .circle .icon.arrow {
 }
 
 button:hover .button-text {
-  color: #fff;
+  color: black;
 }
 
 .profile-progress-con h2 {
@@ -199,7 +220,7 @@ button:hover .button-text {
   width: 50%;
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   color: black;
 }
 
@@ -261,8 +282,9 @@ button:hover .button-text {
 
 .com {
   background-color: rgba(255, 255, 255, 0.3);
-  margin-left: 30px;
-  border: 2px solid white;
+  margin-right: 22px;
+  margin-left: 25px;
+  border: 2px solid wheat;
   border-radius: 30px;
   width: 30px;
   height: 30px;
@@ -280,9 +302,11 @@ button:hover .button-text {
 }
 
 .stage {
-  font-size: 0.7rem;
-  margin-left: 15px;
-  font-family: sans-serif;
+  color: black;
+  font-size: 1rem;
+  margin-right: 15px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
 }
 
 .daily-horoscope-con {
@@ -292,7 +316,7 @@ button:hover .button-text {
 }
 
 .horo-img {
-  width: 50%;
+  width: 17%;
 }
 
 .horo2 {
@@ -304,12 +328,13 @@ button:hover .button-text {
 }
 
 .horo-img {
-  width: 20%;
+  width: 17%;
   height: 250px;
   position: relative;
   top: -150px;
+  left: 33px;
   background-color: black;
-  border-radius: 150px;
+  border-radius: 50%;
   animation: bounce 3s infinite;
 }
 
@@ -466,24 +491,6 @@ button:hover .button-text {
 
 .video-all-con {
   padding-top: 50px;
-}
-
-video {
-  border-radius: 10px;
-}
-
-footer {
-  background-color: rgba(255, 255, 255, 0.3);
-  margin-top: 50px;
-  margin-bottom: 20px;
-  width: 98%;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-}
-
-footer img {
-  width: 5%;
 }
 
 .nav {
