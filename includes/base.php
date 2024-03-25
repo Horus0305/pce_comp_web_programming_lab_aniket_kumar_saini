@@ -18,11 +18,26 @@ include "head_links.php";
                 <img src="../img/home.svg" alt="" />
             </a>
         </div>
+        <?php
+        $message;
+        if(isset($_SESSION['matchData'])) {
+            $message = $_SESSION['matchData'];
+        }
+        ?>
+
+        <?php
+
+        if ($message){
+
+?>
+        
+
         <div class="chat">
             <a href="../chatPage/chat.php">
                 <img src="../img/chat.svg" alt="" />
             </a>
         </div>
+        <?php }?>
         <div class="heart">
             <a href="../match-page/match.php">
                 <img src="../img/heart.svg" alt="" />
