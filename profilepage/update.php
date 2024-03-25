@@ -96,32 +96,11 @@ try {
     // Check if form data is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve form data
-        if(!empty($_FILES["photo"]["name"])) {
-            // Get file info
-            $fileName = basename($_FILES["photo"]["name"]);
-            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
-            // Allow certain file formats
-            $allowTypes = array('jpg','png','jpeg','gif');
-            if(in_array($fileType, $allowTypes)){
-                $image = $_FILES['photo']['tmp_name'];  
-                $imgContent = addslashes(file_get_contents($image)); 
-                $insert = true; // Assuming $insert is a flag indicating successful file insertion into the database
-                if($insert){
-                    $status = 'success';
-                    $statusMsg = "File uploaded successfully.";
-                } else {
-                    $statusMsg = "File upload failed, please try again.";
-                }  
-            } else {
-                $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
-            }
-        } else {
-            $statusMsg = 'Please select an image file to upload.';
-        }
+       
  
         $newweight = $_POST['weight'];
         $newheight = $_POST['height'];
-
+        $newphoto = $_FILES['photo'];
         $newnum = $_POST['number'];
         $newquote = $_POST['quote'];
         $newdescription = $_POST['description'];
@@ -133,7 +112,18 @@ try {
         $newcity = $_POST['city'];
         $newwork = $_POST['occupation'];
         $newsign = getZodiacSign($newdob);
-
+        if ($newphoto['error'] !== UPLOAD_ERR_OK) {
+            echo '<script>alert("Error uploading file");window.location.href = "../profilepage/profile.php";</script>';
+            exit;
+        }
+    
+        // Validate file type (optional)
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($newphoto['type'], $allowedTypes)) {
+            echo '<script>alert("Invalid file type");window.location.href = "../profilepage/profile.php";</script>';
+            exit;
+        }
+        $newphotoContent = file_get_contents($newphoto['tmp_name']);
         // Validate password
         if (empty($passw)) {
             echo '<script>alert("Password cannot be empty");window.location.href = "../profilepage/profile.php";</script>';
@@ -182,7 +172,7 @@ try {
                 $stmt->bindParam(':newtob', $newtob);
                 $stmt->bindParam(':newage', $newage);
                 $stmt->bindParam(':newheight', $newheight);
-                $stmt->bindParam(':newphoto', $imgContent);
+                $stmt->bindParam(':newphoto', $newphotoContent, PDO::PARAM_LOB);
                 $stmt->bindParam(':newnum', $newnum);
                 $stmt->bindParam(':newbmi', $newbmi);
                 $stmt->bindParam(':newquote', $newquote);

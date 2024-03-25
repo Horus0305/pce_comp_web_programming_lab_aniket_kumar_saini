@@ -68,7 +68,7 @@ $db = null;
                 class="rounded-circle sign"
                 width="150"
               /> -->
-              <img class="rounded-circle photo" width="150" src="./img/male-user.png"/>
+              <img class="rounded-circle photo" width="150" src="display.php"/>
 
             <div class="mt-3">
               <h3><?php
