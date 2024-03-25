@@ -31,7 +31,34 @@
 
 
                     $name = $_SESSION['name'];
-                    echo '<li id="name">' . $name . '</li>';
+
+                    $db_path = "../database/baba.db";
+
+                    $pdo = new PDO("sqlite:" . $db_path);
+
+                    $query5 = $pdo->prepare('SELECT DISTINCT male.name AS male_name, female.name AS female_name
+                        FROM matchtable
+                        JOIN male ON matchtable.male = male.id
+                        JOIN female ON matchtable.female = female.id
+                        WHERE male.name = :male_name OR female.name = :female_name AND matchtable.matched = 1');
+                        $query5->bindValue(':male_name', $name, PDO::PARAM_STR);
+                        $query5->bindValue(':female_name', $name, PDO::PARAM_STR);
+                        $query5->execute();
+                        $matchData2 = $query5->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($matchData2) { 
+                            foreach ($matchData2 as $data) {
+                                if ($data['male_name'] === $name) {
+                                    $Cname = $data['female_name'];
+                                } else if ($data['female_name'] === $name) {
+                                    $Cname = $data['male_name'];
+                                }
+                            }
+                        } else {
+                            //no
+                        }
+
+                    echo '<li id="name">' . $Cname . '</li>';
                     ?>
                 </div>
 
