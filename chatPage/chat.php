@@ -58,7 +58,7 @@
                         $query3->bindValue(':male_name', $name, PDO::PARAM_STR);
                         $query3->bindValue(':female_name', $name, PDO::PARAM_STR);
                         $query3->execute();
-                        $_SESSION['matchData'] = $matchData = $query3->fetchAll(PDO::FETCH_ASSOC);
+                        $matchData = $query3->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($matchData) { 
                             foreach ($matchData as $data) {

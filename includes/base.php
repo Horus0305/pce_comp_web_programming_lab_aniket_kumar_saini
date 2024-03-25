@@ -18,15 +18,26 @@ include "head_links.php";
             </a>
         </div>
         <?php
-        $message;
-        if(isset($_SESSION['matchData'])) {
-            $message = $_SESSION['matchData'];
-        }
-        ?>
 
-        <?php
+        $name = $_SESSION['name'];
 
-        if ($message){
+        $db_path = "../database/baba.db";
+
+        $pdo = new PDO("sqlite:" . $db_path);
+
+
+
+        $query3 = $pdo->prepare('SELECT DISTINCT male.name AS male_name, female.name AS female_name
+        FROM matchtable
+        JOIN male ON matchtable.male = male.id
+        JOIN female ON matchtable.female = female.id
+        WHERE male.name = :male_name OR female.name = :female_name AND matchtable.matched = 1');
+        $query3->bindValue(':male_name', $name, PDO::PARAM_STR);
+        $query3->bindValue(':female_name', $name, PDO::PARAM_STR);
+        $query3->execute();
+        $matchData = $query3->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($matchData){
 
 ?>
         
