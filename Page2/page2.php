@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>page 2</title>
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <title>CD - Home Page</title>
   <link rel="stylesheet" href="page2.css" />
   <link rel="stylesheet" href="css/proCom.css" />
+  <link rel="website icon" type="png" href="../img/favicon.png" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+  
   <div class="main-con">
     
     <div onclick="show_burger()" class="hamburger">
@@ -36,8 +36,9 @@
         </div>
         
         <div class="profile-progress-con">
+          
           <center>
-            <h2>Profile Progress <span>📄</span></h2>
+            <h2>Profile Progress</h2>
           </center>
         <center>
           <progress id="file" value="0" max="100"></progress>
@@ -51,14 +52,14 @@
         </div>
         
         <div class="completion-con2">
-          <div class="stage">Basic_info</div>
-          <div class="stage">Work_info</div>
-          <div class="stage">BMI_info</div>
-          <div class="stage">Profile_pic</div>
+          <div class="stage">Basic Info</div>
+          <div class="stage">Birth Info</div>
+          <div class="stage">BMI Info</div>
+          <div class="stage">Completed</div>
         </div>
         
         <center>
-          <h6>Completed <span id="completion_val">0%</span></h6>
+          <h6 style = "margin-top:20px">Completed <span id="completion_val" style = "color:#2e0f4c;">0%</span></h6>
           <a href="../profilepage/profile.php"><button class="learn-more">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
@@ -175,9 +176,9 @@
               <h2 class="title">Matches based on Birth-Chart</h2>
               <p class="para">
                 "Matches based on Birth-Chart" typically refers to astrological compatibility between two individuals
-                based on their birth charts, also known as natal charts. A birth chart is a diagrammatic representation
-                of the positions of celestial bodies at the time of an individual's birth. It's primarily based on the
-                individual's birth date, time, and place.
+                based on their birth charts, also known as natal charts. A birth chart is a  representation
+                of the positions of celestial bodies at the time of an individual's birth. It's  based on the
+                individual's birth date, time, and place"
               </p>
             </div>
             <div id="card2" class="hidden">
@@ -188,6 +189,7 @@
                 categories:
               </p>
             </div>
+            
             <div id="card3" class="hidden">
               <h2 class="title">Daily Horoscope</h2>
               <p class="para">
