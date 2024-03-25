@@ -39,18 +39,18 @@ try {
         $month = (int)$dob->format('m');
         $day = (int)$dob->format('d');
         $zodiacSigns = array(
-            array("Aquarius", "01-20", "02-18"),
-            array("Pisces", "02-19", "03-20"),
-            array("Aries", "03-21", "04-19"),
-            array("Taurus", "04-20", "05-20"),
-            array("Gemini", "05-21", "06-20"),
-            array("Cancer", "06-21", "07-22"),
-            array("Leo", "07-23", "08-22"),
-            array("Virgo", "08-23", "09-22"),
-            array("Libra", "09-23", "10-22"),
-            array("Scorpio", "10-23", "11-21"),
-            array("Sagittarius", "11-22", "12-21"),
-            array("Capricorn", "12-22", "01-19")
+            array("Aries", "04-14", "05-14"), // Mesha
+            array("Taurus", "05-15", "06-15"), // Vrishabha
+            array("Gemini", "06-16", "07-15"), // Mithuna
+            array("Cancer", "07-16", "08-15"), // Karka
+            array("Leo", "08-16", "09-15"), // Simha
+            array("Virgo", "09-16", "10-15"), // Kanya
+            array("Libra", "10-16", "11-15"), // Tula
+            array("Scorpio", "11-16", "12-15"), // Vrischika
+            array("Sagittarius", "12-16", "01-13"), // Dhanu
+            array("Capricorn", "01-14", "02-12"), // Makara
+            array("Aquarius", "02-13", "03-13"), // Kumbha
+            array("Pisces", "03-14", "04-13") // Meena
         );
 
         $dateStr = sprintf("%02d-%02d", $month, $day);

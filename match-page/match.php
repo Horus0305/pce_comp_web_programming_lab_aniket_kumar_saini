@@ -84,20 +84,21 @@ require ("../includes/database_connect.php");
       } else {
         $currentUserAge = $_SESSION['age'];
 
-        $compatibility = array(
-          "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius"),
-          "Taurus" => array("Virgo", "Capricorn", "Pisces", "Cancer"),
-          "Gemini" => array("Libra", "Aquarius", "Aries", "Leo"),
-          "Cancer" => array("Scorpio", "Pisces", "Taurus", "Virgo"),
-          "Leo" => array("Sagittarius", "Aries", "Gemini", "Libra"),
-          "Virgo" => array("Capricorn", "Taurus", "Cancer", "Scorpio"),
-          "Libra" => array("Aquarius", "Gemini", "Leo", "Sagittarius"),
-          "Scorpio" => array("Pisces", "Cancer", "Virgo", "Capricorn"),
-          "Sagittarius" => array("Aries", "Leo", "Libra", "Aquarius"),
-          "Capricorn" => array("Taurus", "Virgo", "Scorpio", "Pisces"),
-          "Aquarius" => array("Gemini", "Libra", "Sagittarius", "Aries"),
-          "Pisces" => array("Cancer", "Scorpio", "Capricorn", "Taurus")
-        );
+        $moonCompatibility = array(
+          "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius", "Libra", "Taurus"),
+          "Taurus" => array("Virgo", "Capricorn", "Pisces", "Cancer", "Scorpio", "Leo"),
+          "Gemini" => array("Libra", "Aquarius", "Aries", "Leo", "Sagittarius", "Virgo"),
+          "Cancer" => array("Scorpio", "Pisces", "Taurus", "Virgo", "Capricorn", "Aries"),
+          "Leo" => array("Sagittarius", "Aries", "Gemini", "Libra", "Aquarius", "Cancer"),
+          "Virgo" => array("Capricorn", "Taurus", "Cancer", "Scorpio", "Pisces", "Gemini"),
+          "Libra" => array("Aquarius", "Gemini", "Leo", "Sagittarius", "Aries", "Taurus"),
+          "Scorpio" => array("Pisces", "Cancer", "Virgo", "Capricorn", "Taurus", "Gemini"),
+          "Sagittarius" => array("Aries", "Leo", "Libra", "Aquarius", "Gemini", "Cancer"),
+          "Capricorn" => array("Taurus", "Virgo", "Scorpio", "Pisces", "Cancer", "Leo"),
+          "Aquarius" => array("Gemini", "Libra", "Sagittarius", "Aries", "Leo", "Virgo"),
+          "Pisces" => array("Cancer", "Scorpio", "Capricorn", "Taurus", "Virgo", "Libra")
+      );   
+      
 
         $currentSunSign = $_SESSION['sign'];
         $compatibleSigns = isset ($compatibility[$currentSunSign]) ? $compatibility[$currentSunSign] : array();
