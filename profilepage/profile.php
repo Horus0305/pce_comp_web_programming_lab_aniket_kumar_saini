@@ -53,7 +53,7 @@ $db = null;
 
 <body>
   <div class="header">
-    <a class="imgbtn" id="backbtn" href="">
+    <a class="imgbtn" id="backbtn" href="../Page2/page2.php">
       <img src="img/back-btn.png" /></a>
     <p id="heading">My Profile</p>
     <a class="imgbtn" id="logoutbtn" href="logout.php"><img src="img/log-out.png" /></a>

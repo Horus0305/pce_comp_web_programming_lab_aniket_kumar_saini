@@ -1,72 +1,142 @@
 <?php
-    include "head_links.php";
-    ?>
+include "head_links.php";
+?>
+
+<link rel="website icon" type="png" href="../img/favicon.png" />
+<div id="preloader">
+  <div id="loader"></div>
+</div>
 <div class="nav">
-      <div class="emblem">
+    <div class="emblem">
         <a href="../landingpage/main.html">
-          <img class="logo" src="../img/favicon.png" alt="logo" />
+            <img class="logo" src="../img/favicon.png" alt="logo" />
         </a>
-      </div>
-      <div class="widgets">
+    </div>
+    <div class="widgets">
         <div class="home">
-          <a href="../Page2/page2.html">
-            <img src="../img/home.svg" alt="" />
-          </a>
+            <a href="../homepage/match.php">
+                <img src="../img/home.svg" alt="" />
+            </a>
         </div>
         <div class="chat">
-          <a href="../chatPage/chat.php">
-            <img src="../img/chat.svg" alt="" />
-          </a>
+            <a href="../chatPage/chat.php">
+                <img src="../img/chat.svg" alt="" />
+            </a>
         </div>
         <div class="heart">
-          <a href="../match-page/match.php">
-            <img src="../img/heart.svg" alt="" />
-          </a>
+            <a href="../match-page/match.php">
+                <img src="../img/heart.svg" alt="" />
+            </a>
         </div>
-      </div>
-      <div class="notification">
-          <img src="../img/notification.svg" alt="" id="modalactive" onclick="opcl()"/>
-      </div>
-      <div class="profile">
+    </div>
+    <div class="notification">
+        <img src="../img/notification.svg" alt="" id="modalactive" onclick="opcl()"/>
+    </div>
+    <div class="profile">
         <a href="../profilepage/profile.php">
-          <img class="profileimg" src="../img/profile.jpg" alt="profile-img" />
+            <img class="profileimg" src="../img/profile.jpg" alt="profile-img" />
         </a>
-      </div>
     </div>
-    <div id="modal">
-      <div id="overlay">
+</div>
+<div id="modal">
+    <div id="overlay">
         <img src="../img/cross.svg" alt="cancel" id="modalinactive" />
-        <div class="notification_con">
-        <i class="fi fi-rr-envelope-dot mess"></i>
-        <p class="noti">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, assumenda?</p>
+        <div class="container" id="notification-container">
+            <h1>Push Notification</h1>
         </div>
-      </div>
     </div>
-    <script>
-      function opcl() {
-        let x = document.getElementById("modal");
-        if (x.style.display === "none" || x.style.display === "") {
-          x.style.display = "block";
-          // let button = document.getElementById("modalactive");
-          // button.addEventListener("click", openModal);
-        } else {
-          x.style.display = "none";
-        }
-      }
+</div>
+<script>
+    $(window).on("load", function () {
+      $("#preloader").fadeOut("slow");
+    });
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// Function to fetch notifications via AJAX
+// Call fetchNotifications function on page load
 
-      let close = document.getElementById("modalinactive");
-      close.addEventListener("click", closeModal);
 
-      // function openModal() {
-      //   modal.style.display = "block";
-      // }
-
-      function closeModal() {
+function opcl() {
+    let modal = document.getElementById("modal");
+    if (modal.style.display === "none" || modal.style.display === "") {
+        modal.style.display = "block";
+    } else {
         modal.style.display = "none";
-      }
-      window.addEventListener("keydown", (event) => {
-        if (event.code === "Escape") {
-          modal.style.display = "none";
-        }
-      });
-    </script>
+    }
+}
+
+let close = document.getElementById("modalinactive");
+close.addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+});
+
+window.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+        document.getElementById("modal").style.display = "none";
+    }
+});
+
+    // Function to fetch notifications via AJAX
+    // Call fetchNotifications function on page load
+    function fetchNotifications() {
+        $.ajax({
+            url: "fetch_notification.php",
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                // Process the fetched notifications
+                if (response.error) {
+                    console.error("Error fetching notifications: " + response.error);
+                } else {
+                    // Display notifications
+                    let notificationsContainer = $("#notification-container");
+                    notificationsContainer.empty(); // Clear previous notifications
+                    response.forEach(function(notification) {
+                        let notificationHTML = '<div class="notification_con">';
+                        notificationHTML += '<i class="fi fi-rr-envelope-dot mess" style="color: black;"></i>';
+                        notificationHTML += '<p class="noti" style="color: black;">' + notification.message + '</p>';
+                        notificationHTML += '<button class="cancel-btn" id="' + notification.id + '">Cancel</button>';
+                        notificationHTML += '</div>';
+                        notificationsContainer.append(notificationHTML);
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching notifications: " + error);
+            }
+        });
+    }
+
+    // Call fetchNotifications function on page load
+    fetchNotifications();
+    setInterval(fetchNotifications, 1000);
+
+    // Click event handler for cancel button (using event delegation)
+    $(document).on("click", ".cancel-btn", function() {
+        console.log("Cancelling notification ");
+        let id = $(this).attr("id"); // Use attr("id") to get the ID of the clicked button
+        deleteNotification(id);
+    });
+
+    // AJAX request to delete notification
+    function deleteNotification(id) {
+        console.log("Deleting notification with ID:", id); // Log ID to console for debugging
+        $.ajax({
+            url: "delete_notification.php",
+            type: "POST", // Change the method to POST
+            data: { id: id }, // Pass ID in the request body
+            success: function(response) {
+                console.log("Notification deleted successfully");
+                // Reload the page to fetch and display updated notifications
+       
+            },
+            error: function(xhr, status, error) {
+                console.error("Error deleting notification: " + error);
+            }
+        });
+    }
+</script>
+
+
+

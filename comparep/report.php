@@ -1,26 +1,20 @@
 <?php
+session_start();
 include "../includes/base.php"
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-sqzrP8sP6mDHBbASmAkbXbZRspMz+LcN3OoW4xXV4yZ+zKWHl4G3JvHG6V1vWlwgqZCIS1a8X5EazbcTqSr7Aw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <?php
-session_start();
 require("../includes/database_connect.php");
-
 // Check if session variables are set
 if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
   die("Missing session variables");
 }
-
-
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
 
 
 if($gender=="male"){
-
-
 $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
@@ -44,11 +38,6 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $matchid= $row['female'];
 
-
-
-
-
-
 $stmt = $db->prepare("SELECT * FROM female WHERE id=:id");
 $stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
 $stmt->execute();
@@ -65,35 +54,24 @@ list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $tim
 // Split date into year, month, day
 list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
 
-
-
-
-
-
-
-
 }
-
 
 if($gender=="female"){
 
-
-    $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $female = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $time_of_birth = $female['tob'];
 $date = $female['dob'];
-$lati = $female['latitude'];
-$long = $female['longitude'];
+$femalelati = $female['latitude'];
+$femalelong = $female['longitude'];
 
 // Split time_of_birth into hours, minutes, seconds
 list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
 list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
-
-
 
 
 $stmt = $db->prepare("SELECT male FROM matchtable WHERE $gender=:id");
@@ -102,9 +80,6 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $matchid= $row['male'];
-
-
-
 
 
 $stmt = $db->prepare("SELECT * FROM male WHERE id=:id");
@@ -124,13 +99,6 @@ $malelong = $male['longitude'];
 list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
 list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
-
-
-
-
-
-
-
     }
     $request_data = [
         "female" => [
@@ -201,11 +169,8 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
     
     // Check if the 'output' key exists in the response
     if (isset($data['output'])) 
-        $output = $data['output'];
-
-
+      $output = $data['output'];
       $totalscore=$output["total_score"];
-      
       $obper=($totalscore/36)*100;
       $rem=100-$obper;
 

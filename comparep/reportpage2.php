@@ -1,15 +1,9 @@
 <?php
-include "../includes/base.php";
-
-?>
-
-        
-   
-<?php 
-
 session_start();
+include "../includes/base.php";
+?>         
+<?php 
 require("../includes/database_connect.php");
-
 // Check if session variables are set
 if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
   die("Missing session variables");
@@ -32,8 +26,6 @@ $time_of_birth = $male['tob'];
 $date = $male['dob'];
 $malelati = $male['latitude'];
 $malelong = $male['longitude'];
-
-
 $name = $male['name'];
 $namepart=explode(" ", $name);
 $malefirstname=$namepart[0];
@@ -75,19 +67,11 @@ list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $tim
 list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
 
 
-
-
-
-
-
-
 }
 
 
 if($gender=="female"){
-
-
-    $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $female = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -96,8 +80,8 @@ $namepart=explode(" ", $name);
 $femalefirstname=$namepart[0];
 $time_of_birth = $female['tob'];
 $date = $female['dob'];
-$lati = $female['latitude'];
-$long = $female['longitude'];
+$femalelati = $female['latitude'];
+$femalelong = $female['longitude'];
 
 // Split time_of_birth into hours, minutes, seconds
 list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
@@ -137,14 +121,7 @@ $malelong = $male['longitude'];
 list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
 // Split date into year, month, day
 list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
-
-
-
-
-
-
-
-    }
+}
     $request_data = [
         "female" => [
             "year" => (int)$femaleyear,

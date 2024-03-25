@@ -18,43 +18,108 @@
     <div class="main-con">
         <?php
 
+
+
+
+
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cosmicdestiny";
+require("../includes/database_connect.php");
 
-$conn = new mysqli($servername, $username, $password, $dbname,8111);
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+// Check if session variables are set
+if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
+  die("Missing session variables");
 }
+
 
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
 
-$sql = "SELECT * FROM $gender WHERE id='$id'";
 
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+if($gender=="male"){
 
-        // Set the cURL POST fields for the first API call (Birth Chart)
-        $postDataBirthChart = '{
-            "year": 2022,
-            "month": 8,
-            "date": 11,
-            "hours": 6,
-            "minutes": 0,
-            "seconds": 0,
-            "latitude": 17.38333,
-            "longitude": 78.4666,
-            "timezone": 5.5,
-            "config": {
-                "observation_point": "topocentric",
-                "ayanamsha": "lahiri"
-            }
-        }';
 
+$stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$male = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$time_of_birth = $male['tob'];
+$date = $male['dob'];
+$malelati = $male['latitude'];
+$malelong = $male['longitude'];
+$name=$male['name'];
+$location = $male['pob'];
+// Split time_of_birth into hours, minutes, seconds
+list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($maleyear, $malemonth, $maleday) = explode("-", $date);
+
+
+$postDataBirthChart = array(
+    "year" => (int)$maleyear,
+    "month" => (int)$malemonth,
+    "date" => (int)$maleday,
+    "hours" => (int)$malehours,
+    "minutes" => (int)$maleminutes,
+    "seconds" => (int)$maleseconds,
+    "latitude" => (float)$malelati,
+    "longitude" => (float)$malelong,
+    "timezone" => 5.5,
+    "config" => array(
+        "observation_point" => "topocentric",
+        "ayanamsha" => "lahiri"
+    )
+);
+
+
+
+
+
+
+
+
+}
+
+
+if($gender=="female"){
+
+
+    $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$female = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$time_of_birth = $female['tob'];
+$date = $female['dob'];
+$lati = $female['latitude'];
+$long = $female['longitude'];
+$name=$female['name'];
+$location = $female['pob'];
+// Split time_of_birth into hours, minutes, seconds
+list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
+// Split date into year, month, day
+list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
+
+$postDataBirthChart = array(
+    "year" => (int)$femaleyear,
+    "month" => (int)$femalemonth,
+    "date" => (int)$femaleday,
+    "hours" => (int)$femalehours,
+    "minutes" => (int)$femaleminutes,
+    "seconds" => (int)$femaleseconds,
+    "latitude" => (float)$lati,
+    "longitude" => (float)$long,
+    "timezone" => 5.5,
+    "config" => array(
+        "observation_point" => "topocentric",
+        "ayanamsha" => "lahiri"
+    )
+);
+
+
+
+    }
+    
 
         function getLatLongFromAddress($address) {
             $api_url = "https://geocode.maps.co/search";
@@ -95,7 +160,7 @@ $row = $result->fetch_assoc();
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $postDataBirthChart,
+            CURLOPT_POSTFIELDS => json_encode($postDataBirthChart),
             CURLOPT_HTTPHEADER => array(
                 'Content-Type: application/json',
                 'x-api-key: ip1M6dWw2k3QqCJUrntXG8PIYzSH10L24LBdJ7pk'
@@ -110,7 +175,7 @@ $row = $result->fetch_assoc();
 
       
         ?>
-        <?php include 'D:\xaamo\htdocs\pce_comp_web_programming_lab_aniket_kumar_saini\includes\base.php' ?>
+        <?php include '../includes/base.php' ?>
 
         <div class="cont" style="color: white;">
             <!-- Existing birth chart div -->
@@ -123,13 +188,10 @@ $row = $result->fetch_assoc();
                     <img src="<?php echo isset($horoscopeData['output']) ? $horoscopeData['output'] : ''; ?>" alt="Birthchart" id="birthchart">
 
                     <div class="about2">
-                        <h3>Name: <?php echo $row['name'] ?></h3>
-                        <p>Birth Location: Seawoods</p>
-                        <p>Date of Birth: <?php echo isset($horoscopeData['year']) ? $postDataBirthChart['year'] : '';
-                                            echo isset($postDataBirthChart['month']) ? '-' . $postDataBirthChart['month'] : '';
-                                            echo isset($postDataBirthChart['date']) ? '-' . $postDataBirthChart['date'] : ''; ?></p>
-                        <p>Time of Birth: <?php echo isset($postDataBirthChart['hours']) ? $postDataBirthChart['hours'] : '';
-                                            echo isset($postDataBirthChart['minutes']) ? ':' . $postDataBirthChart['minutes'] : ''; ?></p>
+                        <h3>Name: <?php echo $name ?></h3>
+                        <p>Birth Location: <?php echo $location; ?></p>
+                        <p>Date of Birth: <?php echo $date ;?></p>
+                        <p>Time of Birth: <?php echo $time_of_birth;  ?></p>
                                            
                        
                                             
@@ -144,41 +206,43 @@ $row = $result->fetch_assoc();
             <head>
 
             <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function downloadSVG() {
-           
-                var svg = document.getElementById("birthchart");
+    document.addEventListener('DOMContentLoaded', function () {
+        function downloadSVG() {
+            var svg = document.getElementById("birthchart");
+            var serializer = new XMLSerializer();
+            var source = serializer.serializeToString(svg);
 
-      
-                var serializer = new XMLSerializer();
-                var source = serializer.serializeToString(svg);
-
-               
-                if (!source.match(/^<svg[^>]+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)) {
-                    source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
-                }
-                if (!source.match(/^<svg[^>]+"http:\/\/www\.w3\.org\/1999\/xlink"/)) {
-                    source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
-                }
-
-                var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
-
-                // Create a hidden link element for download
-                var downloadLink = document.createElement('a');
-                downloadLink.href = url;
-                downloadLink.download = '<?php echo $row["name"]?>birthchart.svg';
-
-                // Trigger the click event on the link to start the download
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
+            if (!source.match(/^<svg[^>]+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)) {
+                source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+            }
+            if (!source.match(/^<svg[^>]+"http:\/\/www\.w3\.org\/1999\/xlink"/)) {
+                source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
             }
 
-            // Assuming you have a button with the id "downloadButton"
-            var button = document.getElementById("downloadButton");
+            var url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
 
-            // Attach the downloadSVG function to the button click event
-            button.addEventListener('click', downloadSVG);
-        });
-    </script>
+            // Create a hidden link element for download
+            var downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = '<?php echo $name ?>_birthchart.svg'; // Changed from $row["name"] to $name
+            downloadLink.style.display = 'none'; // Hide the link
+
+            // Add the link to the document body
+            document.body.appendChild(downloadLink);
+
+            // Trigger the click event on the link to start the download
+            downloadLink.click();
+
+            // Remove the link from the document body
+            document.body.removeChild(downloadLink);
+        }
+
+        // Assuming you have a button with the id "downloadButton"
+        var button = document.getElementById("downloadButton");
+
+        // Attach the downloadSVG function to the button click event
+        button.addEventListener('click', downloadSVG);
+    });
+</script>
+
 
