@@ -1,7 +1,6 @@
 <?php
 include "head_links.php";
 ?>
-
 <link rel="website icon" type="png" href="../img/favicon.png" />
 <div id="preloader">
   <div id="loader"></div>
@@ -49,7 +48,7 @@ include "head_links.php";
     </div>
     <div class="profile">
         <a href="../profilepage/profile.php">
-            <img class="profileimg" src="../img/profile.jpg" alt="profile-img" />
+            <img class="profileimg" src="../profilepage/display.php" alt="profile-img" />
         </a>
     </div>
 </div>
