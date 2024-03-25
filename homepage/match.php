@@ -76,7 +76,7 @@ $horoscope = $stmt->fetch(PDO::FETCH_ASSOC);
   touch-action: manipulation;
   width: fit-content;
   word-break: break-word;
-  border: 0;">View Birth Chart</button>></a>
+  border: 0;">View Birth Chart</button></a>
         </div>
     </div>
 </div>
