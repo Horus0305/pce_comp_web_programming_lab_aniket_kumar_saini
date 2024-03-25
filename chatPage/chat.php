@@ -46,7 +46,7 @@
                         $query5->execute();
                         $matchData2 = $query5->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($matchData2) { 
+                        if ($matchData2) {
                             foreach ($matchData2 as $data) {
                                 if ($data['male_name'] === $name) {
                                     $Cname = $data['female_name'];

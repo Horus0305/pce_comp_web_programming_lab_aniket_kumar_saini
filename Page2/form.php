@@ -2,17 +2,26 @@
 // Initialize error message variables for each input field
 $nameError = "";
 $phoneError = "";
+$err;
 $isFormSubmitted = false;
 
-$db_path = "../database/baba.db";
 
+
+try{
+    $db_path = "../database/baba.db";
+    $pdo = new PDO("sqlite:" . $db_path);
+}
+catch(PDOException $e){
+    echo "Error: Sorry for Inconvenience Server is Down!!!";
+}
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["submit"])) {
-    $username = "Addy";
+    $username = "Smith";
     $name = $_POST["full_name"];
     $date = 1920;
     $phoneNumber = $_POST["number"];
+    $pNum = password_hash($phoneNumber, PASSWORD_DEFAULT);
     $city = $_POST["city"];
     $address = $_POST["address"];
     $gender = "male";
@@ -34,6 +43,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["submit"])) {
     // If there are no errors, set form submitted flag to true
     if (empty ($nameError) && empty ($phoneError)) {
         $isFormSubmitted = true;
+
+        try{
+        $sql = $pdo->prepare('INSERT INTO Profile_info (username, fullname, phonenumber, birthdate, gender, address, city) VALUES (:username, :fullname, :phonenumber, :birthdate, :gender, :address, :city)');
+        $sql->bindValue(':username', $username, PDO::PARAM_STR);
+        $sql->bindValue(':fullname', $name, PDO::PARAM_STR);
+        $sql->bindValue(':phonenumber', $pNum, PDO::PARAM_STR);
+        $sql->bindValue(':birthdate', $date, PDO::PARAM_STR);
+        $sql->bindValue(':gender', $gender, PDO::PARAM_STR);
+        $sql->bindValue(':address', $address, PDO::PARAM_STR);
+        $sql->bindValue(':city', $city, PDO::PARAM_STR);
+        $sql->execute();
+        }
+        catch(PDOException $e){
+            $err = "ERROR: Server is Down now Sorry for Inconvenience!!!";
+        }
     }
 }
 ?>
@@ -47,7 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["submit"])) {
 
         <?php
         if ($isFormSubmitted) {
+            echo "$err";
+            if(!$err){
             echo "<p>Form submitted successfully!</p>";
+            }
         } ?>
 
         <?php
