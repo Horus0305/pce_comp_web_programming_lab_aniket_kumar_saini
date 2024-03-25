@@ -1,8 +1,11 @@
 <?php
 include "head_links.php";
 ?>
-<link rel="website icon" type="png" href="../img/favicon.png" />
 
+<link rel="website icon" type="png" href="../img/favicon.png" />
+<div id="preloader">
+  <div id="loader"></div>
+</div>
 <div class="nav">
     <div class="emblem">
         <a href="../landingpage/main.html">
@@ -43,7 +46,11 @@ include "head_links.php";
         </div>
     </div>
 </div>
-
+<script>
+    $(window).on("load", function () {
+      $("#preloader").fadeOut("slow");
+    });
+  </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 // Function to fetch notifications via AJAX
@@ -131,7 +138,5 @@ window.addEventListener("keydown", (event) => {
     }
 </script>
 
-
-</script>
 
 

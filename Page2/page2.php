@@ -12,7 +12,9 @@
 </head>
 
 <body>
-  
+<div id="preloader">
+  <div id="loader"></div>
+</div>
   <div class="main-con">
     
     <div onclick="show_burger()" class="hamburger">
@@ -206,7 +208,11 @@
       
     </div>
   </div>
-
+  <script>
+    $(window).on("load", function () {
+      $("#preloader").fadeOut("slow");
+    });
+  </script>
   <script src="page2.js"></script>
 </body>
 

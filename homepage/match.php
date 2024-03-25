@@ -1,6 +1,6 @@
 <?php
-include "../includes/base.php";
 session_start();
+include "../includes/base.php";
 require("../includes/database_connect.php");
 
 // Check if session variables are set
