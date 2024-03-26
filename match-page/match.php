@@ -14,6 +14,11 @@ require ("../includes/database_connect.php");
     $matchgender = ($gender == 'male') ? 'female' : 'male';
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
+    $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['sign'] = $row['sign'];
 
     function interpretBMI($bmi)
     {
@@ -41,8 +46,6 @@ require ("../includes/database_connect.php");
       $ismatched_result = $conn->query($ismatched_sql);
       $isMatched = $ismatched_result->fetch(PDO::FETCH_ASSOC);
       if ($isMatched) {
-        echo "if block";
-        // If matched, display the matched user's card
         $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1)";
         $match_result = $conn->query($match_sql);
         $row = $match_result->fetch(PDO::FETCH_ASSOC);
@@ -84,7 +87,7 @@ require ("../includes/database_connect.php");
       } else {
         $currentUserAge = $_SESSION['age'];
 
-        $moonCompatibility = array(
+        $compatibility = array(
           "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius", "Libra", "Taurus"),
           "Taurus" => array("Virgo", "Capricorn", "Pisces", "Cancer", "Scorpio", "Leo"),
           "Gemini" => array("Libra", "Aquarius", "Aries", "Leo", "Sagittarius", "Virgo"),
@@ -97,7 +100,7 @@ require ("../includes/database_connect.php");
           "Capricorn" => array("Taurus", "Virgo", "Scorpio", "Pisces", "Cancer", "Leo"),
           "Aquarius" => array("Gemini", "Libra", "Sagittarius", "Aries", "Leo", "Virgo"),
           "Pisces" => array("Cancer", "Scorpio", "Capricorn", "Taurus", "Virgo", "Libra")
-      );   
+      );  
       
 
         $currentSunSign = $_SESSION['sign'];
@@ -107,42 +110,23 @@ require ("../includes/database_connect.php");
         $maxAge = $currentUserAge + 5;
 
 
-        // $sql = "SELECT *
-        //         FROM $matchgender
-        //         WHERE sign IN (" . implode(',', array_fill(0, count($compatibleSigns), '?')) . ")
-        //         AND age BETWEEN ? AND ?
-        //         AND NOT EXISTS (
-        //         SELECT 1
-        //         FROM matchtable
-        //         WHERE ($gender = ? AND $matchgender = $matchgender.id)
-        //         AND matched = 0
-        //     )";
-
-        // // Prepare the SQL statement
-        // $stmt = $conn->prepare($sql);
-
-        // // Bind parameters
-        // foreach ($compatibleSigns as $index => $sign) {
-        //   $stmt->bindValue($index + 1, $sign, PDO::PARAM_STR);
-        // }
-        // $stmt->bindValue(count($compatibleSigns) + 1, $minAge, PDO::PARAM_INT);
-        // $stmt->bindValue(count($compatibleSigns) + 2, $maxAge, PDO::PARAM_INT);
-        // $stmt->bindValue(count($compatibleSigns) + 3, $id, PDO::PARAM_STR);
-        // $stmt->execute();
-        
         $sql = "SELECT *
-        FROM $matchgender
-        LEFT JOIN matchtable ON $matchgender.id = matchtable.$matchgender
-        WHERE sign IN (" . implode(',', array_fill(0, count($compatibleSigns), '?')) . ")
-        AND age BETWEEN ? AND ?
-        AND (matchtable.$gender IS NULL OR matchtable.$gender != ? OR matchtable.matched != 0)";
+                FROM $matchgender
+                WHERE sign IN (" . implode(',', array_fill(0, count($compatibleSigns), '?')) . ")
+                AND age BETWEEN ? AND ?
+                AND NOT EXISTS (
+                SELECT 1
+                FROM matchtable
+                WHERE ($gender = ? AND $matchgender = $matchgender.id)
+                AND matched = 0
+            )";
 
         // Prepare the SQL statement
         $stmt = $conn->prepare($sql);
-        
+
         // Bind parameters
         foreach ($compatibleSigns as $index => $sign) {
-            $stmt->bindValue($index + 1, $sign, PDO::PARAM_STR);
+          $stmt->bindValue($index + 1, $sign, PDO::PARAM_STR);
         }
         $stmt->bindValue(count($compatibleSigns) + 1, $minAge, PDO::PARAM_INT);
         $stmt->bindValue(count($compatibleSigns) + 2, $maxAge, PDO::PARAM_INT);
