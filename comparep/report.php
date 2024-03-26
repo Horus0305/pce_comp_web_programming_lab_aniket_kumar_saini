@@ -187,6 +187,8 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
         <div class="match-card">
             <div class="outercircle">
                 <img src="img/male.jpg" class="innercircle">
+                <!-- <img class="photo" src="photodisplay.php?gender='.$gender.'&id=' . $row['id'] . '" alt="photo" />  -->
+                <!-- gender and id me jiska photo chahiye uska -->
             </div>
             <div class="name"><span class="wheat"><?php echo ucwords($male["name"]) ;?></span></div>   
             <div class="details">

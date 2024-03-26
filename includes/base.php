@@ -67,8 +67,75 @@ include "head_links.php";
     <div id="overlay">
         <img src="../img/cross.svg" alt="cancel" id="modalinactive" />
         <div class="container" id="notification-container">
-            <h1>Push Notification</h1>
+
+            <h1>Notification</h1>
+          
+            <?php
+            // Get current date and time
+            $currentDateTime = date("Y-m-d H:i:s");
+
+            try {
+                $gender = $_SESSION['gender'];
+                $id = $_SESSION['id'];
+
+                // Connect to your database
+                $db = new PDO('sqlite:../database/baba.db');
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Determine the column name based on the session gender
+                $column = ($_SESSION['gender'] == 'male') ? 'male' : 'female';
+
+                // Fetch notifications from the database
+                $query = "SELECT * FROM matchtable WHERE $column = :id AND matched = '1'";
+                $statement = $db->prepare($query);
+                $statement->execute(array(':id' => $id));
+
+                // Display notifications
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<div class="notification_con">';
+                    echo '<i class="fi fi-rr-envelope-dot mess" style="color: black;"></i>';
+                    echo '<p class="noti" style="color: black;">You found a match</p>';
+                  
+                    // Add a link to the destination page with the appropriate URL
+                    echo '<a href="../comparep/report.php"><button style=" background-color:wheat;
+                    color:black;
+                    width: 100%;
+                    height:6%;
+                    border-radius: 10px;
+                    font-size: 1.2rem;">Checkout</button></a>';
+                    echo '</div>';
+                }
+                
+                // Close the statement
+                $statement = null;
+
+                // Close the database connection
+                $db = null;
+            } catch (PDOException $e) {
+                echo "Database Error: " . $e->getMessage();
+            }
+          
+
+            session_abort();
+            ?>
+            <p id="current-date-time" style="        position: absolute;
+        bottom: 0;
+        color:black;
+        background-color: wheat; /* Set background color to wheat */
+        padding: 5px; /* Add some padding for better visibility */
+        width: 95%;
+        margin-right:25px; /* Ensure it spans the entire width */
+        text-align: center;
+        border-radius:10px; /* Center align the text */
+    }
+ ">Current</p>
+
         </div>
+    </div>
+</div>
+
+        
+   
     </div>
 </div>
 <script>
@@ -102,22 +169,21 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-    // Function to fetch notifications via AJAX
-    // Call fetchNotifications function on page load
-    function fetchNotifications() {
-        $.ajax({
-            url: "fetch_notification.php",
-            type: "GET",
-            dataType: "json",
-            success: function(response) {
-                // Process the fetched notifications
-                if (response.error) {
-                    console.error("Error fetching notifications: " + response.error);
-                } else {
-                    // Display notifications
-                    let notificationsContainer = $("#notification-container");
-                    notificationsContainer.empty(); // Clear previous notifications
-                    response.forEach(function(notification) {
+function fetchNotifications() {
+    $.ajax({
+        url: "fetch_notification.php",
+        type: "GET",
+        dataType: "json",
+        success: function(response) {
+            // Process the fetched notifications
+            if (response.error) {
+                console.error("Error fetching notifications: " + response.error);
+            } else {
+                // Display notifications
+                let notificationsContainer = $("#notification-container");
+                notificationsContainer.empty(); // Clear previous notifications
+                if (response.notifications) { // Check if notifications property exists
+                    response.notifications.forEach(function(notification) {
                         let notificationHTML = '<div class="notification_con">';
                         notificationHTML += '<i class="fi fi-rr-envelope-dot mess" style="color: black;"></i>';
                         notificationHTML += '<p class="noti" style="color: black;">' + notification.message + '</p>';
@@ -126,12 +192,12 @@ window.addEventListener("keydown", (event) => {
                         notificationsContainer.append(notificationHTML);
                     });
                 }
-            },
-            error: function(xhr, status, error) {
-                console.error("Error fetching notifications: " + error);
             }
-        });
-    }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching notifications: " + error);
+        }
+    });}
 
     // Call fetchNotifications function on page load
     fetchNotifications();
@@ -161,6 +227,40 @@ window.addEventListener("keydown", (event) => {
             }
         });
     }
+    function updateCurrentDateTime() {
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    var monthIndex = currentDate.getMonth();
+    var year = currentDate.getFullYear();
+    
+    // Get hours, minutes, and seconds
+    var hours = currentDate.getHours();
+    var minutes = currentDate.getMinutes();
+    var seconds = currentDate.getSeconds();
+    
+    // Convert hours to 12-hour format
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+    // Ensure minutes and seconds are formatted with leading zeros if less than 10
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    var formattedTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+
+    var formattedDate = day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + formattedTime;
+    document.getElementById("current-date-time").textContent = "Date and Time: " + formattedDate;
+}
+
+    // Call the function immediately to display the initial date and time
+    updateCurrentDateTime();
+
+    // Call the function every second to update the date and time continuously
+    setInterval(updateCurrentDateTime, 1000);
 </script>
 
 

@@ -49,12 +49,11 @@ require ("../includes/database_connect.php");
         $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1)";
         $match_result = $conn->query($match_sql);
         $row = $match_result->fetch(PDO::FETCH_ASSOC);
-
         echo '
             <div class="match-card">
               <div class="image">
                 <img class="sign" src="img/pisces.png" alt="sign" />
-                <img class="photo" src="img/male-user.png" alt="photo" />
+                <img class="photo" src="matchdisplay.php?&matchid=' . $row['id'] . '" alt="photo" />
               </div>
               <div class="overview">
                 <div class="basic-info">
@@ -85,8 +84,8 @@ require ("../includes/database_connect.php");
             <a style="text-decoration:None;" href="../comparep/report.php"><div class="compreport">Click here to see the complete Compatibility Report</div></a>
             ';
       } else {
-        $currentUserAge = $_SESSION['age'];
 
+        $currentUserAge = $_SESSION['age'];
         $compatibility = array(
           "Aries" => array("Leo", "Sagittarius", "Gemini", "Aquarius", "Libra", "Taurus"),
           "Taurus" => array("Virgo", "Capricorn", "Pisces", "Cancer", "Scorpio", "Leo"),
@@ -138,6 +137,7 @@ require ("../includes/database_connect.php");
           echo "Currently there are no Users compatible with you, Please be patient.";
         } else {
           foreach ($rows as $row) {
+            // $matchid = $row['id'];
             $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = id AND r_id = {$row['id']})";
             $like_result = $conn->query($like_sql);
             $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
@@ -146,7 +146,7 @@ require ("../includes/database_connect.php");
         <div class="match-card">
             <div class="image">
                 <img class="sign" src="img/pisces.png" alt="sign" />
-                <img class="photo" src="img/male-user.png" alt="photo" />
+                <img class="photo" src="matchdisplay.php?&matchid=' . $row['id'] . '" alt="photo" />
             </div>
             <div class="overview">
                 <div class="basic-info">
