@@ -16,7 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z]).{8,}$/', $password)) {
-        echo '<script>alert("Invalid Password"); window.location.href = "../landingpage/chngpass.html";</script>';
+        echo '<script>alert("New password must contain at least one uppercase letter, one lowercase letter, and be at least 8 characters long.");
+        window.location.href = "../landingpage/chngpass.html";</script>';
         exit();
     }
     if ($password !== $confirm_password) {
