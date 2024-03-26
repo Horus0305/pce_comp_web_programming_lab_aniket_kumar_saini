@@ -47,7 +47,7 @@ body {
 }
 
 .match-card {
-  width: 100%;
+  width: 45%;
   height: 65vh;
   display: flex;
   align-items: center;
@@ -297,6 +297,5 @@ form input {
  
 
 }
-
 
 
