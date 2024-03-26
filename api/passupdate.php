@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z]).{8,}$/', $password)) {
-        header("Location: ../landingpage/chngpass.html?error=invalid_password");
+        echo '<script>alert("Invalid Password"); window.location.href = "../landingpage/chngpass.html";</script>';
         exit();
     }
     if ($password !== $confirm_password) {
-        header("Location: ../landingpage/chngpass.html?error=password_mismatch");
+        echo '<script>alert("Password Mismatched."); window.location.href = "../landingpage/chngpass.html";</script>';
         exit();
     }
     $hashed_password = sha1($password);
