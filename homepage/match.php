@@ -45,7 +45,7 @@ $horoscope = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="head" style = "font-weight:bold">
                 Daily Horoscope
             </div>
-            <img src="img\horo1.png" alt="horologo" id="horoimg">
+            <img src=<?php echo "../landingpage/img/signs/".$sign.".svg"?> alt="horologo" id="horoimg">
             <div class="card-content">
                 <p id='ptext' style = "text-align:center">
                     <?php echo $horoscope['horoscope']; ?>
