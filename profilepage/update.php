@@ -116,9 +116,8 @@ try {
             echo '<script>alert("Error uploading file");window.location.href = "../profilepage/profile.php";</script>';
             exit;
         }
-    
         // Validate file type (optional)
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
         if (!in_array($newphoto['type'], $allowedTypes)) {
             echo '<script>alert("Invalid file type");window.location.href = "../profilepage/profile.php";</script>';
             exit;
