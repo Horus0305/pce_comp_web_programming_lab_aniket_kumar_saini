@@ -107,28 +107,48 @@ require ("../includes/database_connect.php");
         $maxAge = $currentUserAge + 5;
 
 
+        // $sql = "SELECT *
+        //         FROM $matchgender
+        //         WHERE sign IN (" . implode(',', array_fill(0, count($compatibleSigns), '?')) . ")
+        //         AND age BETWEEN ? AND ?
+        //         AND NOT EXISTS (
+        //         SELECT 1
+        //         FROM matchtable
+        //         WHERE ($gender = ? AND $matchgender = $matchgender.id)
+        //         AND matched = 0
+        //     )";
+
+        // // Prepare the SQL statement
+        // $stmt = $conn->prepare($sql);
+
+        // // Bind parameters
+        // foreach ($compatibleSigns as $index => $sign) {
+        //   $stmt->bindValue($index + 1, $sign, PDO::PARAM_STR);
+        // }
+        // $stmt->bindValue(count($compatibleSigns) + 1, $minAge, PDO::PARAM_INT);
+        // $stmt->bindValue(count($compatibleSigns) + 2, $maxAge, PDO::PARAM_INT);
+        // $stmt->bindValue(count($compatibleSigns) + 3, $id, PDO::PARAM_STR);
+        // $stmt->execute();
+        
         $sql = "SELECT *
-                FROM $matchgender
-                WHERE sign IN (" . implode(',', array_fill(0, count($compatibleSigns), '?')) . ")
-                AND age BETWEEN ? AND ?
-                AND NOT EXISTS (
-                SELECT 1
-                FROM matchtable
-                WHERE ($gender = ? AND $matchgender = $matchgender.id)
-                AND matched = 0
-            )";
+        FROM $matchgender
+        LEFT JOIN matchtable ON $matchgender.id = matchtable.$matchgender
+        WHERE sign IN (" . implode(',', array_fill(0, count($compatibleSigns), '?')) . ")
+        AND age BETWEEN ? AND ?
+        AND (matchtable.$gender IS NULL OR matchtable.$gender != ? OR matchtable.matched != 0)";
 
         // Prepare the SQL statement
         $stmt = $conn->prepare($sql);
-
+        
         // Bind parameters
         foreach ($compatibleSigns as $index => $sign) {
-          $stmt->bindValue($index + 1, $sign, PDO::PARAM_STR);
+            $stmt->bindValue($index + 1, $sign, PDO::PARAM_STR);
         }
         $stmt->bindValue(count($compatibleSigns) + 1, $minAge, PDO::PARAM_INT);
         $stmt->bindValue(count($compatibleSigns) + 2, $maxAge, PDO::PARAM_INT);
         $stmt->bindValue(count($compatibleSigns) + 3, $id, PDO::PARAM_STR);
         $stmt->execute();
+        
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (count($rows) == 0) {
           echo "Currently there are no Users compatible with you, Please be patient.";
