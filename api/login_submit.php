@@ -1,6 +1,7 @@
 <?php
 session_start();
 require("../includes/database_connect.php"); // Assuming this file includes your database connection
+// require("./fake.php"); 
 
 $email = $_POST['email'];
 $password = $_POST['password'];
