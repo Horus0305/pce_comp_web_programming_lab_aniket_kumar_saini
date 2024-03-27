@@ -74,7 +74,7 @@ require ("../includes/database_connect.php");
               </div>
               <div class="decision">
                 <p>Send a Like !!</p>
-                <div class="like-button liked dislike" >
+                <div class="like-button" >
                     <div class="heart-bg">
                     <div class="heart-icon liked" onclick="sendDislike(' . $_SESSION['id'] . ', ' . $row["id"] . ')"></div>
                     </div>
@@ -138,10 +138,14 @@ require ("../includes/database_connect.php");
         } else {
           foreach ($rows as $row) {
             // $matchid = $row['id'];
-            $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = id AND r_id = {$row['id']})";
-            $like_result = $conn->query($like_sql);
-            $like_row = $like_result->fetch(PDO::FETCH_ASSOC);
-            $liked_class = $like_row['like_count'] > 0 ? ' liked' : ''; // Add 'liked' class if there's a like or match record
+            $like_sql = "SELECT COUNT(*) AS like_count FROM liketable WHERE (s_id = :sid AND r_id = :rid)";
+            $stmt = $conn->prepare($like_sql);
+            $stmt->bindParam(':sid', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':rid', $row['id'], PDO::PARAM_INT);
+            $stmt->execute();
+
+            $like_row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $liked_class = $like_row['like_count'] > 0 ? ' liked' : '';
             echo '
         <div class="match-card">
             <div class="image">
@@ -167,9 +171,9 @@ require ("../includes/database_connect.php");
             </div>
             <div class="decision">
                 <p>Send a Like !!</p>
-                <div class="like-button' . $liked_class . '" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')">
-                    <div class="heart-bg">
-                        <div class="heart-icon"></div>
+                <div class="like-button" >                    
+                <div class="heart-bg">
+                    <div class="heart-icon ' . $liked_class . '" onclick="sendLike(' . $_SESSION['id'] . ', ' . $row["id"] . ')"></div>
                     </div>
                 </div>
             </div>
@@ -207,7 +211,7 @@ require ("../includes/database_connect.php");
       }
     };
     xhr.send("likesender=" + likerUserId + "&likereceiver=" + likedUserId);
-    location.reload();
+    location.reload(true);
   }
 
   function sendDislike(likerUserId, dislikedUserId) {
@@ -233,7 +237,7 @@ require ("../includes/database_connect.php");
         }
       };
       xhr.send("disliker=" + likerUserId + "&disliked=" + dislikedUserId);
-      location.reload();
+      location.reload(true);
     }
   }
 </script>
