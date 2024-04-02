@@ -1,18 +1,6 @@
 <?php
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cosmicdestiny";
-
-// Create a new MySQLi connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once("../includes/database_connect.php");
 
 // Check if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
