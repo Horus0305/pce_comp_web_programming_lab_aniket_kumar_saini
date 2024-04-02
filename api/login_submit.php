@@ -9,7 +9,8 @@ $password = $_POST['password'];
 // Function to validate password format
 function validatePassword($password) {
     // Check if the password has at least one uppercase letter, one lowercase letter, and minimum 8 characters
-    return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $password);
+    return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\W]{8,}$/', $password);
+
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
