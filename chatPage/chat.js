@@ -1,6 +1,6 @@
 var input = document.getElementById('in');
+var current_Date;
 var currentTime;
-var currentDateObject;
 
 
 function padZero(number) {
@@ -17,51 +17,46 @@ function disappear() {
 }
 
 function clock() {
-    let time = new Date();
+    var currentDate = new Date();
 
-    let hours = time.getHours();
-    let min = time.getMinutes();
-    let sec = time.getSeconds();
+    var year = currentDate.getFullYear(); // Get the year (e.g., 2024)
+    var month = currentDate.getMonth() + 1; // Get the month (0-11, add 1 to get 1-12)
+    var day = currentDate.getDate(); // Get the day of the month (1-31)
+    var hours = currentDate.getHours(); // Get the hours (0-23)
+    var minutes = currentDate.getMinutes(); // Get the minutes (0-59)
+    var seconds = currentDate.getSeconds(); // Get the seconds (0-59)
 
-    currentTime = padZero(hours) + ":" + padZero(min) + ":" + padZero(sec);
+    current_Date = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    console.log(currentDate);
+    return currentDate;
+}
+
+function clock2() {
+    var currentDate2 = new Date();
+
+    var hours = currentDate2.getHours();
+    var minutes = currentDate2.getMinutes();
+
+    currentTime = hours + ':' + minutes;
 
     return currentTime;
 }
 
-function date(){
-var currentDate = new Date();
-
-var year = currentDate.getFullYear(); 
-var month = currentDate.getMonth() + 1;
-var day = currentDate.getDate();
-
-var year = currentDate.getFullYear();
-var month = currentDate.getMonth() + 1; // Month (0-11, add 1 to get the actual month number)
-var day = currentDate.getDate(); // Day of the month (1-31)
-
-currentDateObject = day + "-" + month + "-" + year;
-console.log(currentDateObject);
-
-return currentDateObject;
-}
-
-setInterval(date, 1000);
-
 
 $(document).ready(function () {
-    setInterval( function() {
+    setInterval(function () {
         $("#main-message-con").load(location.href + " #message");
-    }, 1000 );
+    }, 1000);
 });
 
-setInterval( function() {
+setInterval(function () {
     var mainMessageCon = document.getElementById('message-con');
     mainMessageCon.scrollTop = mainMessageCon.scrollHeight;
-}, 3000 );
+}, 3000);
 
 
 
-$("#main-message-con").load(location.href + " #message", function() {
+$("#main-message-con").load(location.href + " #message", function () {
     var mainMessageCon = document.getElementById('message-con');
     mainMessageCon.scrollTop = mainMessageCon.scrollHeight;
 });
@@ -89,7 +84,6 @@ function message_send(event) {
         else {
             send();
         }
-
         document.getElementById('in').value = '';
     }
 }
@@ -101,28 +95,30 @@ function send() {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'message.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log("Message send in message.php");
             window.location.reload();
         }
     };
-    var data = 'message=' + encodeURIComponent(input.value) + '&time=' + encodeURIComponent(currentTime) + '&name=' + encodeURIComponent(username);
+    var data = 'message=' + encodeURIComponent(input.value) + '&time=' + encodeURIComponent(current_Date) + '&name=' + encodeURIComponent(username)+ '&time2=' + encodeURIComponent(currentTime);
     xhr.send(data);
 }
 
 setInterval(clock, 1000);
+
+setInterval(clock2, 1000);
 
 
 function show_emojis() {
 
     var emojis = document.getElementById('emojis');
 
-    if (emojis.style.display === "none" || emojis.style.display === ""){
+    if (emojis.style.display === "none" || emojis.style.display === "") {
         emojis.style.display = "block";
     }
 
-    else if (emojis.style.display === "block"){
+    else if (emojis.style.display === "block") {
         emojis.style.display = "none";
     }
 }

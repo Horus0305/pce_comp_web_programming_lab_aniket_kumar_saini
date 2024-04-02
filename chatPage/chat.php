@@ -71,7 +71,7 @@ include '../includes/head_links.php';
 
                         $pdo = new PDO("sqlite:" . $db_path);
 
-                        $query2 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
+                        $query2 = $pdo->prepare('SELECT message, date, date2 FROM chat WHERE username = :username');
                         $query2->bindValue(':username', $name, PDO::PARAM_STR);
                         $query2->execute();
                         $messages = $query2->fetchAll(PDO::FETCH_ASSOC);
@@ -109,6 +109,7 @@ include '../includes/head_links.php';
                             $messages1[] = array(
                                 'message' => htmlspecialchars($message['message']),
                                 'date' => htmlspecialchars($message['date']),
+                                'date2' => htmlspecialchars($message['date2']),
                                 'sender' => $name
                             );
                         }
@@ -118,7 +119,7 @@ include '../includes/head_links.php';
                     $messages2 = [];
                     if ($name2) {
                         try {
-                            $query4 = $pdo->prepare('SELECT message, date FROM chat WHERE username = :username');
+                            $query4 = $pdo->prepare('SELECT message, date, date2 FROM chat WHERE username = :username');
                             $query4->bindValue(':username', $name2, PDO::PARAM_STR);
                             $query4->execute();
                             $messages2 = $query4->fetchAll(PDO::FETCH_ASSOC);
@@ -132,6 +133,7 @@ include '../includes/head_links.php';
                         $messages2Formatted[] = array(
                             'message' => htmlspecialchars($message['message']),
                             'date' => htmlspecialchars($message['date']),
+                            'date2' => htmlspecialchars($message['date2']),
                             'sender' => $name2
                         );
                     }
@@ -140,17 +142,9 @@ include '../includes/head_links.php';
                     $allMessages = array_merge($messages1, $messages2Formatted);
 
                     // Sort messages by date
-                    usort($allMessages, function ($a, $b) use ($name) {
-                        // Compare dates and times
+                    usort($allMessages, function ($a, $b){
                         $dateComparison = strtotime($a['date']) - strtotime($b['date']);
-                        if ($dateComparison == 0) { // If dates are same, prioritize messages from other user
-                            if ($a['sender'] === $name) {
-                                return 1; // Move $name's messages to the end
-                            } elseif ($b['sender'] === $name) {
-                                return -1; // Move other user's messages to the beginning
-                            }
-                        }
-                        return $dateComparison; // Sort by date and time otherwise
+                        return $dateComparison;
                     });
 
 
@@ -163,7 +157,7 @@ include '../includes/head_links.php';
                                 echo '<div class="message2" id="message">';
                             }
                             echo '<p class="main_message">' . htmlspecialchars($message['message']) . '</p>';
-                            echo '<label class="time">' . htmlspecialchars($message['date']) . '</label>';
+                            echo '<label class="time">' . htmlspecialchars($message['date2']) . '</label>';
                             echo '</div>';
                         }
                     } else {
