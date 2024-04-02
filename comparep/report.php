@@ -192,7 +192,7 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
         <div class="match-card mid">
          <div id="mid-chart">
         <canvas id="Chart"></canvas></div>
-        <p><span class="wheat">Match Score </span><?php echo $totalscore;?>/36</p>
+        <p><span class="wheat">Match Score:</span><?php echo $totalscore;?>/36</p>
             <button onclick="window.location.href='./reportpage2.php'">View Complete Report</button>
         </div>
       
