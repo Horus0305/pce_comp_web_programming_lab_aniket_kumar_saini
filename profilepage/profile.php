@@ -312,7 +312,7 @@ $db = null;
         <textarea type="text" id="description" name="description" required rows="7"><?php echo $row["description"]; ?></textarea>
 
         <label for="password"><b>Password</b></label>
-        <input type="password" id="edpass" name="edpass"  />
+        <input type="password" id="edpass" name="edpass" required />
 
         <input type="submit" value="Update" />
       </form>
