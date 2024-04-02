@@ -2,18 +2,17 @@
 session_start(); // Start the session
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
-if (!isset($_SESSION['id'])) {
-    header("Location: login.php");
-    exit(); // Stop further execution
-}
+$matchgender = ($gender == 'male') ? 'female' : 'male';
+$id = $_GET['id'];
+
 
 // Now, continue with fetching the image from the database
 // Establish connection to the database
 require_once("../includes/database_connect.php");
 
 // Fetch image content from the database
-$stmt = $db->prepare("SELECT photocontent FROM $gender WHERE id=:id");
-$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT); // Using user_id from session
+$stmt = $db->prepare("SELECT photocontent FROM $matchgender WHERE id=:id");
+$stmt->bindParam(':id', $id, PDO::PARAM_INT); // Using user_id from session
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 

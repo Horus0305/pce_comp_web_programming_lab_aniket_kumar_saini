@@ -3,7 +3,6 @@ session_start();
 require("../includes/database_connect.php");
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
-// echo $gender;
 
 if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
   die("Missing session variables");

@@ -2,6 +2,7 @@
 session_start();
 include '../includes/base.php';
 include '../includes/head_links.php';
+include '../includes/database_connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,14 @@ include '../includes/head_links.php';
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
+<?php
+$gender = $_SESSION['gender'];
+$id = $_SESSION['id'];
+$matchgender = ($gender == 'male') ? 'female' : 'male';
+$match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM matchtable WHERE ($gender = $id OR $matchgender = $id) AND matched = 1)";
+        $match_result = $conn->query($match_sql);
+        $row = $match_result->fetch(PDO::FETCH_ASSOC);
+?>
 <body style="background:url('../img/bg.png');">
 
     <div class="main_container">
@@ -24,7 +32,7 @@ include '../includes/head_links.php';
 
             <div id="message-con">
                 <div class="nav2">
-                    <a href="chat.php"><img src="img/profile.jpg" alt="profile_pic"></a>
+                    <a href="chat.php"><img src="imgdisplay.php?&id=<?php echo $row['id']; ?>" alt="profile_pic"></a>
                     <?php
 
 
