@@ -1,27 +1,18 @@
 @import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
-@import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
 @import url("https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css");
 
 body {
   margin: 0;
   width: 100%;
+  display: flex;
 }
 
-.main-con {
+.main_container {
   display: flex;
+  flex-direction: row;
   overflow-y: hidden;
 }
 
-.side-bar {
-  width: 5%;
-  background-color: rgba(255, 255, 255, 0.5);
-  height: 95vh;
-  margin-top: 13px;
-  border-radius: 10px;
-  margin-left: 12px;
-  position: sticky;
-  top: 0;
-}
 
 .logo-con {
   height: 30vh;
@@ -65,8 +56,8 @@ body {
 }
 
 .all-con {
-  width: 93%;
-  margin-left: 17px;
+  margin-left: 30px;
+  width: 100%;
 }
 
 .nav2 {
@@ -128,10 +119,6 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.send-con {
-  position: sticky;
-  bottom: 0;
-}
 
 .logo2 {
   font-size: 2rem;
@@ -212,6 +199,10 @@ body {
   margin-right: 25px;
   margin-top: 5px;
   cursor: pointer;
+}
+
+#name{
+  display: none;
 }
 
 .message2 {

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../includes/base.php';
+include '../includes/head_links.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,15 +18,8 @@
 
 <body style="background:url('../img/bg.png');">
 
-    <div class="main-con">
+    <div class="main_container">
 
-
-
-        <?php
-        session_start();
-        include '../includes/base.php';
-        include '../includes/head_links.php';
-        ?>
         <div class="all-con">
 
             <div id="message-con">
@@ -41,24 +39,25 @@
                         JOIN male ON matchtable.male = male.id
                         JOIN female ON matchtable.female = female.id
                         WHERE male.name = :male_name OR female.name = :female_name AND matchtable.matched = 1');
-                        $query5->bindValue(':male_name', $name, PDO::PARAM_STR);
-                        $query5->bindValue(':female_name', $name, PDO::PARAM_STR);
-                        $query5->execute();
-                        $matchData2 = $query5->fetchAll(PDO::FETCH_ASSOC);
+                    $query5->bindValue(':male_name', $name, PDO::PARAM_STR);
+                    $query5->bindValue(':female_name', $name, PDO::PARAM_STR);
+                    $query5->execute();
+                    $matchData2 = $query5->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($matchData2) {
-                            foreach ($matchData2 as $data) {
-                                if ($data['male_name'] === $name) {
-                                    $Cname = $data['female_name'];
-                                } else if ($data['female_name'] === $name) {
-                                    $Cname = $data['male_name'];
-                                }
+                    if ($matchData2) {
+                        foreach ($matchData2 as $data) {
+                            if ($data['male_name'] === $name) {
+                                $Cname = $data['female_name'];
+                            } else if ($data['female_name'] === $name) {
+                                $Cname = $data['male_name'];
                             }
-                        } else {
-                            //no
                         }
+                    } else {
+                        //no
+                    }
 
-                    echo '<li id="name">' . $Cname . '</li>';
+                    echo '<li id="name2">' . $Cname . '</li>';
+                    echo '<li id="name">' . $name . '</li>';
                     ?>
                 </div>
 
@@ -87,7 +86,7 @@
                         $query3->execute();
                         $matchData = $query3->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($matchData) { 
+                        if ($matchData) {
                             foreach ($matchData as $data) {
                                 if ($data['male_name'] === $name) {
                                     $name2 = $data['female_name'];
@@ -141,7 +140,7 @@
                     $allMessages = array_merge($messages1, $messages2Formatted);
 
                     // Sort messages by date
-                    usort($allMessages, function($a, $b) use ($name) {
+                    usort($allMessages, function ($a, $b) use ($name) {
                         // Compare dates and times
                         $dateComparison = strtotime($a['date']) - strtotime($b['date']);
                         if ($dateComparison == 0) { // If dates are same, prioritize messages from other user
@@ -153,7 +152,7 @@
                         }
                         return $dateComparison; // Sort by date and time otherwise
                     });
-                    
+
 
                     // Display messages
                     if ($allMessages) {
@@ -196,6 +195,7 @@
             </div>
         </div>
     </div>
+
 </body>
 <script src="chat.js"></script>
 

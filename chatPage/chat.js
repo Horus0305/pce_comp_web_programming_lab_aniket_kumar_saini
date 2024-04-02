@@ -1,5 +1,6 @@
 var input = document.getElementById('in');
 var currentTime;
+var currentDateObject;
 
 
 function padZero(number) {
@@ -26,6 +27,26 @@ function clock() {
 
     return currentTime;
 }
+
+function date(){
+var currentDate = new Date();
+
+var year = currentDate.getFullYear(); 
+var month = currentDate.getMonth() + 1;
+var day = currentDate.getDate();
+
+var year = currentDate.getFullYear();
+var month = currentDate.getMonth() + 1; // Month (0-11, add 1 to get the actual month number)
+var day = currentDate.getDate(); // Day of the month (1-31)
+
+currentDateObject = day + "-" + month + "-" + year;
+console.log(currentDateObject);
+
+return currentDateObject;
+}
+
+setInterval(date, 1000);
+
 
 $(document).ready(function () {
     setInterval( function() {
