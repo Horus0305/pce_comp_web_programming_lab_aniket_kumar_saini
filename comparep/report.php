@@ -6,30 +6,25 @@ include "../includes/base.php"
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <?php
 require("../includes/database_connect.php");
-// Check if session variables are set
+
 if (!isset($_SESSION['gender']) || !isset($_SESSION['id'])) {
   die("Missing session variables");
 }
 $gender = $_SESSION['gender'];
 $id = $_SESSION['id'];
-
-
 if($gender=="male"){
+
 $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $male = $stmt->fetch(PDO::FETCH_ASSOC);
-
 $time_of_birth = $male['tob'];
 $date = $male['dob'];
 $malelati = $male['latitude'];
 $malelong = $male['longitude'];
-
-// Split time_of_birth into hours, minutes, seconds
 list($malehours, $maleminutes, $maleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
-// Split date into year, month, day
 list($maleyear, $malemonth, $maleday) = explode("-", $date);
-
+$maleid=$id;
 
 $stmt = $db->prepare("SELECT female FROM matchtable WHERE $gender=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -37,21 +32,17 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $matchid= $row['female'];
-
+$femaleid=$matchid;
 $stmt = $db->prepare("SELECT * FROM female WHERE id=:id");
 $stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
 $stmt->execute();
 $female = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
 $time_of_birth = $female['tob'];
 $femaledate = $female['dob'];
 $femalelati = $female['latitude'];
 $femalelong = $female['longitude'];
-
-// Split time_of_birth into hours, minutes, seconds
 list($femalehours, $femaleminutes, $femaleseconds) = array_pad(explode(":", $time_of_birth), 3, '0');
-// Split date into year, month, day
+
 list($femaleyear, $femalemonth, $femaleday) = explode("-", $date);
 
 }
@@ -62,7 +53,7 @@ $stmt = $db->prepare("SELECT * FROM $gender WHERE id=:id");
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $female = $stmt->fetch(PDO::FETCH_ASSOC);
-
+$femaleid=$id;
 $time_of_birth = $female['tob'];
 $date = $female['dob'];
 $femalelati = $female['latitude'];
@@ -80,7 +71,7 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $matchid= $row['male'];
-
+$maleid=$matchid;
 
 $stmt = $db->prepare("SELECT * FROM male WHERE id=:id");
 $stmt->bindParam(':id', $matchid, PDO::PARAM_INT);
@@ -140,10 +131,10 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
         'x-api-key: ip1M6dWw2k3QqCJUrntXG8PIYzSH10L24LBdJ7pk'
     ];
     
-    // Initialize cURL session
+
     $curl = curl_init();
     
-    // Set cURL options
+
     curl_setopt_array($curl, array(
       CURLOPT_URL => $api_url,
       CURLOPT_RETURNTRANSFER => true,
@@ -157,17 +148,12 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
       CURLOPT_HTTPHEADER => $headers,
     ));
     
-    // Execute cURL request
     $response = curl_exec($curl);
-    
-    // Close cURL session
+
     curl_close($curl);
-    
-    // Decode JSON response
+   
     $data = json_decode($response, true);
-    
-    
-    // Check if the 'output' key exists in the response
+ 
     if (isset($data['output'])) 
       $output = $data['output'];
       $totalscore=$output["total_score"];
@@ -186,9 +172,8 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
     <div id="childcont">
         <div class="match-card">
             <div class="outercircle">
-                <img src="img/male.jpg" class="innercircle">
-                <!-- <img class="photo" src="photodisplay.php?gender='.$gender.'&id=' . $row['id'] . '" alt="photo" />  -->
-                <!-- gender and id me jiska photo chahiye uska -->
+
+            <img src="malephoto.php?&id=<?php echo $maleid; ?>" alt="photo" class="innercircle">
             </div>
             <div class="name"><span class="wheat"><?php echo ucwords($male["name"]) ;?></span></div>   
             <div class="details">
@@ -213,7 +198,9 @@ list($maleyear, $malemonth, $maleday) = explode("-", $maledate);
       
         <div class="match-card">
             <div class="outercircle">
-                <img src="img/female.jpg" class="innercircle">
+            <!--    <img src="img/female.jpg" class="innercircle">-->
+            <img src="femalephoto.php?&id=<?php echo $femaleid; ?>" alt="photo" class="innercircle">
+
             </div>
             <div class="name"><span class="wheat"><?php echo ucwords($female["name"]) ;?></span></div>   
             <div class="details">
