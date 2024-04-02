@@ -182,7 +182,7 @@ include '../includes/head_links.php';
             <div class="send-con">
                 <div class="logos">
                     <i class="fi fi-rr-smile logo2" onclick="show_emojis()"></i>
-                    <input onclick="disappear()" id="in" name="message" type="text" value="Message..."
+                    <input id="in" name="message" type="text" placeholder="Message..."
                         onkeydown="message_send(event)">
                     <i class="fi fi-rs-rocket-lunch logo2 send_btn" id="send" onclick="send()"></i>
                 </div>

@@ -7,15 +7,6 @@ function padZero(number) {
     return (number < 10 ? '0' : '') + number;
 }
 
-function disappear() {
-    if (input.value === 'Message...') {
-        input.value = '';
-    }
-    else {
-        return 0;
-    }
-}
-
 function clock() {
     var currentDate = new Date();
 

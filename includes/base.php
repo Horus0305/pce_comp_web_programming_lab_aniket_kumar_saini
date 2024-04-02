@@ -14,7 +14,7 @@ include "head_links.php";
     <div class="widgets">
         <div class="home">
             <a href="../homepage/match.php">
-                <img src="../img/home.svg" alt="" />
+                <img class="navigationimg" src="../img/home.svg" alt="" />
             </a>
         </div>
         <?php
@@ -44,18 +44,18 @@ include "head_links.php";
 
         <div class="chat">
             <a href="../chatPage/chat.php">
-                <img src="../img/chat.svg" alt="" />
+                <img class="navigationimg"src="../img/chat.svg" alt="" />
             </a>
         </div>
         <?php }?>
         <div class="heart">
             <a href="../match-page/match.php">
-                <img src="../img/heart.svg" alt="" />
+                <img class="navigationimg" src="../img/heart.svg" alt="" />
             </a>
         </div>
     </div>
     <div class="notification">
-        <img src="../img/notification.svg" alt="" id="modalactive" onclick="opcl()"/>
+        <img class="navigationimg" src="../img/notification.svg" alt="" id="modalactive" onclick="opcl()"/>
     </div>
     <div class="profile">
         <a href="../profilepage/profile.php">
