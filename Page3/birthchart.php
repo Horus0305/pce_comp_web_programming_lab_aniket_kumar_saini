@@ -178,8 +178,8 @@ $postDataBirthChart = array(
                     <div class="about2">
                         <h3>Name: <?php echo $name ?></h3>
                         <p>Birth Location: <?php echo $location; ?></p>
-                        <p>Date of Birth: <?php echo $date ;?></p>
-                        <p>Time of Birth: <?php echo $time_of_birth;  ?></p>
+                        <p>Date of Birth: <?php echo $date."  " ; echo $time_of_birth;?></p>
+                        
                                            
                        
                                             
