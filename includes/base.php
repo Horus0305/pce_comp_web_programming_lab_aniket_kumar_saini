@@ -43,7 +43,7 @@ include "head_links.php";
         
 
         <div class="connect">
-            <a href="../chatPage/connect.php">
+            <a href="../connectpage/connect.php">
                 <img class="navigationimg"src="../img/connect.svg" alt="" />
             </a>
         </div>
