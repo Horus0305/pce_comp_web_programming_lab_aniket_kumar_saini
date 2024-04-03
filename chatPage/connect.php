@@ -10,8 +10,8 @@ include '../includes/database_connect.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chat</title>
-    <link rel="stylesheet" type="text/css" href="chat.css">
+    <title>Cosmic Destiny - Connect</title>
+    <link rel="stylesheet" type="text/css" href="connect.css">
     <link rel="website icon" type="png" href="../img/favicon.png" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -32,7 +32,7 @@ $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM ma
 
             <div id="message-con">
                 <div class="nav2">
-                    <a href="chat.php"><img src="imgdisplay.php?&id=<?php echo $row['id']; ?>" alt="profile_pic"></a>
+                    <a href="connect.php"><img src="imgdisplay.php?&id=<?php echo $row['id']; ?>" alt="profile_pic"></a>
                     <?php
 
 
@@ -199,6 +199,6 @@ $match_sql = "SELECT * FROM $matchgender WHERE id = (SELECT $matchgender FROM ma
     </div>
 
 </body>
-<script src="chat.js"></script>
+<script src="connect.js"></script>
 
 </html>
