@@ -1,4 +1,4 @@
-@import url('https://cdn-uicons.flaticon.com/2.2.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url("https://cdn-uicons.flaticon.com/2.2.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
 
 * {
   margin: 0;
@@ -37,7 +37,6 @@ body {
   width: 80%;
   height: auto;
   transition: all 1s ease-in-out;
-
 }
 .home:hover {
   background-image: url(../img/homefill.svg);
@@ -49,10 +48,9 @@ body {
   width: 80%;
   height: auto;
   transition: all 1s ease-in-out;
-
 }
 .chat:hover {
-  background-image: url(../img/chatfill.svg);
+  background-image: url(../img/connectfill.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -60,7 +58,6 @@ body {
   width: 80%;
   height: auto;
   transition: all 1s ease-in-out;
-
 }
 .heart:hover {
   background-image: url(../img/heartfill.svg);
@@ -73,9 +70,8 @@ body {
   margin-left: 20%;
   /* padding-bottom: 10vh; */
   width: 62%;
-  height: auto; 
+  height: auto;
   transition: all 1s ease-in-out;
-
 }
 .notification:hover {
   background-image: url(../img/notificationfill.svg);
@@ -116,7 +112,7 @@ body {
   from {
     transform: translate(190%, 50%);
   }
-  
+
   to {
     transform: translate(50%, 50%);
   }
@@ -135,7 +131,7 @@ body {
   margin-top: 7px;
 }
 
-.notification_con{
+.notification_con {
   background-color: white;
   width: 90%;
   margin: auto;
@@ -147,10 +143,10 @@ body {
   font-size: 0.9rem;
 }
 
-.mess{
+.mess {
   font-size: 2rem;
 }
-.navigationimg{
+.navigationimg {
   width: 100%;
   height: auto;
 }

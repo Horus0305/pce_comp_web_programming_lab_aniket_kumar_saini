@@ -44,7 +44,7 @@ include "head_links.php";
 
         <div class="chat">
             <a href="../chatPage/chat.php">
-                <img class="navigationimg"src="../img/chat.svg" alt="" />
+                <img class="navigationimg"src="../img/connect.svg" alt="" />
             </a>
         </div>
         <?php }?>
