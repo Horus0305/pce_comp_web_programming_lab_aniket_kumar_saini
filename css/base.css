@@ -43,13 +43,13 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
 }
-.chat {
+.connect {
   margin-bottom: 30px;
   width: 80%;
   height: auto;
   transition: all 1s ease-in-out;
 }
-.chat:hover {
+.connect:hover {
   background-image: url(../img/connectfill.svg);
   background-repeat: no-repeat;
   background-size: contain;
