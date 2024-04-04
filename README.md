@@ -1,4 +1,4 @@
-# Astrology and Horrorscope 🔮
+# Cosmic Destiny 🔮
 
 ## Project Overview 🌟
 
